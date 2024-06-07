@@ -129,18 +129,38 @@
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label for="name" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="name">
+                            <label for="nombre" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa el nombre..." required>
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email personal</label>
-                            <input type="email" class="form-control" id="email">
+                            <label for="numeroCelular" class="form-label">Número celular:</label>
+                            <input type="text" class="form-control" id="numeroCelular" name="numeroCelular" placeholder="Ingresa número celular..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Rol:</label>
+                            <select class="form-select" id="role" required>
+                                <option selected>Escoge el rol...</option>
+                                <option value="Auxiliar">Auxiliar</option>
+                                <option value="Mecánico">Mecánico</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo electrónico:</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa el correo..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cedula" class="form-label">Cédula:</label>
+                            <input type="number" class="form-control" id="cedula" name="cedula" placeholder="Ingresa la cédula..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contraseña" class="form-label">Contraseña:</label>
+                            <input type="password" class="form-control" id="contraseña" name="contraseña" placeholder="Contraseña..." required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Guardar cambios</button>
                 </div>
             </div>
         </div>
