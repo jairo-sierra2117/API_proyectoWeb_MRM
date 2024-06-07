@@ -1,10 +1,27 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: sans-serif;
 }
-
+.inner {
+    position: absolute;
+  }
+.container {
+    width: 200%;
+    /* Ancho completo del menú */
+    background-color: #FFFFFF;
+    /* Color de fondo */
+    border: 1px solid #E0E0E0;
+    /* Borde */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    padding: 20px;
+    /* Relleno */
+    box-shadow: 0 15px 8px rgba(255, 7, 7, 0.958);
+    /* Sombra */
+}
 .sidebar {
-    width: 200px;
+    position: fixed;
+    width: 180px;
     background-color: #FFFFFF;
     border: 1px solid #E0E0E0;
     border-radius: 10px;
@@ -20,7 +37,7 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 10px 15px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -40,3 +57,33 @@ body {
 .menu-item:hover {
     background-color: #F0F0F0;
 }
+.table {
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    padding: 10px 15px;
+}
+.menu {
+    position: fixed; /* Fix the menu on the left side */
+    left: 0; /* Position at the left edge */
+    top: 0; /* Position at the top */
+    width: 200px; /* Set the width of the menu */
+    background-color: white; /* Set the background color to white */
+    padding: 20px; /* Add padding to the menu items */
+}
+.barra-superior {
+    background-color: #F0F0F0; /* Color de fondo de la barra */
+    padding: 10px 20px; /* Padding para la barra */
+    text-align: right; /* Alinear el texto a la derecha */
+  }
+  
+  .btn-rojo {
+    background-color: red; /* Color rojo del botón */
+    color: white; /* Color de texto blanco */
+    border: none; /* Quitar borde del botón */
+    padding: 10px 15px; /* Padding para el botón */
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+  }
+  
