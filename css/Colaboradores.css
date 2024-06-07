@@ -1,0 +1,124 @@
+body{
+    background-image: url(/Frontend/Images/image.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+.logo {
+    width: 100px; /* Set a fixed width for the logo */
+    max-width: 80%; /* Limit logo size to avoid overflowing container on smaller screens */
+    height: auto;  /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the logo horizontally within the header */
+    overflow: hidden; /* Hide overflowing parts if image is larger */
+    border-radius: 7px;
+  }
+  
+  .logo img {
+    width: 100%; /* Display image at full width of the logo container */
+    height: auto;  /* Maintain aspect ratio */
+  }
+  
+
+h1 {
+    font-size: 30px;
+}
+
+main {
+    text-align: center;
+}
+
+.formulario-container {
+    background-color: #fff; /* Color de fondo del contenedor del formulario */
+    padding: 20px; /* Espacio alrededor del formulario */
+    border-radius: 10px; /* Bordes redondeados para el contenedor */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra alrededor del contenedor */
+}
+
+form {
+    margin: 0 auto;
+    width: 100%; /* Ancho completo del formulario */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex; /* Modo de visualización flexbox para alinear los elementos */
+    align-items: center; /* Alinear verticalmente los elementos */
+}
+
+label {
+    width: 30%; /* Ancho del label */
+    margin-right: 10px; /* Espacio entre el label y el input */
+    text-align: left; /* Alinear el texto del label a la izquierda */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select {
+    width: 60%; /* Ancho del input */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[type="submit"],
+button[type="button"] {
+    background-color: #007bff; /* Color de fondo del botón agregar empleado */
+    color: #fff; /* Color del texto del botón agregar empleado */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3; /* Color de fondo del botón agregar empleado al hover */
+
+}
+
+button[type="button"] { /* Botón salir */
+    background-color: yellow; /* Color de fondo del botón salir */
+    color: black; /* Color del texto del botón salir */
+    margin-left: 490px; /* Espacio a la izquierda del botón salir */
+}
+
+.text-center {
+    text-align: center;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}

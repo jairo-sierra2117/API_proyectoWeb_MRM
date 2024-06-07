@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-item img {
+    margin-right: 10px;
+    width: 24px; /* Ajustar el tamaño del icono */
+    height: 24px; /* Ajustar el tamaño del icono */
+    object-fit: contain; /* Asegurarse de que las imágenes mantengan su proporción */
+}
+
+.menu-item span {
+    font-size: 16px;
+    color: #000000;
+}
+
+.menu-item:hover {
+    background-color: #F0F0F0;
+}
