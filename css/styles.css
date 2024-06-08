@@ -28,6 +28,7 @@ body {
 .menu-item {
     width: 100%;
     display: flex;
+    flex-direction: column; /* Cambiar la dirección a columna */
     align-items: center;
     padding: 10px 15px;
     cursor: pointer;
@@ -35,20 +36,16 @@ body {
 }
 
 .menu-item img {
-    margin-right: 10px;
-    width: 45px; /* Tamaño del icono aumentado */
-    height: 45px; /* Tamaño del icono aumentado */
+    margin-bottom: 5px; /* Espacio entre el ícono y el texto */
+    width: 45px; /* Tamaño del icono */
+    height: 45px; /* Tamaño del icono */
     object-fit: contain; /* Mantener la proporción de las imágenes */
-}
-
-.modal-ancho-ampliado .modal-dialog {
-    max-width: 800px; /* Puedes ajustar este valor según tus necesidades */
-    width: 90%;
 }
 
 .menu-item span {
     font-size: 16px;
     color: #000000;
+    text-align: center; /* Centrar el texto */
 }
 
 .menu-item:hover {
