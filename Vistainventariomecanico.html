@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Inventario</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/Vistas.css">
+</head>
+<body>
+    <div class="d-flex">
+        <div class="sidebar">
+            <div class="menu-item">
+                <img src="Images/invenEmple.png" alt="Inventario">
+                <span>Inventario</span>
+            </div>
+            <div class="menu-item">
+                <img src="Images/pedidosEmple.png" alt="Citas">
+                <span>Citas</span>
+            </div>
+            <div class="menu-item">
+                <img src="Images/notiEmple.png" alt="Notificaciones">
+                <span>Notificaciones</span>
+            </div>
+            <div class="menu-item">
+                <img src="Images/exitEmple.png" alt="Cerrar sesión">
+                <span>Cerrar sesión</span>
+            </div>
+        </div>
+        <div class="content container-fluid">
+            <h1>Stock Inventario</h1>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <input type="text" class="form-control w-50" placeholder="Search the item by name or item code">
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox"></th>
+                            <th>No.</th>
+                            <th>Nombre</th>
+                            <th>Código</th>
+                            <th>Descripción</th>
+                            <th>Categoría</th>
+                            <th>Cantidad</th>
+                            <th>Proveedor</th>
+                            <th>Costo adquirido</th>
+                            <th>Costo venta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>1</td>
+                            <td>Llantas pirelli</td>
+                            <td>000001</td>
+                            <td>Llantas para rin 27 con sello matico</td>
+                            <td>Repuestos</td>
+                            <td>23</td>
+                            <td>Pirelli</td>
+                            <td>30.000</td>
+                            <td>40.000</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>2</td>
+                            <td>tacometro XTZ</td>
+                            <td>000002</td>
+                            <td>Tacometro original de XTZ 125</td>
+                            <td>Repuestos</td>
+                            <td>20</td>
+                            <td>Yamaha</td>
+                            <td>30.000</td>
+                            <td>40.000</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>3</td>
+                            <td>bahul 25L</td>
+                            <td>000003</td>
+                            <td>Bahul de alta carga con plancha</td>
+                            <td>Accesorios</td>
+                            <td>10</td>
+                            <td>Ducati</td>
+                            <td>30.000</td>
+                            <td>40.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <nav>
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
