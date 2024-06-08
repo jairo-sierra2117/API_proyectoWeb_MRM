@@ -1,7 +1,6 @@
 body {
     margin: 0;
     font-family: sans-serif;
-    
 }
 
 .inner {
@@ -9,7 +8,7 @@ body {
 }
 
 .sidebar {
-    width: 200px; /* Ancho fijo de la barra lateral */
+    width: 225px; /* Ancho fijo de la barra lateral */
     background-color: #FFFFFF;
     border: 1px solid #E0E0E0;
     border-radius: 10px;
@@ -19,8 +18,11 @@ body {
     padding-top: 20px;
     padding-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 100vh; /* Altura completa de la ventana */
     position: fixed; /* Fijar la barra lateral */
+    left: 40px; /* Espacio desde el borde izquierdo de la página */
+    top: 40px; /* Espacio desde la parte superior de la página */
+    bottom: 150px; /* Espacio desde la parte inferior de la página */
+    height: auto; /* Permitir que la altura se ajuste automáticamente */
 }
 
 .menu-item {
@@ -34,8 +36,8 @@ body {
 
 .menu-item img {
     margin-right: 10px;
-    width: 24px; /* Tamaño del icono */
-    height: 24px; /* Tamaño del icono */
+    width: 45px; /* Tamaño del icono aumentado */
+    height: 45px; /* Tamaño del icono aumentado */
     object-fit: contain; /* Mantener la proporción de las imágenes */
 }
 
@@ -43,7 +45,6 @@ body {
     max-width: 800px; /* Puedes ajustar este valor según tus necesidades */
     width: 90%;
 }
-
 
 .menu-item span {
     font-size: 16px;
@@ -82,7 +83,7 @@ body {
 .content {
     flex: 1;
     padding: 20px;
-    margin-left: 220px; /* Dejar espacio para la barra lateral */
+    margin-left: 265px; /* Ajusta este margen para alinear el contenido */
     display: flex;
     flex-direction: column;
     align-items: center; /* Centrar el contenido horizontalmente */
@@ -112,13 +113,12 @@ body {
         width: 100%;
         height: auto;
         position: relative;
+        left: 0; /* Restablecer la posición en pantallas pequeñas */
+        top: 0;
+        bottom: 0;
     }
 
     .content {
         margin-left: 0;
     }
-    
 }
-
-
-
