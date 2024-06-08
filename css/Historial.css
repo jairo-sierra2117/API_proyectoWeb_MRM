@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.container-fluid {
+    flex: 1;
+}
+.sidebar {
+    width: 250px;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+    position: fixed;
+    height: 100%;
+}
+.sidebar .menu-item {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.sidebar .menu-item img {
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+}
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    flex: 1;
+}
+.table-responsive {
+    margin-top: 20px;
+}
+.spacing {
+    margin-right: 20px;
+}

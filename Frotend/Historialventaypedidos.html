@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/Historial.css">
+</head>
+<body>
+    <div class="d-flex">
+        <div class="sidebar">
+            <div class="menu-item">
+                <img src="/Images/inicioEmple.png" alt="Inicio">
+                <span>Inicio</span>
+            </div>
+            <div class="menu-item">
+                <img src="/Images/invenEmple.png" alt="Inventario">
+                <span>Inventario</span>
+            </div>
+            <div class="menu-item">
+                <img src="/Images/ventasEmple.png" alt="Ventas">
+                <span>Ventas</span>
+            </div>
+            <div class="menu-item">
+                <img src="/Images/pedidosEmple.png" alt="Pedidos">
+                <span>Pedidos</span>
+            </div>
+            <div class="menu-item">
+                <img src="/Images/historicoEmple.png" alt="Histórico">
+                <span>Histórico</span>
+            </div>
+            <div class="menu-item">
+                <img src="/Images/notiEmple.png" alt="Notificaciones">
+                <span>Notificaciones</span>
+            </div>
+            <div class="menu-item">
+                <img src="/Images/colabEmple.png" alt="Colaboradores">
+                <span>Colaboradores</span>
+            </div>
+            <div class="menu-item">
+                <img src="/Images/exitEmple.png" alt="Cerrar sesión">
+                <span>Cerrar sesión</span>
+            </div>
+        </div>
+        <div class="content container-fluid">
+            <h1>Historico de pedidos y ventas</h1>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <select class="custom-select">
+                        <option selected>All</option>
+                        <!-- Add other options here -->
+                    </select>
+                </div>
+                <input type="text" class="form-control w-50" placeholder="Buscar por nombre o código...">
+                <div class="d-flex">
+                    <button class="btn btn-warning mr-2">Buscar</button>
+                    <div class="d-flex flex-column mr-2">
+                        <label for="fecha-inicial">Fecha inicial:</label>
+                        <input type="date" id="fecha-inicial" class="form-control">
+                    </div>
+                    <div class="d-flex flex-column mr-2">
+                        <label for="fecha-final">Fecha final:</label>
+                        <input type="date" id="fecha-final" class="form-control">
+
+                    </div>
+                    <select class="custom-select">
+                        <option selected>Semana</option>
+                        <!-- Add other options here -->
+                    </select>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Código</th>
+                            <th>Tipo</th>
+                            <th>Categoría</th>
+                            <th>Cantidad</th>
+                            <th>Proveedor</th>
+                            <th>Costo adquirido</th>
+                            <th>Costo venta</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Llantas pirelli</td>
+                            <td>000001</td>
+                            <td>Venta</td>
+                            <td>Repuestos</td>
+                            <td>1</td>
+                            <td>Pirelli</td>
+                            <td>30.000</td>
+                            <td>40.000</td>
+                            <td>10/04/2024 08:51:40</td>
+                        </tr>
+                        <tr>
+                            <td>bahul 25L</td>
+                            <td>000003</td>
+                            <td>Venta</td>
+                            <td>Accesorios</td>
+                            <td>1</td>
+                            <td>Ducati</td>
+                            <td>30.000</td>
+                            <td>40.000</td>
+                            <td>10/04/2024 14:51:40</td>
+                        </tr>
+                        <tr>
+                            <td>bahul 25L</td>
+                            <td>000003</td>
+                            <td>Compra</td>
+                            <td>Accesorios</td>
+                            <td>10</td>
+                            <td>Ducati</td>
+                            <td>30.000</td>
+                            <td>40.000</td>
+                            <td>10/04/2024 08:51:40</td>
+                        </tr>
+                        <tr>
+                            <td>Kit de arrastre NKD 125</td>
+                            <td>000002</td>
+                            <td>Compra</td>
+                            <td>Repuestos</td>
+                            <td>5</td>
+                            <td>AKT</td>
+                            <td>50.000</td>
+                            <td>90.000</td>
+                            <td>09/04/2024 16:40:30</td>
+                        </tr>
+                        <tr>
+                            <td>Llantas pirelli</td>
+                            <td>000001</td>
+                            <td>Compra</td>
+                            <td>Repuestos</td>
+                            <td>15</td>
+                            <td>Pirelli</td>
+                            <td>30.000</td>
+                            <td>40.000</td>
+                            <td>09/04/2024 11:34:20</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <nav>
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
