@@ -1,148 +1,27 @@
-/* Estilo general */
-body{
-    padding:0;
-    margin:0;
-    font-family: 'Inter';
-  }
-  .vid-container{
-    position:relative;
-    height:100vh;
-    overflow:hidden;
-  }
-  .bgvid.back {
-    position: fixed; right: 0; bottom: 0;
-    min-width: 100%; min-height: 100%;
-    width: auto; height: auto; z-index: -100;
-  }
-  .inner {
-    position: absolute;
-  }
-  .inner-container{
-    width:400px;
-    height:710px;
-    position:absolute;
-    top:calc(30vh - 200px);
-    left:calc(50vw - 200px);
-    overflow:hidden;
-    border-radius: 7px;
-  }
-
-  
-  .header {
-    background-color: #dc3545; /* Color rojo */
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.header img {
-    width: 80px;
-    height: auto;
-}
-
-.header h1 {
-    font-size: 20px;
-    color: #fff;
-    margin: 0;
-}
-
-
-  .box{
-    position:absolute;
-    height:100%;
-    width:100%;
-    font-family:'Inter';
-    color:#fff;
-    background:rgba(0,0,0,0.2);
-    padding:30px 0px;
-    border-radius: 7px;
-  }
-  .box h1{
-    text-align:center;
-    margin:30px 0;
-    font-size:30px;
-  }
-  .box input{
-    display:block;
-    width:300px;
-    margin:20px auto;
-    padding:15px;
-    background:rgba(245, 241, 241, 0.362);
-    color:#fff;
-    border-radius: 7px;
-    border:0;
-  }
-  input::placeholder {
-    color: rgb(182, 171, 163);
-  }
-  .signup{
-    color: rgb(182, 171, 163)!important;
-  }
-  .box input:focus,.box input:active,.box button:focus,.box button:active{
-    outline:none;
-  }
-  .box button{
-    background:#f90606;
-    border:0;
-    color:#fff;
-    padding:10px;
-    font-size:20px;
-    width:330px;
-    margin:20px auto;
-    display:block;
-    cursor:pointer;
-    border-radius: 7px;
-  }
-  .box button:active{
-    background:#000000;
-  }
-  .box p{
-    font-size:14px;
-    text-align:center;
-  }
-  .box p span{
-    cursor:pointer;
-    color:#666;
-  }
-  
-  @media screen and (max-width: 986px) {
-    .bgvid{
-  height: 100px!important;
-    }
-  }
-  
-  @media screen and (min-width: 986px) {
-    .bgvid.back {
+.inner-container {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 40px;
+  border-radius: 10px;
+  color: #fff;
+  max-width: 500px;
   width: 100%;
-    }
-  }
-  /* Opciones de login */
-.opciones-login {
-    margin-top: 20px;
-    text-align: center;
 }
-
-
-.opciones-login ul {
-    list-style: none;
-    padding: 0;
+.header img {
+  width: 60px;
+  height: auto;
+  margin-right: 10px;
 }
-
-.opciones-login li {
-    display: inline-block;
-    margin: 0 10px;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centramos horizontalmente */
+  text-align: center; /* Centramos verticalmente */
+  margin-bottom: 20px;
+  background-color: red;
+  padding: 10px;
+  border-radius: 5px;
 }
-
-
 .opciones-login img {
-    width: 40px; /* Tamaño de los mini logos */
-    height: auto;
-    margin-right: 10px; /* Margen entre el logo y el texto */
+  width: 50px;
+  height: auto;
 }
-
-.opciones-login a:hover {
-    transition: background-color 0.3s ease;
-}
-  
