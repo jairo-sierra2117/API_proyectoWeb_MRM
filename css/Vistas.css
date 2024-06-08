@@ -26,13 +26,14 @@ body {
 .sidebar .menu-item {
     width: 100%;
     display: flex;
+    flex-direction: column; /* Cambiar la dirección a columna */
     align-items: center;
     padding: 10px 15px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 .sidebar .menu-item img {
-    margin-right: 10px;
+    margin-bottom: 5px; /* Espacio entre el ícono y el texto */
     width: 45px; /* Tamaño del icono aumentado */
     height: 45px; /* Tamaño del icono aumentado */
     object-fit: contain; /* Mantener la proporción de las imágenes */
@@ -41,6 +42,7 @@ body {
 .sidebar .menu-item span {
     font-size: 17px;
     color: #000000;
+    text-align: center; /* Centrar el texto */
 }
 
 .sidebar .menu-item:hover {
@@ -81,30 +83,21 @@ body {
 }
 
 @media (max-width: 768px) {
+    .d-flex {
+        flex-direction: column;
+    }
+
     .sidebar {
-        width: 100%; /* Ancho completo de la barra lateral en pantallas pequeñas */
-        position: static; /* Hacer la barra lateral estática */
-        height: auto; /* Ajustar altura automáticamente */
-        box-shadow: none; /* Quitar sombra */
-        border-radius: 0; /* Quitar bordes redondeados */
-        padding: 10px 0; /* Ajustar padding */
+        width: 100%;
+        height: auto;
+        position: relative;
+        left: 0; /* Restablecer la posición en pantallas pequeñas */
+        top: 0;
+        bottom: 0;
     }
 
     .content {
-        margin-left: 0; /* Quitar margen izquierdo */
-    }
-
-    .sidebar .menu-item {
-        justify-content: center; /* Centrar los elementos del menú */
-    }
-
-    .sidebar .menu-item span {
-        font-size: 14px; /* Reducir tamaño de letra en pantallas pequeñas */
-    }
-
-    .sidebar .menu-item img {
-        width: 35px; /* Reducir tamaño del icono en pantallas pequeñas */
-        height: 35px;
+        margin-left: 0;
     }
 }
 
