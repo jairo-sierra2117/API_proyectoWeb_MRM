@@ -51,7 +51,7 @@ body {
     position: fixed; /* Fijar la barra lateral */
     left: 40px; /* Espacio desde el borde izquierdo de la página */
     top: 40px; /* Espacio desde la parte superior de la página */
-    bottom: 150px; /* Espacio desde la parte inferior de la página */
+    bottom: 100px; /* Espacio desde la parte inferior de la página */
     height: auto; /* Permitir que la altura se ajuste automáticamente */
 }
 
