@@ -45,25 +45,20 @@
         </div>
         <div class="content container-fluid">
             <h1>Historico de pedidos y ventas</h1>
-            <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex justify-content-start align-items-center mb-3">
                 <div>
-                    <select class="custom-select">
+                    <select class="custom-select mr-2">
                         <option selected>All</option>
                         <!-- Add other options here -->
                     </select>
                 </div>
-                <input type="text" class="form-control w-25" placeholder="Buscar por nombre o código...">
-                <div class="d-flex">
-                    <button class="btn btn-warning mr-2">Buscar</button>
-                    <div class="d-flex flex-column mr-2">
-                        <label for="fecha-inicial">Fecha inicial:</label>
-                        <input type="date" id="fecha-inicial" class="form-control">
-                    </div>
-                    <div class="d-flex flex-column mr-2">
-                        <label for="fecha-final">Fecha final:</label>
-                        <input type="date" id="fecha-final" class="form-control">
-
-                    </div>
+                <input type="text" class="form-control w-25 mr-2" placeholder="Buscar por nombre o código...">
+                <button class="btn btn-warning">Buscar</button>
+                <div class="d-flex align-items-center ml-auto">
+                    <label for="fecha-inicial" class="mr-2 mb-0">Fecha inicial:</label>
+                    <input type="date" id="fecha-inicial" class="form-control mr-2">
+                    <label for="fecha-final" class="mr-2 mb-0">Fecha final:</label>
+                    <input type="date" id="fecha-final" class="form-control mr-2">
                     <select class="custom-select">
                         <option selected>Semana</option>
                         <!-- Add other options here -->
