@@ -1,3 +1,4 @@
+//Inicio de sesion cliente
 document.addEventListener('DOMContentLoaded', function () {
     // Selecciona el formulario y los elementos de entrada
     const formulario = document.querySelector('form');
@@ -21,3 +22,4 @@ document.addEventListener('DOMContentLoaded', function () {
         formulario.reset();
     });
 });
+
