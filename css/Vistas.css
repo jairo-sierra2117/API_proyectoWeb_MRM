@@ -6,6 +6,7 @@ body {
 .container-fluid {
     flex: 1;
 }
+
 .sidebar {
     width: 225px; /* Ancho fijo de la barra lateral */
     background-color: #FFFFFF;
