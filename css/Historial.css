@@ -23,6 +23,10 @@ body {
     bottom: 100px; /* Espacio desde la parte inferior de la página */
     height: auto; /* Permitir que la altura se ajuste automáticamente */
 }
+.table-bordered thead th {
+    background-color: black;
+    color: white;
+}
 .sidebar .menu-item {
     width: 100%;
     display: flex;
