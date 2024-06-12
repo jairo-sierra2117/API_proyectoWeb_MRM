@@ -75,7 +75,7 @@
                             <div class="card-body" id="rol">
                                 <p>Rol: Mecánico</p>
                                 <div class="d-flex justify-content-between">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">Editar</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-name="Ayrton Senna" data-role="Mecánico">Editar</button>
                                     <a href="#" class="btn btn-danger">Eliminar</a>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                             <div class="card-body">
                                 <p>Rol: Mecánico auxiliar</p>
                                 <div class="d-flex justify-content-between">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">Editar</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-name="Alain Prost" data-role="Mecánico auxiliar">Editar</button>
                                     <a href="#" class="btn btn-danger">Eliminar</a>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                             <div class="card-body">
                                 <p>Rol: Auxiliar</p>
                                 <div class="d-flex justify-content-between">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">Editar</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-name="Michael Schumacher" data-role="Auxiliar">Editar</button>
                                     <a href="#" class="btn btn-danger">Eliminar</a>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
                             <div class="card-body">
                                 <p>Rol: Administradora</p>
                                 <div class="d-flex justify-content-between">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">Editar</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-name="Maria Fernanda" data-role="Administradora">Editar</button>
                                     <a href="#" class="btn btn-danger">Eliminar</a>
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
                             <div class="card-body">
                                 <p>Rol: Mecánico</p>
                                 <div class="d-flex justify-content-between">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">Editar</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-name="Jairo Fuentes" data-role="Mecánico">Editar</button>
                                     <a href="#" class="btn btn-danger">Eliminar</a>
                                 </div>
                             </div>
@@ -143,7 +143,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="editForm">
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre:</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa el nombre..." required>
@@ -176,6 +176,7 @@
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn btn-primary">Guardar cambios</button>
                         </div>
+                        <input type="hidden" id="originalName" name="originalName">
                     </form>
                 </div>
             </div>

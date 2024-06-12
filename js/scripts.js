@@ -1,41 +1,76 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Obtener todos los botones de editar
     const editButtons = document.querySelectorAll('.btn-primary[data-bs-toggle="modal"]');
     const deleteButtons = document.querySelectorAll('.btn-danger');
     const modal = new bootstrap.Modal(document.getElementById('editModal'));
-    const form = document.querySelector('#editModal form');
+    const form = document.querySelector('#editForm');
+    let currentCard = null;
 
-    editButtons.forEach(button => {
-        button.addEventListener('click', function (event) {
-            // Obtener los datos del colaborador
-            const card = event.target.closest('.card');
-            const name = card.querySelector('.card-header').innerText;
-            const role = card.querySelector('.card-body p').innerText.replace('Rol: ', '');
-            
-            // Llenar el formulario del modal con los datos del colaborador
-            form.nombre.value = name;
-            form.role.value = role;
-
-            // Abre el modal
-            modal.show();
+    function cargarEmpleados() {
+        const empleados = JSON.parse(localStorage.getItem('empleados')) || [];
+        const contenedor = document.querySelector('.container .row');
+        empleados.forEach(empleado => {
+            const card = document.createElement('div');
+            card.classList.add('col-md-4');
+            card.innerHTML = `
+                <div class="card mb-3">
+                    <div class="card-header">${empleado.nombre}</div>
+                    <div class="card-body">
+                        <p>Rol: ${empleado.rol}</p>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-name="${empleado.nombre}" data-role="${empleado.rol}">Editar</button>
+                            <a href="#" class="btn btn-danger">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            contenedor.appendChild(card);
         });
-    });
+
+        // Asignar eventos de clic a los botones de editar y eliminar
+        document.querySelectorAll('.btn-primary[data-bs-toggle="modal"]').forEach(button => {
+            button.addEventListener('click', function (event) {
+                currentCard = event.target.closest('.card');
+                const name = event.target.getAttribute('data-name');
+                const role = event.target.getAttribute('data-role');
+
+                form.nombre.value = name;
+                form.role.value = role;
+                form.originalName.value = name;
+
+                modal.show();
+            });
+        });
+
+        document.querySelectorAll('.btn-danger').forEach(button => {
+            button.addEventListener('click', function (event) {
+                if (confirm('¿Estás seguro de que deseas eliminar este colaborador?')) {
+                    const card = event.target.closest('.card');
+                    card.remove();
+
+                    let empleados = JSON.parse(localStorage.getItem('empleados')) || [];
+                    empleados = empleados.filter(emp => emp.nombre !== card.querySelector('.card-header').innerText);
+                    localStorage.setItem('empleados', JSON.stringify(empleados));
+                }
+            });
+        });
+    }
+
+    // Cargar empleados almacenados al cargar la página
+    cargarEmpleados();
 
     form.addEventListener('submit', function (event) {
         event.preventDefault();
-        // Aquí puedes añadir el código para enviar los datos del formulario al servidor
-        console.log('Nombre:', form.nombre.value);
-        console.log('Rol:', form.role.value);
-        // Cerrar el modal
-        modal.hide();
-    });
 
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function (event) {
-            if (confirm('¿Estás seguro de que deseas eliminar este colaborador?')) {
-                const card = event.target.closest('.card');
-                card.remove();
-            }
-        });
+        const name = form.nombre.value;
+        const role = form.role.value;
+
+        currentCard.querySelector('.card-header').innerText = name;
+        currentCard.querySelector('.card-body p').innerText = 'Rol: ' + role;
+
+        let empleados = JSON.parse(localStorage.getItem('empleados')) || [];
+        empleados = empleados.map(emp => emp.nombre === form.originalName.value ? { ...emp, nombre: name, rol: role } : emp);
+        localStorage.setItem('empleados', JSON.stringify(empleados));
+
+        modal.hide();
     });
 });

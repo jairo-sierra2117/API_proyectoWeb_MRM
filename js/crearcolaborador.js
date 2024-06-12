@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Selecciona el formulario y los elementos de entrada
     const formulario = document.querySelector('.formulario');
     const nombreInput = document.getElementById('nombre');
     const numeroCelularInput = document.getElementById('numeroCelular');
@@ -8,11 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const cedulaInput = document.getElementById('cedula');
     const contrasenaInput = document.getElementById('contrasena');
 
-    // Añade un evento de envío al formulario
     formulario.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        // Valida los campos del formulario
         if (nombreInput.value.trim() === '' || 
             numeroCelularInput.value.trim() === '' || 
             rolInput.value === '' || 
@@ -24,10 +21,20 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Si todos los campos están llenos, realiza la acción deseada (puede ser enviar a un servidor o mostrar una alerta)
-        alert('Empleado agregado exitosamente');
+        const empleado = {
+            nombre: nombreInput.value,
+            numeroCelular: numeroCelularInput.value,
+            rol: rolInput.value,
+            correoElectronico: correoElectronicoInput.value,
+            cedula: cedulaInput.value,
+            contrasena: contrasenaInput.value
+        };
 
-        // Limpia los campos del formulario
+        let empleados = JSON.parse(localStorage.getItem('empleados')) || [];
+        empleados.push(empleado);
+        localStorage.setItem('empleados', JSON.stringify(empleados));
+
+        alert('Empleado agregado exitosamente');
         formulario.reset();
     });
 });
