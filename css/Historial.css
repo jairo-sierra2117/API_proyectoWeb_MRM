@@ -9,7 +9,7 @@ body {
 .sidebar {
     width: 225px; /* Ancho fijo de la barra lateral */
     background-color: #FFFFFF;
-    border: 1px solid #E0E0E0;
+    border: 3px solid #000000; /* Cambiar el color del borde a negro */
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -20,7 +20,7 @@ body {
     position: fixed; /* Fijar la barra lateral */
     left: 40px; /* Espacio desde el borde izquierdo de la página */
     top: 40px; /* Espacio desde la parte superior de la página */
-    bottom: 100px; /* Espacio desde la parte inferior de la página */
+    bottom: 90px; /* Espacio desde la parte inferior de la página */
     height: auto; /* Permitir que la altura se ajuste automáticamente */
 }
 .table-bordered thead th {
