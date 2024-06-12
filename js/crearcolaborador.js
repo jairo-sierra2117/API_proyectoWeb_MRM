@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const nombreInput = document.getElementById('nombre');
     const numeroCelularInput = document.getElementById('numeroCelular');
     const rolInput = document.getElementById('rol');
-    const correoElectronicoInput = document.getElementById('correoElectronico');
+    const emailInput = document.getElementById('email');
     const cedulaInput = document.getElementById('cedula');
     const contrasenaInput = document.getElementById('contrasena');
 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (nombreInput.value.trim() === '' || 
             numeroCelularInput.value.trim() === '' || 
             rolInput.value === '' || 
-            correoElectronicoInput.value.trim() === '' || 
+            email.value.trim() === '' || 
             cedulaInput.value.trim() === '' || 
             contrasenaInput.value.trim() === '') {
             
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
             nombre: nombreInput.value,
             numeroCelular: numeroCelularInput.value,
             rol: rolInput.value,
-            correoElectronico: correoElectronicoInput.value,
+            email: emailInput.value,
             cedula: cedulaInput.value,
             contrasena: contrasenaInput.value
         };

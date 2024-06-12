@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empleados</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Empleados</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
 <body>
     <div class="d-flex">
         <div class="sidebar">
@@ -71,59 +72,12 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card mb-3">
-                            <div class="card-header">Ayrton Senna</div>
-                            <div class="card-body" id="rol">
-                                <p>Rol: Mecánico</p>
-                                <div class="d-flex justify-content-between">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-name="Ayrton Senna" data-role="Mecánico">Editar</button>
-                                    <a href="#" class="btn btn-danger">Eliminar</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-3">
-                            <div class="card-header">Alain Prost</div>
+                            <div class="card-header">Nombre del Empleado</div>
                             <div class="card-body">
-                                <p>Rol: Mecánico auxiliar</p>
-                                <div class="d-flex justify-content-between">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-name="Alain Prost" data-role="Mecánico auxiliar">Editar</button>
-                                    <a href="#" class="btn btn-danger">Eliminar</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-3">
-                            <div class="card-header">Michael Schumacher</div>
-                            <div class="card-body">
-                                <p>Rol: Auxiliar</p>
-                                <div class="d-flex justify-content-between">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-name="Michael Schumacher" data-role="Auxiliar">Editar</button>
-                                    <a href="#" class="btn btn-danger">Eliminar</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-3">
-                            <div class="card-header">Maria Fernanda</div>
-                            <div class="card-body">
-                                <p>Rol: Administradora</p>
-                                <div class="d-flex justify-content-between">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-name="Maria Fernanda" data-role="Administradora">Editar</button>
-                                    <a href="#" class="btn btn-danger">Eliminar</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-3">
-                            <div class="card-header">Jairo Fuentes</div>
-                            <div class="card-body">
-                                <p>Rol: Mecánico</p>
-                                <div class="d-flex justify-content-between">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-name="Jairo Fuentes" data-role="Mecánico">Editar</button>
+                                <p>Rol: Rol del Empleado</p>
+                                <i class="fas fa-info-circle info-icon" data-bs-toggle="tooltip" title="Celular: \n Email: \n Cédula: \n Contraseña: "></i>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" data-name="Nombre del Empleado" data-role="Rol del Empleado" data-celular="" data-email="" data-cedula="" data-contraseña="">Editar</button>
                                     <a href="#" class="btn btn-danger">Eliminar</a>
                                 </div>
                             </div>
@@ -186,6 +140,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <script src="/js/scripts.js"></script> <!-- Enlace al archivo JavaScript externo -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="/js/scripts.js"></script>
 </body>
 </html>

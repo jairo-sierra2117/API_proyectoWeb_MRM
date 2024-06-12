@@ -100,6 +100,19 @@ body {
     margin-bottom: 20px; /* Añadir margen inferior para separar los contenedores */
 }
 
+.info-icon {
+    cursor: pointer;
+    color: #17a2b8; /* Color del icono de información */
+    font-size: 1.5rem;
+    margin-right: 10px; /* Espacio entre icono y texto */
+}
+
+.info-icon:hover {
+    color: #138496; /* Color al pasar el cursor por el icono */
+}
+
+
+
 /* Media Queries para responsividad */
 
 @media (max-width: 1024px) {
