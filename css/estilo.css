@@ -25,3 +25,16 @@
   width: 50px;
   height: auto;
 }
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-0%);
+  cursor: pointer;
+  width: 30px; /* Tamaño del icono */
+  height: 30px; /* Tamaño del icono */
+}
+
+.password-container {
+  position: relative;
+}

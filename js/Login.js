@@ -22,4 +22,12 @@ document.addEventListener('DOMContentLoaded', function () {
         formulario.reset();
     });
 });
-
+function togglePassword() {
+    var passwordField = document.getElementById("password");
+    var passwordFieldType = passwordField.getAttribute("type");
+    if (passwordFieldType === "password") {
+        passwordField.setAttribute("type", "text");
+    } else {
+        passwordField.setAttribute("type", "password");
+    }
+}
