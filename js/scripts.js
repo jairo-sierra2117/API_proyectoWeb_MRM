@@ -102,32 +102,25 @@ document.addEventListener('DOMContentLoaded', function () {
         const cedula = form.cedula.value;
         const contraseña = form.contraseña.value;
 
-        currentCard.querySelector('.card-header').innerText = name;
-        currentCard.querySelector('.card-body').innerHTML = `
-            <p>Rol: ${role}</p>
-            <i class="fa fa-info-circle" data-bs-toggle="tooltip" title="
-                Celular: ${celular}<br>
-                Email: ${email}<br>
-                Cédula: ${cedula}<br>
-                Contraseña: ${contraseña}
-            "></i>
-            <div class="d-flex justify-content-between mt-3">
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" 
-                    data-name="${name}" data-role="${role}" data-celular="${celular}" data-email="${email}" 
-                    data-cedula="${cedula}" data-contraseña="${contraseña}">
-                    Editar
-                </button>
-                <a href="#" class="btn btn-danger">Eliminar</a>
-            </div>
-        `;
-
+        // Verifica si es una edición o un nuevo colaborador
         let empleados = JSON.parse(localStorage.getItem('empleados')) || [];
-        empleados = empleados.map(emp => emp.nombre === form.originalName.value 
-            ? { ...emp, nombre: name, rol: role, numeroCelular: celular, email: email, cedula: cedula, contraseña: contraseña } 
-            : emp);
+        const originalName = form.originalName.value;
+
+        if (originalName) {
+            empleados = empleados.map(emp => emp.nombre === originalName 
+                ? { ...emp, nombre: name, rol: role, numeroCelular: celular, email: email, cedula: cedula, contraseña: contraseña } 
+                : emp);
+        } else {
+            empleados.push({ nombre: name, rol: role, numeroCelular: celular, email: email, cedula: cedula, contraseña: contraseña });
+        }
+
         localStorage.setItem('empleados', JSON.stringify(empleados));
 
         modal.hide();
+
+        // Eliminar cualquier overlay restante
+        document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+
         cargarEmpleados(); // Recargar los empleados para refrescar los datos
     });
 });
