@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function cargarEmpleados() {
         const empleados = JSON.parse(localStorage.getItem('empleados')) || [];
         const contenedor = document.querySelector('.container .row');
+        contenedor.innerHTML = ''; // Limpiar el contenedor antes de cargar empleados
+
         empleados.forEach(empleado => {
             const card = document.createElement('div');
             card.classList.add('col-md-4');
@@ -45,11 +47,18 @@ document.addEventListener('DOMContentLoaded', function () {
             button.addEventListener('click', function (event) {
                 if (confirm('¿Estás seguro de que deseas eliminar este colaborador?')) {
                     const card = event.target.closest('.card');
+                    const nombreEmpleado = card.querySelector('.card-header').innerText;
+
+                    // Eliminar la tarjeta del DOM
                     card.remove();
 
+                    // Eliminar el empleado del almacenamiento local
                     let empleados = JSON.parse(localStorage.getItem('empleados')) || [];
-                    empleados = empleados.filter(emp => emp.nombre !== card.querySelector('.card-header').innerText);
+                    empleados = empleados.filter(emp => emp.nombre !== nombreEmpleado);
                     localStorage.setItem('empleados', JSON.stringify(empleados));
+
+                    // Volver a cargar empleados para refrescar la vista
+                    cargarEmpleados();
                 }
             });
         });

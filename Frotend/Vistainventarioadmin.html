@@ -70,7 +70,7 @@
                 </div>
                 <input type="text" class="form-control w-50" placeholder="Search the item by name or item code">
                 <div class="d-flex">
-                    <button class="btn btn-warning mr-2">Agregar</button>
+                    <button class="btn btn-warning mr-2" id="addButton">Agregar</button>
                     <input type="date" class="form-control mr-2">
                     <input type="date" class="form-control mr-2">
                     <button class="btn btn-danger" id="deleteButton">Eliminar</button>
@@ -94,45 +94,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>1</td>
-                            <td>Llantas pirelli</td>
-                            <td>000001</td>
-                            <td>Llantas para rin 27 con sello matico</td>
-                            <td>Repuestos</td>
-                            <td>23</td>
-                            <td>Pirelli</td>
-                            <td>30.000</td>
-                            <td>40.000</td>
-                            <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>2</td>
-                            <td>tacometro XTZ</td>
-                            <td>000002</td>
-                            <td>Tacometro original de XTZ 125</td>
-                            <td>Repuestos</td>
-                            <td>20</td>
-                            <td>Yamaha</td>
-                            <td>30.000</td>
-                            <td>40.000</td>
-                            <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>3</td>
-                            <td>bahul 25L</td>
-                            <td>000003</td>
-                            <td>Bahul de alta carga con plancha</td>
-                            <td>Accesorios</td>
-                            <td>10</td>
-                            <td>Ducati</td>
-                            <td>30.000</td>
-                            <td>40.000</td>
-                            <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
-                        </tr>
+                        <!-- Rows will be added dynamically -->
                     </tbody>
                 </table>
                 <nav>
@@ -145,6 +107,60 @@
                         <li class="page-item"><a class="page-link" href="#">Next</a></li>
                     </ul>
                 </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Adding Product -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Agregar Producto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addForm">
+                        <div class="form-group">
+                            <label for="addName">Nombre</label>
+                            <input type="text" class="form-control" id="addName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addCode">Código</label>
+                            <input type="text" class="form-control" id="addCode" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addDescription">Descripción</label>
+                            <input type="text" class="form-control" id="addDescription" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addCategory">Categoría</label>
+                            <input type="text" class="form-control" id="addCategory" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addQuantity">Cantidad</label>
+                            <input type="number" class="form-control" id="addQuantity" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addSupplier">Proveedor</label>
+                            <input type="text" class="form-control" id="addSupplier" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addCost">Costo adquirido</label>
+                            <input type="number" class="form-control" id="addCost" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="addSaleCost">Costo venta</label>
+                            <input type="number" class="form-control" id="addSaleCost" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="saveAddButton">Guardar Producto</button>
+                </div>
             </div>
         </div>
     </div>
@@ -187,11 +203,11 @@
                         </div>
                         <div class="form-group">
                             <label for="editCost">Costo adquirido</label>
-                            <input type="text" class="form-control" id="editCost">
+                            <input type="number" class="form-control" id="editCost">
                         </div>
                         <div class="form-group">
                             <label for="editSaleCost">Costo venta</label>
-                            <input type="text" class="form-control" id="editSaleCost">
+                            <input type="number" class="form-control" id="editSaleCost">
                         </div>
                     </form>
                 </div>

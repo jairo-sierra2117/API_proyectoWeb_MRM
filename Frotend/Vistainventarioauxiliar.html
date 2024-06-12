@@ -49,14 +49,14 @@
                     <button class="btn btn-warning mr-2">Agregar</button>
                     <input type="date" class="form-control mr-2">
                     <input type="date" class="form-control mr-2">
-                    <button class="btn btn-danger">Eliminar</button>
+                    <button class="btn btn-danger" id="deleteButton">Eliminar</button>
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="inventoryTable">
                     <thead>
                         <tr>
-                            <th><input type="checkbox"></th>
+                            <th><input type="checkbox" id="selectAll"></th>
                             <th>No.</th>
                             <th>Nombre</th>
                             <th>Código</th>
@@ -81,7 +81,7 @@
                             <td>Pirelli</td>
                             <td>30.000</td>
                             <td>40.000</td>
-                            <td><button class="btn btn-warning btn-sm">Edit</button></td>
+                            <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox"></td>
@@ -94,7 +94,7 @@
                             <td>Yamaha</td>
                             <td>30.000</td>
                             <td>40.000</td>
-                            <td><button class="btn btn-warning btn-sm">Edit</button></td>
+                            <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox"></td>
@@ -107,7 +107,7 @@
                             <td>Ducati</td>
                             <td>30.000</td>
                             <td>40.000</td>
-                            <td><button class="btn btn-warning btn-sm">Edit</button></td>
+                            <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -124,8 +124,62 @@
             </div>
         </div>
     </div>
+    <!-- Modal for Editing -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <div class="form-group">
+                            <label for="editName">Nombre</label>
+                            <input type="text" class="form-control" id="editName">
+                        </div>
+                        <div class="form-group">
+                            <label for="editCode">Código</label>
+                            <input type="text" class="form-control" id="editCode">
+                        </div>
+                        <div class="form-group">
+                            <label for="editDescription">Descripción</label>
+                            <input type="text" class="form-control" id="editDescription">
+                        </div>
+                        <div class="form-group">
+                            <label for="editCategory">Categoría</label>
+                            <input type="text" class="form-control" id="editCategory">
+                        </div>
+                        <div class="form-group">
+                            <label for="editQuantity">Cantidad</label>
+                            <input type="number" class="form-control" id="editQuantity">
+                        </div>
+                        <div class="form-group">
+                            <label for="editSupplier">Proveedor</label>
+                            <input type="text" class="form-control" id="editSupplier">
+                        </div>
+                        <div class="form-group">
+                            <label for="editCost">Costo adquirido</label>
+                            <input type="text" class="form-control" id="editCost">
+                        </div>
+                        <div class="form-group">
+                            <label for="editSaleCost">Costo venta</label>
+                            <input type="text" class="form-control" id="editSaleCost">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="saveChangesButton">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/js/Inventario.js"></script>
 </body>
 </html>
