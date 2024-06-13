@@ -1,8 +1,8 @@
 $(document).ready(function() {
-    // Cargar inventario desde localStorage
     function loadInventory() {
         const inventory = JSON.parse(localStorage.getItem('inventory')) || [];
         $('#inventoryTable tbody').empty();
+        $('#historicalTable tbody').empty(); // Limpiar la tabla de histórico
         inventory.forEach((item, index) => {
             let row = `<tr>
                             <td><input type="checkbox"></td>
@@ -18,20 +18,30 @@ $(document).ready(function() {
                             <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
                        </tr>`;
             $('#inventoryTable tbody').append(row);
+
+            let historyRow = `<tr>
+                                <td>${item.name}</td>
+                                <td>${item.code}</td>
+                                <td>Operación</td> <!-- Se puede especificar si es "Agregar", "Editar" o "Eliminar" -->
+                                <td>${item.category}</td>
+                                <td>${item.quantity}</td>
+                                <td>${item.supplier}</td>
+                                <td>${item.cost}</td>
+                                <td>${item.saleCost}</td>
+                                <td>${new Date().toLocaleString()}</td>
+                              </tr>`;
+            $('#historicalTable tbody').append(historyRow);
         });
     }
 
-    // Guardar inventario en localStorage
     function saveInventory(inventory) {
         localStorage.setItem('inventory', JSON.stringify(inventory));
     }
 
-    // Obtener inventario desde localStorage
     function getInventory() {
         return JSON.parse(localStorage.getItem('inventory')) || [];
     }
 
-    // Eliminar elementos seleccionados
     $('#deleteButton').click(function() {
         let inventory = getInventory();
         $('#inventoryTable tbody input[type="checkbox"]:checked').each(function() {
@@ -43,7 +53,6 @@ $(document).ready(function() {
         loadInventory();
     });
 
-    // Editar elementos
     let row;
     $('#inventoryTable').on('click', '.editButton', function() {
         row = $(this).closest('tr');
@@ -76,18 +85,15 @@ $(document).ready(function() {
         $('#editModal').modal('hide');
     });
 
-    // Seleccionar todos los checkboxes
     $('#selectAll').click(function() {
         $('#inventoryTable tbody input[type="checkbox"]').prop('checked', this.checked);
     });
 
-    // Abrir modal de agregar producto
     $('#addButton').click(function() {
         $('#addForm')[0].reset();
         $('#addModal').modal('show');
     });
 
-    // Guardar nuevo producto
     $('#saveAddButton').click(function() {
         let inventory = getInventory();
         const newItem = {
@@ -106,6 +112,5 @@ $(document).ready(function() {
         $('#addModal').modal('hide');
     });
 
-    // Cargar inventario al cargar la página
     loadInventory();
 });
