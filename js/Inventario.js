@@ -112,5 +112,42 @@ $(document).ready(function() {
         $('#addModal').modal('hide');
     });
 
+    function filterInventory() {
+        const supplierFilter = $('#filterSupplier').val().toLowerCase();
+        const categoryFilter = $('#filterCategory').val().toLowerCase();
+        const costFilter = parseFloat($('#filterCost').val());
+        const quantityFilter = parseInt($('#filterQuantity').val());
+
+        const inventory = getInventory();
+        const filteredInventory = inventory.filter(item => {
+            return (
+                (supplierFilter === '' || item.supplier.toLowerCase().includes(supplierFilter)) &&
+                (categoryFilter === '' || item.category.toLowerCase().includes(categoryFilter)) &&
+                (isNaN(costFilter) || item.cost <= costFilter) &&
+                (isNaN(quantityFilter) || item.quantity >= quantityFilter)
+            );
+        });
+
+        $('#inventoryTable tbody').empty();
+        filteredInventory.forEach((item, index) => {
+            let row = `<tr>
+                            <td><input type="checkbox"></td>
+                            <td>${index + 1}</td>
+                            <td>${item.name}</td>
+                            <td>${item.code}</td>
+                            <td>${item.description}</td>
+                            <td>${item.category}</td>
+                            <td>${item.quantity}</td>
+                            <td>${item.supplier}</td>
+                            <td>${item.cost}</td>
+                            <td>${item.saleCost}</td>
+                            <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
+                       </tr>`;
+            $('#inventoryTable tbody').append(row);
+        });
+    }
+
+    $('#filterSupplier, #filterCategory, #filterCost, #filterQuantity').on('input', filterInventory);
+
     loadInventory();
 });

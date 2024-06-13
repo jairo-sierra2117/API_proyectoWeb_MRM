@@ -31,10 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Credenciales incorrectas, por favor intente de nuevo.');
             }
         })
-        .catch(error => {
+        /*.catch(error => {
             console.error('Error:', error);
             alert('Ocurrió un error al iniciar sesión. Por favor, intente de nuevo más tarde.');
-        });
+        });*/
     });
 });
 function togglePassword() {

@@ -62,11 +62,14 @@
         <div class="content container-fluid">
             <h1>Stock Inventario</h1>
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <input type="text" class="form-control w-50" placeholder="Search the item by name or item code">
+                <div class="d-flex flex-grow-1">
+                    <input type="text" class="form-control w-25 mr-2" placeholder="Filtrar por proveedor" id="filterSupplier">
+                    <input type="text" class="form-control w-25 mr-2" placeholder="Filtrar por categoría" id="filterCategory">
+                    <input type="number" class="form-control w-25 mr-2" placeholder="Filtrar por costo" id="filterCost">
+                    <input type="number" class="form-control w-25" placeholder="Filtrar por cantidad" id="filterQuantity">
+                </div>
                 <div class="d-flex">
-                    <button class="btn btn-warning mr-2" id="addButton">Agregar</button>
-                    <input type="date" class="form-control mr-2">
-                    <input type="date" class="form-control mr-2">
+                    <button class="btn btn-warning ml-auto mr-2" id="addButton">Agregar</button>
                     <button class="btn btn-danger" id="deleteButton">Eliminar</button>
                 </div>
             </div>

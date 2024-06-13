@@ -60,26 +60,11 @@
             </div>
         </div>
         <div class="content container-fluid">
-            <h1>Historico de pedidos y ventas</h1>
-            <div class="d-flex justify-content-start align-items-center mb-3">
-                <div>
-                    <select class="custom-select mr-2">
-                        <option selected>All</option>
-                        <!-- Add other options here -->
-                    </select>
-                </div>
-                <input type="text" class="form-control w-25 mr-2" placeholder="Buscar por nombre o código...">
-                <button class="btn btn-warning">Buscar</button>
-                <div class="d-flex align-items-center ml-auto">
-                    <label for="fecha-inicial" class="mr-2 mb-0">Fecha inicial:</label>
-                    <input type="date" id="fecha-inicial" class="form-control mr-2">
-                    <label for="fecha-final" class="mr-2 mb-0">Fecha final:</label>
-                    <input type="date" id="fecha-final" class="form-control mr-2">
-                    <select class="custom-select">
-                        <option selected>Semana</option>
-                        <!-- Add other options here -->
-                    </select>
-                </div>
+            <h1>Historial de Entradas</h1>
+            <div class="d-flex justify-content-between mb-3">
+                <input type="date" class="form-control w-25" id="filterDate">
+                <input type="text" class="form-control w-25" placeholder="Filtrar por proveedor" id="filterSupplier">
+                <input type="number" class="form-control w-25" placeholder="Filtrar por costo" id="filterCost">
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered" id="historicalTable">
