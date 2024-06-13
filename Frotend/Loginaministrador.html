@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Iniciar sesión Administrador</title>
     <meta charset="utf-8" />
@@ -20,6 +21,7 @@
         align-items: center;
     }
 </style>
+
 <body>
     <div class="inner-container">
         <div class="header">
@@ -30,11 +32,13 @@
         <form id="loginForm">
             <div class="form-group">
                 <label for="email">Correo electrónico:</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Introduce tu correo electrónico" required>
+                <input type="email" class="form-control" id="email" name="email"
+                    placeholder="Introduce tu correo electrónico" required>
             </div>
             <div class="form-group password-container">
                 <label for="password">Contraseña:</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Introduce tu contraseña" required>
+                <input type="password" class="form-control" id="password" name="password"
+                    placeholder="Introduce tu contraseña" required>
                 <img src="/Images/ojo.png" alt="Mostrar/Ocultar contraseña" class="eye-icon" onclick="togglePassword()">
             </div>
             <a href="/Frotend/Recuperarcontraseña.html" class="d-block mb-3 text-info">Restablecer contraseña</a>
@@ -51,8 +55,10 @@
         </div>
     </div>
     <script src="/js/Administrador.js"></script>
+    <script src="/js/auth.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

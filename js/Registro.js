@@ -1,7 +1,9 @@
+// En el archivo Registro.js
+
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('registroForm');
 
-    form.addEventListener('submit', function (event) {
+    form.addEventListener('submit', async function (event) {
         event.preventDefault();
 
         const nombre = document.getElementById('nombre').value;
@@ -14,15 +16,43 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Realizar alguna validación adicional si es necesario
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
-        // Enviar los datos del formulario al servidor o realizar alguna acción
-        alert('Formulario enviado con éxito.');
+        const raw = JSON.stringify({
+            "nombre": nombre,
+            "password": password,
+            "username": email,
+            "telefono": numero,
+            "tipoUser": "CLIENTE" // Ajusta según tus necesidades, parece que este campo es fijo
+        });
 
-        // Redireccionar a la página de inicio de sesión
-        window.location.href = '/Frotend/Login.html';
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+
+        try {
+            const response = await fetch("http://localhost:8080/api/auth/register", requestOptions);
+
+            if (!response.ok) {
+                throw new Error('Error en el registro');
+            }
+
+            alert('¡Cuenta creada exitosamente!');
+
+            // Redireccionar a la página de inicio de sesión
+            window.location.href = '/Frotend/Login.html';
+
+        } catch (error) {
+            console.error('Error en el registro:', error.message);
+            // No mostrar alerta aquí para evitar ventana emergente de error
+        }
     });
 });
+
 function togglePassword() {
     var passwordField = document.getElementById("password");
     var passwordFieldType = passwordField.getAttribute("type");
