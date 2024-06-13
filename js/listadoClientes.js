@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para cargar los datos de los clientes
     function cargarClientes() {
-        fetch('/api/clientes') // Aquí '/api/clientes' es un endpoint ficticio
+        fetch('../api/clientes') // Aquí '/api/clientes' es un endpoint ficticio
             .then(response => response.json())
             .then(data => {
                 tbody.innerHTML = ''; // Limpiar el tbody

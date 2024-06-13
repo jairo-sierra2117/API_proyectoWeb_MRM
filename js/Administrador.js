@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             if (data.success) {
                 // Redireccionar a la página de bienvenida
-                window.location.href = '/Frotend/BienvenidoAdm.html';
+                window.location.href = '../Frotend/BienvenidoAdm.html';
             } else {
                 alert('Credenciales incorrectas, por favor intente de nuevo.');
             }

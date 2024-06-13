@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Redirigir según el tipo de usuario correguir!
                 if (data.dtype === 'Empleado') {
-                    window.location.href = '/Frotend/BienvenidoAdm.html';  // Redirige a la vista de bienvenida del empleado
+                    window.location.href = '../Frotend/BienvenidoAdm.html';  // Redirige a la vista de bienvenida del empleado
                 } else if (data.dtype === 'Cliente') {
-                    window.location.href = '/Frotend/BienvenidoCliente.html';  // Redirige a la vista de bienvenida del cliente
+                    window.location.href = '../Frotend/BienvenidoCliente.html';  // Redirige a la vista de bienvenida del cliente
                 } else {
                     console.error('Tipo de usuario desconocido:', data.dtype);
                 }
