@@ -7,9 +7,9 @@ logicamente una vez iniciado sesion.
 
 Si desea quitar esta validacion de inicio de sesion activa, basta con comentar la linea de la siguiente forma
 
-    <script src="../js/validacion.js" type="module"></script>
+    <!--<script src="../js/validacion.js" type="module"></script> -->
 
-    esta se encuentra en el head del html.
+esta se encuentra en el head del html.
 
 FUNCIONALIDADES TESTEADAS CON LA BD heroku
 
