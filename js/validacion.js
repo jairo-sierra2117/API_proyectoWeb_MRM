@@ -9,7 +9,7 @@ function cerrarSesion() {
     // Redirect to login page after a delay
     setTimeout(() => {
         ocultarLoader(); // Hide loader after logout process
-        redireccionar('../Frotend/Login.html'); // Adjust path if necessary
+        redireccionar('../Frotend/loginMRM.html'); // Adjust path if necessary
     }, 1000); // Adjust delay time as needed
 }
 
@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const vistasPermitidas = {
             'BienvenidoAdm.html': [1],
+            'BienvenidoAUX.html': [2],
             'BienvenidoCliente.html': [4],
             'Crearcolaboradores.html': [1],
             'empleados.html': [1],
@@ -133,6 +134,7 @@ function redireccionar(url) {
 function redireccionarPaginaInicio(idRole) {
     const paginasInicio = {
         1: '../Frotend/BienvenidoAdm.html',
+        2: '../Frotend/BienvenidoAUX.html',
         4: '../Frotend/BienvenidoCliente.html',
         // Agregar más roles y sus páginas de inicio si es necesario
     };
