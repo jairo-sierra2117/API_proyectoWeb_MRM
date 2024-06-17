@@ -1,67 +1,81 @@
-// auth.js
+// Escuchar el evento de envío del formulario de inicio de sesión
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();  // Evitar el envío automático del formulario
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Event listener para el formulario de inicio de sesión
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-        e.preventDefault();  // Evita que el formulario se envíe automáticamente
+    // Obtener los valores de email y contraseña del formulario
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-        const email = document.getElementById('email').value;  // Obtiene el valor del campo email
-        const password = document.getElementById('password').value;  // Obtiene el valor del campo password
+    console.log('Iniciando sesión con:', email, password);
 
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        const raw = JSON.stringify({
-            "username": email,  // Utiliza el valor del campo email como username
+    // Configurar los datos de la solicitud POST
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "username": email,
             "password": password
-        });
+        })
+    };
 
-        const requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: raw,
-            redirect: "follow"
-        };
+    try {
+        console.log('Enviando solicitud a la API...');
+        const response = await fetch("http://localhost:8080/api/auth/login", requestOptions);
+        console.log('Respuesta de la API:', response);
 
-        try {
-            const response = await fetch("http://localhost:8080/api/auth/login", requestOptions);
+        // Verificar si la respuesta es exitosa (código de estado HTTP 200-299)
+        if (!response.ok) {
+            console.error('Error en la respuesta de la API:', response.status, response.statusText);
+            throw new Error('Error en el inicio de sesión');
+        }
 
-            if (!response.ok) {
-                throw new Error('Error en el inicio de sesión');
-            }
+        // Extraer los datos JSON de la respuesta
+        const data = await response.json();
+        console.log('Datos recibidos:', data);  // Mostrar datos recibidos en la consola
 
-            const data = await response.json();
-            console.log('Respuesta JSON de la API:', data);  // Muestra la respuesta en la consola
+        // Verificar si se recibió un accessToken en la respuesta
+        if (data.accessToken) {
+            // Almacenar el token en localStorage
+            localStorage.setItem('accessToken', data.tokenType + data.accessToken);
+            console.log('Token almacenado en localStorage');
 
-            if (data.accessToken) {
-                localStorage.setItem('accessToken', data.accessToken);
+            // Guardar el idRole en localStorage
+            const idRole = data.rol[0].idRole; // Suponiendo que siempre hay un único rol
+            localStorage.setItem('idRole', idRole);
+            console.log('ID de Rol almacenado en localStorage:', idRole);
 
-                // Redirigir según el tipo de usuario correguir!
-                if (data.dtype === 'Empleado') {
-                    window.location.href = '/Frotend/BienvenidoAdm.html';  // Redirige a la vista de bienvenida del empleado
-                } else if (data.dtype === 'Cliente') {
-                    window.location.href = '/Frotend/BienvenidoCliente.html';  // Redirige a la vista de bienvenida del cliente
+            // Redirigir según el tipo de usuario y rol obtenidos
+            if (data.userType === 'EMPLEADO') {
+                if (idRole === 1) {
+                    console.log('Redirigiendo a BienvenidoAdm.html...');
+                    window.location.href = '../Frotend/BienvenidoAdm.html';  // Redirigir a la página de administrador
+                } else if (idRole === 2 || idRole === 3) {
+                    console.log('Redirigiendo a BienvenidoEmpleado.html...');
+                    window.location.href = '../Frotend/BienvenidoEmpleado.html';  // Redirigir a la página de empleado
                 } else {
-                    console.error('Tipo de usuario desconocido:', data.dtype);
+                    console.warn('Rol desconocido:', data.rol);
+                    // Manejar el rol desconocido según tu lógica
+                    // Por ejemplo:
+                    // window.location.href = '../Frontend/ErrorPage.html';
                 }
+            } else if (data.userType === 'CLIENTE') {
+                console.log('Redirigiendo a BienvenidoCliente.html...');
+                window.location.href = '../Frotend/BienvenidoCliente.html';  // Redirigir a la página de cliente
             } else {
-                throw new Error('Token de acceso no recibido');
+                console.warn('Tipo de usuario desconocido:', data.userType);
+                // Manejar el tipo de usuario desconocido según tu lógica
+                // Por ejemplo:
+                // window.location.href = '../Frontend/ErrorPage.html';
             }
-        } catch (error) {
-            console.error('Error en el inicio de sesión:', error.message);
-            // Puedes mostrar un mensaje de error en la interfaz si lo deseas
-            document.getElementById('loginMessage').innerText = 'Error en el inicio de sesión';
-        }
-    });
-
-    // Función para alternar la visibilidad de la contraseña
-    function togglePassword() {
-        var passwordField = document.getElementById("password");
-        var passwordFieldType = passwordField.getAttribute("type");
-        if (passwordFieldType === "password") {
-            passwordField.setAttribute("type", "text");
         } else {
-            passwordField.setAttribute("type", "password");
+            console.error('Token no encontrado en la respuesta:', data);
+            throw new Error('Token de acceso no recibido');
         }
+
+    } catch (error) {
+        console.error('Error en el inicio de sesión:', error.message);
+        document.getElementById('loginMessage').innerText = 'Error en el inicio de sesión: ' + error.message;
     }
 });

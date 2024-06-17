@@ -6,7 +6,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/estilo.css" rel="stylesheet">
+    <link href="../css/estilo.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
+    <script src="../js/validacion.js" type="module"></script>
 </head>
 <style>
     body {
@@ -25,11 +27,11 @@
 <body>
     <div class="inner-container">
         <div class="header">
-            <img src="/Images/_6d2b0277-817a-4654-8437-63b0eea52eb6.jpg" alt="Logo de la empresa">
+            <img src="../Images/_6d2b0277-817a-4654-8437-63b0eea52eb6.jpg" alt="Logo de la empresa">
             <h1 class="h4">Repuestos Melos</h1>
         </div>
         <h1 class="h4 text-center mb-4">Iniciar sesión</h1>
-        <form>
+        <form id="loginForm">
             <div class="form-group">
                 <label for="email">Correo electrónico:</label>
                 <input type="email" class="form-control" id="email" name="email"
@@ -41,34 +43,35 @@
                     placeholder="Introduce tu contraseña" required>
                 <img src="/Images/ojo.png" alt="Mostrar/Ocultar contraseña" class="eye-icon" onclick="togglePassword()">
             </div>
-            <a href="/Frotend/Recuperarcontraseña.html" class="d-block mb-3 text-info">¿Olvidaste tu contraseña?</a>
+            <a href="../Frotend/Recuperarcontraseña.html" class="d-block mb-3 text-info">¿Olvidaste tu contraseña?</a>
             <button type="submit" class="btn btn-danger btn-block">INGRESAR</button>
         </form>
-        <p class="text-center mt-3">¿Aún no tienes cuenta? <a href="/Frotend/Registro.html"
+        <p class="text-center mt-3">¿Aún no tienes cuenta? <a href="../Frotend/Registro.html"
                 class="text-info">Regístrate...</a></p>
         <div class="opciones-login text-center mt-4">
             <h2 class="h5">Iniciar sesión como:</h2>
             <ul class="list-inline">
                 <li class="list-inline-item">
-                    <a href="/Frotend/Loginaministrador.html">
-                        <img src="/Images/usuario (1).png" alt="Administrador" class="img-fluid">
+                    <a href="../Frotend/Loginaministrador.html">
+                        <img src="../Images/usuario (1).png" alt="Administrador" class="img-fluid">
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a href="/Frotend/Loginauxiliar.html">
-                        <img src="/Images/auxiliar.png" alt="Auxiliar" class="img-fluid">
+                    <a href="../Frotend/Loginauxiliar.html">
+                        <img src="../Images/auxiliar.png" alt="Auxiliar" class="img-fluid">
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a href="/Frotend/Loginmecanico.html">
-                        <img src="/Images/mecanico.png" alt="Mecánico" class="img-fluid">
+                    <a href="../Frotend/Loginmecanico.html">
+                        <img src="../Images/mecanico.png" alt="Mecánico" class="img-fluid">
                     </a>
                 </li>
             </ul>
         </div>
+        <div id="loginMessage" class="text-danger text-center mt-3"></div> <!-- Añadir este div -->
     </div>
-    <script src="/js/Login.js"></script>
-    <!-- <script src="/js/auth.js"></script> -->
+    <script src="../js/Login.js"></script>
+    <script src="../js/auth.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
