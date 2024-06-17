@@ -15,48 +15,48 @@
     <div class="d-flex">
         <div class="sidebar">
             <div class="menu-item">
-                <a href="/Frotend/BienvenidoAdm.html">
-                    <img src="/Images/inicioEmple.png" alt="Inicio">
+                <a href="../Frotend/BienvenidoAdm.html">
+                    <img src="../Images/inicioEmple.png" alt="Inicio">
                 </a>
                 <span>Inicio</span>
             </div>
             <div class="menu-item">
-                <a href="/Frotend/Vistainventarioadmin.html">
-                    <img src="/Images/invenEmple.png" alt="Inventario">
+                <a href="../Frotend/Vistainventarioadmin.html">
+                    <img src="../Images/invenEmple.png" alt="Inventario">
                 </a>
                 <span>Inventario</span>
             </div>
             <div class="menu-item">
-                <a href="/Frotend/HistorialVentas.html">
-                    <img src="/Images/ventasEmple.png" alt="Ventas">
+                <a href="../Frotend/HistorialVentas.html">
+                    <img src="../Images/ventasEmple.png" alt="Ventas">
                 </a>
                 <span>Ventas</span>
             </div>
             <div class="menu-item">
                 <a href="">
-                    <img src="/Images/pedidosEmple.png" alt="Pedidos">
+                    <img src="../Images/pedidosEmple.png" alt="Pedidos">
                 </a>
                 <span>Pedidos</span>
             </div>
             <div class="menu-item">
-                <a href="/Frotend/Historialventaypedidos.html">
-                    <img src="/Images/historicoEmple.png" alt="Histórico">
+                <a href="../Frotend/Historialventaypedidos.html">
+                    <img src="../Images/historicoEmple.png" alt="Histórico">
                 </a>
                 <span>Histórico</span>
             </div>
             <div class="menu-item">
                 <a href="">
-                    <img src="/Images/notiEmple.png" alt="Notificaciones">
+                    <img src="../Images/notiEmple.png" alt="Notificaciones">
                 </a>
                 <span>Notificaciones</span>
             </div>
             <div class="menu-item">
-                <a href="/Frotend/empleados.html">
-                    <img src="/Images/colabEmple.png" alt="Colaboradores">
+                <a href="../Frotend/empleados.html">
+                    <img src="../Images/colabEmple.png" alt="Colaboradores">
                 </a>
                 <span>Colaboradores</span>
             </div>
-            <div class="menu-item" id="cerrarSesion">
+            <div class="menu-item">
                 <a href="/Frotend/Loginaministrador.html">
                     <img src="/Images/exitEmple.png" alt="Cerrar sesión">
                 </a>
@@ -64,26 +64,11 @@
             </div>
         </div>
         <div class="content container-fluid">
-            <h1>Historico de pedidos y ventas</h1>
-            <div class="d-flex justify-content-start align-items-center mb-3">
-                <div>
-                    <select class="custom-select mr-2">
-                        <option selected>All</option>
-                        <!-- Add other options here -->
-                    </select>
-                </div>
-                <input type="text" class="form-control w-25 mr-2" placeholder="Buscar por nombre o código...">
-                <button class="btn btn-warning">Buscar</button>
-                <div class="d-flex align-items-center ml-auto">
-                    <label for="fecha-inicial" class="mr-2 mb-0">Fecha inicial:</label>
-                    <input type="date" id="fecha-inicial" class="form-control mr-2">
-                    <label for="fecha-final" class="mr-2 mb-0">Fecha final:</label>
-                    <input type="date" id="fecha-final" class="form-control mr-2">
-                    <select class="custom-select">
-                        <option selected>Semana</option>
-                        <!-- Add other options here -->
-                    </select>
-                </div>
+            <h1>Historial de Entradas</h1>
+            <div class="d-flex justify-content-between mb-3">
+                <input type="date" class="form-control w-25" id="filterDate">
+                <input type="text" class="form-control w-25" placeholder="Filtrar por proveedor" id="filterSupplier">
+                <input type="number" class="form-control w-25" placeholder="Filtrar por costo" id="filterCost">
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered" id="historicalTable">
@@ -120,7 +105,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="/js/Inventario.js"></script>
+    <script src="../js/Inventario.js"></script>
 </body>
 
 </html>

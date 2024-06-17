@@ -46,6 +46,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             localStorage.setItem('idRole', idRole);
             console.log('ID de Rol almacenado en localStorage:', idRole);
 
+<<<<<<< HEAD
             // Redirigir según el tipo de usuario y rol obtenidos
             if (data.userType === 'EMPLEADO') {
                 if (idRole === 1) {
@@ -54,6 +55,13 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
                 } else if (idRole === 2 || idRole === 3) {
                     console.log('Redirigiendo a BienvenidoEmpleado.html...');
                     window.location.href = '../Frotend/BienvenidoEmpleado.html';  // Redirigir a la página de empleado
+=======
+                // Redirigir según el tipo de usuario correguir!
+                if (data.dtype === 'Empleado') {
+                    window.location.href = '../Frotend/BienvenidoAdm.html';  // Redirige a la vista de bienvenida del empleado
+                } else if (data.dtype === 'Cliente') {
+                    window.location.href = '../Frotend/BienvenidoCliente.html';  // Redirige a la vista de bienvenida del cliente
+>>>>>>> c6e05ef69cba9a96d5f8b9c3f2551fceb17cc511
                 } else {
                     console.warn('Rol desconocido:', data.rol);
                     // Manejar el rol desconocido según tu lógica

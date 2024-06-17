@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('¡Cuenta creada exitosamente!');
 
             // Redireccionar a la página de inicio de sesión
-            window.location.href = '/Frotend/Login.html';
+            window.location.href = '../Frotend/Login.html';
 
         } catch (error) {
             console.error('Error en el registro:', error.message);

@@ -6,51 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Inventario</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<<<<<<< HEAD
     <link rel="stylesheet" href="/css/Vistas.css">
     <link rel="stylesheet" href="/css/styles.css">
     <script src="../js/validacion.js" type="module"></script>
+=======
+    <link rel="stylesheet" href="../css/Vistas.css">
+>>>>>>> c6e05ef69cba9a96d5f8b9c3f2551fceb17cc511
 </head>
 
 <body>
     <div class="d-flex">
         <div class="sidebar">
             <div class="menu-item">
-                <a href="/Frotend/BienvenidoAdm.html">
-                    <img src="/Images/inicioEmple.png" alt="Inicio">
+                <a href="../Frotend/BienvenidoAdm.html">
+                    <img src="../Images/inicioEmple.png" alt="Inicio">
                 </a>
                 <span>Inicio</span>
             </div>
             <div class="menu-item">
-                <a href="/Frotend/Vistainventarioadmin.html">
-                    <img src="/Images/invenEmple.png" alt="Inventario">
+                <a href="../Frotend/Vistainventarioadmin.html">
+                    <img src="../Images/invenEmple.png" alt="Inventario">
                 </a>
                 <span>Inventario</span>
             </div>
             <div class="menu-item">
-                <a href="/Frotend/HistorialVentas.html">
-                    <img src="/Images/ventasEmple.png" alt="Ventas">
+                <a href="../Frotend/HistorialVentas.html">
+                    <img src="../Images/ventasEmple.png" alt="Ventas">
                 </a>
                 <span>Ventas</span>
             </div>
             <div class="menu-item">
                 <a href="">
-                    <img src="/Images/pedidosEmple.png" alt="Pedidos">
+                    <img src="../Images/pedidosEmple.png" alt="Pedidos">
                 </a>
                 <span>Pedidos</span>
             </div>
             <div class="menu-item">
-                <a href="/Frotend/Historialventaypedidos.html">
-                    <img src="/Images/historicoEmple.png" alt="Histórico">
+                <a href="../Frotend/Historialventaypedidos.html">
+                    <img src="../Images/historicoEmple.png" alt="Histórico">
                 </a>
                 <span>Histórico</span>
             </div>
             <div class="menu-item">
                 <a href="">
-                    <img src="/Images/notiEmple.png" alt="Notificaciones">
+                    <img src="../Images/notiEmple.png" alt="Notificaciones">
                 </a>
                 <span>Notificaciones</span>
             </div>
             <div class="menu-item">
+<<<<<<< HEAD
                 <a href="/Frotend/empleados.html">
                     <img src="/Images/colabEmple.png" alt="Colaboradores">
                 </a>
@@ -59,6 +64,16 @@
             <div class="menu-item" id="cerrarSesion">
                 <a href="#">
                     <img src="/Images/exitEmple.png" alt="Cerrar sesión">
+=======
+                <a href="../Frotend/empleados.html">
+                    <img src="../Images/colabEmple.png" alt="Colaboradores" >
+                </a>
+                <span>Colaboradores</span>
+            </div>
+            <div class="menu-item">
+                <a href="../Frotend/Loginaministrador.html">
+                    <img src="../Images/exitEmple.png" alt="Cerrar sesión">
+>>>>>>> c6e05ef69cba9a96d5f8b9c3f2551fceb17cc511
                 </a>
                 <span>Cerrar sesión</span>
             </div>
@@ -66,11 +81,14 @@
         <div class="content container-fluid">
             <h1>Stock Inventario</h1>
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <input type="text" class="form-control w-50" placeholder="Search the item by name or item code">
+                <div class="d-flex flex-grow-1">
+                    <input type="text" class="form-control w-25 mr-2" placeholder="Filtrar por proveedor" id="filterSupplier">
+                    <input type="text" class="form-control w-25 mr-2" placeholder="Filtrar por categoría" id="filterCategory">
+                    <input type="number" class="form-control w-25 mr-2" placeholder="Filtrar por costo" id="filterCost">
+                    <input type="number" class="form-control w-25" placeholder="Filtrar por cantidad" id="filterQuantity">
+                </div>
                 <div class="d-flex">
-                    <button class="btn btn-warning mr-2" id="addButton">Agregar</button>
-                    <input type="date" class="form-control mr-2">
-                    <input type="date" class="form-control mr-2">
+                    <button class="btn btn-warning ml-auto mr-2" id="addButton">Agregar</button>
                     <button class="btn btn-danger" id="deleteButton">Eliminar</button>
                 </div>
             </div>
@@ -222,7 +240,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="/js/Inventario.js"></script>
+    <script src="../js/Inventario.js"></script>
 </body>
 
 </html>
