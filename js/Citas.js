@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const calendarBody = document.querySelector('.calendar tbody');
     const timeSlots = document.getElementById('time-slots');
     const reserveBtn = document.getElementById('reserve-btn');
+    const clearReservationsBtn = document.getElementById('clear-reservations-btn');
     const currentMonthYear = document.getElementById('current-month-year');
 
     const today = new Date();
@@ -9,7 +10,25 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentMonth = today.getMonth();
 
     const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-    const reservedSlots = {};
+    let reservedSlots = {};
+    let currentReservation = null;
+
+    function loadReservations() {
+        const savedReservations = localStorage.getItem('reservedSlots');
+        if (savedReservations) {
+            reservedSlots = JSON.parse(savedReservations);
+        }
+
+        const savedCurrentReservation = localStorage.getItem('currentReservation');
+        if (savedCurrentReservation) {
+            currentReservation = JSON.parse(savedCurrentReservation);
+        }
+    }
+
+    function saveReservations() {
+        localStorage.setItem('reservedSlots', JSON.stringify(reservedSlots));
+        localStorage.setItem('currentReservation', JSON.stringify(currentReservation));
+    }
 
     function updateCalendar() {
         const firstDay = new Date(currentYear, currentMonth, 1).getDay();
@@ -29,20 +48,20 @@ document.addEventListener("DOMContentLoaded", function() {
                     cell.classList.add('unavailable');
                 } else {
                     cell.textContent = day;
-                    const dateKey = `${currentYear}-${currentMonth + 1}-${day}`;
+                    const dateKey = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                     if (!reservedSlots[dateKey]) {
                         cell.classList.add('available');
                         cell.addEventListener('click', function() {
                             clearSelection();
                             cell.classList.add('selected');
-                            generateTimeSlots(day);
+                            generateTimeSlots(dateKey);
                         });
                     } else {
                         cell.classList.add('available');
                         cell.addEventListener('click', function() {
                             clearSelection();
                             cell.classList.add('selected');
-                            generateTimeSlots(day);
+                            generateTimeSlots(dateKey);
                         });
                     }
                     day++;
@@ -58,10 +77,9 @@ document.addEventListener("DOMContentLoaded", function() {
         selectedCells.forEach(cell => cell.classList.remove('selected'));
     }
 
-    function generateTimeSlots(day) {
+    function generateTimeSlots(dateKey) {
         timeSlots.innerHTML = '';
         const hours = ['08:00 - 09:00', '09:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00', '14:00 - 15:00', '15:00 - 16:00', '16:00 - 17:00', '17:00 - 18:00'];
-        const dateKey = `${currentYear}-${currentMonth + 1}-${day}`;
 
         hours.forEach(hour => {
             const slot = document.createElement('div');
@@ -92,11 +110,25 @@ document.addEventListener("DOMContentLoaded", function() {
         const date = reserveBtn.dataset.date;
         const time = reserveBtn.dataset.time;
 
+        if (currentReservation) {
+            const { date: prevDate, time: prevTime } = currentReservation;
+            const index = reservedSlots[prevDate].indexOf(prevTime);
+            if (index !== -1) {
+                reservedSlots[prevDate].splice(index, 1);
+                if (reservedSlots[prevDate].length === 0) {
+                    delete reservedSlots[prevDate];
+                }
+            }
+        }
+
         if (!reservedSlots[date]) {
             reservedSlots[date] = [];
         }
         reservedSlots[date].push(time);
 
+        currentReservation = { date, time };
+
+        saveReservations();
         updateCalendar();
         clearTimeSlotSelection();
         timeSlots.innerHTML = '';
@@ -121,5 +153,14 @@ document.addEventListener("DOMContentLoaded", function() {
         updateCalendar();
     });
 
+    clearReservationsBtn.addEventListener('click', function() {
+        reservedSlots = {};
+        currentReservation = null;
+        saveReservations();
+        updateCalendar();
+        alert('Todas las reservas han sido limpiadas.');
+    });
+
+    loadReservations();
     updateCalendar();
 });
