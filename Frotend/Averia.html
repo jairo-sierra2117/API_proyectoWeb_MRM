@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios disponibles</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/Citas.css" rel="stylesheet">
+    <style>
+        .appointment-section {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .calendar-container {
+            width: 60%;
+        }
+        .hours-container {
+            width: 35%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .calendar {
+            margin: 0 auto;
+        }
+        .calendar table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        .calendar th, .calendar td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .calendar th {
+            background-color: #f2f2f2;
+        }
+        .calendar .available {
+            background-color: #c8e6c9;
+            cursor: pointer;
+        }
+        .calendar .unavailable {
+            background-color: #ffcdd2;
+        }
+        .calendar .selected {
+            background-color: #90caf9;
+        }
+        .hours-container #time-slots div {
+            margin: 5px 0;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .hours-container #time-slots .available {
+            background-color: #c8e6c9;
+            cursor: pointer;
+        }
+        .hours-container #time-slots .unavailable {
+            background-color: #ffcdd2;
+        }
+        .hours-container #time-slots .selected {
+            background-color: #90caf9;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-left">
+                <img src="../Images/LOGO.png" alt="Logo" style="max-height: 120px;">
+            </div>
+            <div class="header-center">
+                <h1 class="font-weight-bold">REPUESTOS MELO</h1>
+                <p class="text-muted">Norte Santandereanos</p>
+            </div>
+            <div class="header-right">
+                <a href="../Frotend/BienvenidoCliente.html">
+                    <img src="../Images/pagina-de-inicio.png" alt="Salir" class="img-fluid">
+                </a>
+            </div>
+        </div>
+    </header>
+    <section class="appointment-section">
+        <div class="calendar-container">
+            <h2>Selecciona el día disponible y hora</h2>
+            <div class="calendar-navigation">
+                <button id="prev-month" class="btn btn-secondary">Anterior</button>
+                <h3 id="current-month-year" style="display: inline-block; margin: 0 20px;"></h3>
+                <button id="next-month" class="btn btn-secondary">Siguiente</button>
+            </div>
+            <div class="calendar">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>LUN</th>
+                            <th>MAR</th>
+                            <th>MIÉ</th>
+                            <th>JUE</th>
+                            <th>VIE</th>
+                            <th>SÁB</th>
+                            <th>DOM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Las celdas se generarán dinámicamente con JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="hours-container">
+            <h3>Horas Disponibles</h3>
+            <div id="time-slots">
+                <!-- Los horarios se generarán dinámicamente con JavaScript -->
+            </div>
+            <button id="reserve-btn" class="btn btn-primary" disabled>Reservar Cita</button>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <p>©2023 Minegocio Colombiano. All Rights Reserved. | <a href="https://minegociocolombiano.co/" target="_blank" style="color: white;">https://minegociocolombiano.co/</a></p>
+            <p>Con manos Norte Santandereanas...</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../js/Citas.js"></script>
+</body>
+</html>
