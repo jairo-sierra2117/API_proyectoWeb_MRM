@@ -132,7 +132,8 @@ document.addEventListener("DOMContentLoaded", function() {
         updateCalendar();
         clearTimeSlotSelection();
         timeSlots.innerHTML = '';
-        alert(`Cita reservada para el ${date} a las ${time}`);
+        // Redirigir a la página de formulario con la fecha y hora seleccionadas
+        window.location.href = `Agendarcita.html?date=${date}&time=${time}`;
     });
 
     document.getElementById('prev-month').addEventListener('click', function() {
@@ -164,3 +165,14 @@ document.addEventListener("DOMContentLoaded", function() {
     loadReservations();
     updateCalendar();
 });
+document.getElementById('book-appointment-btn').addEventListener('click', function() {
+    const selectedDate = document.getElementById('date-input').value;
+    const selectedTime = document.getElementById('time-input').value;
+    
+    if (selectedDate && selectedTime) {
+        window.location.href = `Agendarcita.html?date=${selectedDate}&time=${selectedTime}`;
+    } else {
+        alert('Por favor selecciona una fecha y hora.');
+    }
+});
+
