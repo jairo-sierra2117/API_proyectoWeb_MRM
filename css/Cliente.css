@@ -48,7 +48,10 @@ body {
 .header-right {
     text-align: right;
 }
-
+.btn-ver-citas {
+    background-color: yellow;
+    color: black;
+}
 
 /* Ajustes para asegurar que no haya espacio blanco debajo de la imagen de fondo */
 .appointment-section {
