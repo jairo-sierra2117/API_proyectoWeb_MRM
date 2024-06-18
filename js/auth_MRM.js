@@ -1,7 +1,47 @@
+// Función para mostrar el loader dinámicamente
+function mostrarLoader() {
+    // Crear el div del loader
+    // Crear el div del loader
+    const loader = document.createElement('div');
+    loader.id = 'loader';
+    loader.style.position = 'fixed';
+    loader.style.top = '0';
+    loader.style.left = '0';
+    loader.style.width = '100%';
+    loader.style.height = '100%';
+    loader.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Fondo semitransparente
+    loader.style.display = 'flex';
+    loader.style.alignItems = 'center';
+    loader.style.justifyContent = 'center';
+    loader.style.zIndex = '1000';
+    loader.innerHTML = '<div class="spinner"></div>'; // Añadir el spinner dentro del loader
+
+    // Crear el spinner dentro del loader
+    const spinner = document.createElement('div');
+    spinner.classList.add('spinner'); // Asume que ya tienes estilos para la clase 'spinner' en tu CSS
+
+    // Añadir el spinner al loader
+    loader.appendChild(spinner);
+
+    // Añadir el loader al body
+    document.body.appendChild(loader);
+
+}
+
+// Función para ocultar y eliminar el loader
+function ocultarLoader() {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.remove();
+    }
+}
+
+
 // Escuchar el evento de envío del formulario de inicio de sesión
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();  // Evitar el envío automático del formulario
 
+    mostrarLoader();
     // Obtener los valores de email y contraseña del formulario
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -79,5 +119,8 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     } catch (error) {
         console.error('Error en el inicio de sesión:', error.message);
         document.getElementById('loginMessage').innerText = 'Error en el inicio de sesión: ' + error.message;
+    } finally {
+        // Ocultar el loader al finalizar el proceso
+        ocultarLoader();
     }
 });

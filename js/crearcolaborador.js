@@ -1,40 +1,101 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const formulario = document.querySelector('.formulario');
-    const nombreInput = document.getElementById('nombre');
-    const numeroCelularInput = document.getElementById('numeroCelular');
-    const rolInput = document.getElementById('rol');
-    const emailInput = document.getElementById('email');
-    const cedulaInput = document.getElementById('cedula');
-    const contrasenaInput = document.getElementById('contrasena');
+    const form = document.querySelector('.registroForm_Empl'); // Selector genérico para el formulario
 
-    formulario.addEventListener('submit', function (event) {
-        event.preventDefault();
+    if (form) { // Verificar si se encontró el formulario
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevenir el envío por defecto del formulario
 
-        if (nombreInput.value.trim() === '' || 
-            numeroCelularInput.value.trim() === '' || 
-            rolInput.value === '' || 
-            email.value.trim() === '' || 
-            cedulaInput.value.trim() === '' || 
-            contrasenaInput.value.trim() === '') {
-            
-            alert('Por favor, completa todos los campos.');
-            return;
-        }
+            // Obtener valores de los campos del formulario
+            const nombre = document.getElementById('nombre').value;
+            const telefono = document.getElementById('telefono').value;
+            const rol = document.getElementById('rol').value;
+            const email = document.getElementById('email').value;
+            const cedula = document.getElementById('cedula').value;
+            const contrasena = document.getElementById('password').value;
 
-        const empleado = {
-            nombre: nombreInput.value,
-            numeroCelular: numeroCelularInput.value,
-            rol: rolInput.value,
-            email: emailInput.value,
-            cedula: cedulaInput.value,
-            contrasena: contrasenaInput.value
-        };
+            // Validar que todos los campos requeridos estén llenos
+            if (!nombre || !telefono || !rol || !email || !cedula || !contrasena) {
+                alert('Por favor, complete todos los campos.');
+                return;
+            }
 
-        let empleados = JSON.parse(localStorage.getItem('empleados')) || [];
-        empleados.push(empleado);
-        localStorage.setItem('empleados', JSON.stringify(empleados));
+            // Mostrar el JSON a enviar por consola para verificar
+            mostrarJSON(nombre, email, contrasena, telefono, cedula, rol);
 
-        alert('Empleado agregado exitosamente');
-        formulario.reset();
-    });
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            // Construir el objeto JSON a enviar
+            const raw = JSON.stringify({
+                "nombre": nombre,
+                "username": email,
+                "password": contrasena,
+                "telefono": telefono,
+                "tipoUser": "EMPLEADO",
+                "cedula": parseInt(cedula),
+                "roleName": rol
+            });
+
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
+
+            try {
+                // Realizar la solicitud fetch a la API
+                const response = await fetch("http://localhost:8080/api/auth/register", requestOptions);
+
+                if (!response.ok) {
+                    if (response.status === 400) {
+                        const errorMessage = await response.text();
+                        throw new Error(errorMessage);
+                    } else {
+                        throw new Error('La solicitud no pudo completarse correctamente: ' + response.status + ' ' + response.statusText);
+                    }
+                }
+
+                alert('¡Cuenta de EMPLEADO creada exitosamente!');
+
+                // Redireccionar a la página de inicio de sesión
+                form.reset();
+
+            } catch (error) {
+                console.error('Error en el registro:', error.message);
+                alert(error.message);
+            } finally {
+
+            }
+        });
+    } else {
+        console.error('No se encontró el formulario con clase "registroForm_Empl".');
+    }
+});
+
+// Función para mostrar el JSON que se enviará por consola
+function mostrarJSON(nombre, email, contrasena, telefono, cedula, rol) {
+    const json = {
+        "nombre": nombre,
+        "username": email,
+        "password": contrasena,
+        "telefono": telefono,
+        "tipoUser": "EMPLEADO",
+        "cedula": parseInt(cedula),
+        "roleName": rol
+    };
+    console.log('JSON a enviar:', json);
+}
+
+
+// Manejo del cambio de selección en el select
+const selectElement = document.getElementById('rol'); // Reemplaza 'tuSelectId' con el ID real de tu select
+
+selectElement.addEventListener('change', function () {
+    const selectedOption = this.options[this.selectedIndex];
+    const selectedValue = selectedOption.value;
+    const selectedText = selectedOption.textContent;
+
+    console.log('Valor seleccionado:', selectedValue);
+    console.log('Texto seleccionado:', selectedText);
 });
