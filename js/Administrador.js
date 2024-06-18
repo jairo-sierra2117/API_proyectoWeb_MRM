@@ -12,29 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Aquí puedes agregar la lógica para enviar los datos al servidor
-        // Por ejemplo, usando fetch para una solicitud POST
-
-        fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email: email, password: password })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Redireccionar a la página de bienvenida
-                window.location.href = '../Frotend/BienvenidoAdm.html';
-            } else {
-                alert('Credenciales incorrectas, por favor intente de nuevo.');
-            }
-        })
-        /*.catch(error => {
-            console.error('Error:', error);
-            alert('Ocurrió un error al iniciar sesión. Por favor, intente de nuevo más tarde.');
-        });*/
     });
 });
 function togglePassword() {

@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Si todos los campos están llenos, realiza la acción deseada (puede ser enviar a un servidor o mostrar una alerta)
-        alert('Inicio de sesión exitoso');
+        //alert('Inicio de sesión exitoso');
 
         // Limpia los campos del formulario
         formulario.reset();

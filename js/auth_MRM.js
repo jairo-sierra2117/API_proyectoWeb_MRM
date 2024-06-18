@@ -46,7 +46,6 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             localStorage.setItem('idRole', idRole);
             console.log('ID de Rol almacenado en localStorage:', idRole);
 
-<<<<<<< HEAD
             // Redirigir según el tipo de usuario y rol obtenidos
             if (data.userType === 'EMPLEADO') {
                 if (idRole === 1) {
@@ -54,14 +53,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
                     window.location.href = '../Frotend/BienvenidoAdm.html';  // Redirigir a la página de administrador
                 } else if (idRole === 2 || idRole === 3) {
                     console.log('Redirigiendo a BienvenidoEmpleado.html...');
-                    window.location.href = '../Frotend/BienvenidoEmpleado.html';  // Redirigir a la página de empleado
-=======
-                // Redirigir según el tipo de usuario correguir!
-                if (data.dtype === 'Empleado') {
-                    window.location.href = '../Frotend/BienvenidoAdm.html';  // Redirige a la vista de bienvenida del empleado
-                } else if (data.dtype === 'Cliente') {
-                    window.location.href = '../Frotend/BienvenidoCliente.html';  // Redirige a la vista de bienvenida del cliente
->>>>>>> c6e05ef69cba9a96d5f8b9c3f2551fceb17cc511
+                    window.location.href = '../Frotend/BienvenidoAUX.html';  // Redirigir a la página de empleado
                 } else {
                     console.warn('Rol desconocido:', data.rol);
                     // Manejar el rol desconocido según tu lógica
@@ -69,8 +61,10 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
                     // window.location.href = '../Frontend/ErrorPage.html';
                 }
             } else if (data.userType === 'CLIENTE') {
-                console.log('Redirigiendo a BienvenidoCliente.html...');
-                window.location.href = '../Frotend/BienvenidoCliente.html';  // Redirigir a la página de cliente
+                console.log('TIPO USUARIO INCORRECTO');
+                document.getElementById('loginMessage').innerText = 'ESTE LOGIN ES VÁLIDO SOLO PARA PERSONAL DE MRM';
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('idRole');
             } else {
                 console.warn('Tipo de usuario desconocido:', data.userType);
                 // Manejar el tipo de usuario desconocido según tu lógica
