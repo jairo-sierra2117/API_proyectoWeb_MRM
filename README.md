@@ -22,7 +22,7 @@ FUNCIONES
 LOGINCLIENT
 FUNCIONA AL 100%
 Solo en el loginClient.html
-Este SOLO ACEPATA USUARIOS TIPO cliente y lo redirecciona a la pagina de inicio correspondiente.
+Este SOLO ACEPTA USUARIOS TIPO cliente y lo redirecciona a la pagina de inicio correspondiente.
 Si desea cambiar esta redireccion ir al archivo auth.js
 Se recomienda ser cuidadoso , en caso de hacer cambios importantes , validar su funcionamiento antes de hacer push al repositorio.
 
@@ -32,7 +32,7 @@ FUNCIONA AL 100% PARA USUARIO DE TIPO CLIENTE
 LOGIN-MRM
 FUNCIONA AL 100%
 Solo en el loginMRM.html
-Este SOLO ACEPATA USUARIOS TIPO empleado, es decir personal de MRM y lo redirecciona a la pagina de inicio correspondiente.
+Este SOLO ACEPTA USUARIOS TIPO empleado, es decir personal de MRM y lo redirecciona a la pagina de inicio correspondiente.
 Si desea cambiar esta redireccion ir al archivo auth.js
 Se recomienda ser cuidadoso , en caso de hacer cambios importantes , validar su funcionamiento antes de hacer push al repositorio.
 by jairo-sierra2117
