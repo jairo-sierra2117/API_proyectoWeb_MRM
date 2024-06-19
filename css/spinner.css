@@ -19,3 +19,45 @@
     transform: rotate(360deg);
   }
 }
+
+.modal-header, .modal-footer {
+    background-color: #f8f9fa;
+}
+
+.modal-header .close {
+    margin: -1rem -1rem -1rem auto;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+}
+
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.modal-footer {
+  border-top: 1px solid #dee2e6;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.btn-outline-secondary {
+    border-radius: 50%;
+}
+
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table td button {
+    margin: 0 5px;
+}
