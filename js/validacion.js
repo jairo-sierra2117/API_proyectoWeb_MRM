@@ -83,9 +83,9 @@ document.addEventListener('DOMContentLoaded', function () {
             'BienvenidoCliente.html': [4],
             'Crearcolaboradores.html': [1],
             'empleados.html': [1],
-            'HistorialVentas.html': [1, 2, 3],
+            'HistorialVentas.html': [1, 2],
             'Historialventaypedidos.html': [1, 2],
-            'ListaClientes.html': [1],
+            'ListaClientes.html': [1, 2],
             'Vistainventarioadmin.html': [1],
             'Vistainventarioauxiliar.html': [2],
             'Vistainventariomecanico.html': [3]

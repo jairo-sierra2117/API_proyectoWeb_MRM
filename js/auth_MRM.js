@@ -91,9 +91,12 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
                 if (idRole === 1) {
                     console.log('Redirigiendo a BienvenidoAdm.html...');
                     window.location.href = '../Frotend/BienvenidoAdm.html';  // Redirigir a la página de administrador
-                } else if (idRole === 2 || idRole === 3) {
+                } else if (idRole === 2) {
                     console.log('Redirigiendo a BienvenidoEmpleado.html...');
                     window.location.href = '../Frotend/BienvenidoAUX.html';  // Redirigir a la página de empleado
+                } else if (idRole === 3) {
+                    console.log('Redirigiendo a vista de mecanicos.html...');
+                    window.location.href = '../Frotend/vistainventariomecanico.html';  // Redirigir a la página de empleado
                 } else {
                     console.warn('Rol desconocido:', data.rol);
                     // Manejar el rol desconocido según tu lógica

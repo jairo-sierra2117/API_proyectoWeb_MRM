@@ -15,19 +15,19 @@
     <div class="d-flex">
         <div class="sidebar">
             <div class="menu-item">
-                <a href="../Frotend/BienvenidoAdm.html">
+                <a href="/Frotend/BienvenidoAdm.html">
                     <img src="../Images/inicioEmple.png" alt="Inicio">
                 </a>
                 <span>Inicio</span>
             </div>
             <div class="menu-item">
-                <a href="../Frotend/Vistainventarioadmin.html">
+                <a href="/Frotend/Vistainventarioadmin.html">
                     <img src="../Images/invenEmple.png" alt="Inventario">
                 </a>
                 <span>Inventario</span>
             </div>
             <div class="menu-item">
-                <a href="../Frotend/HistorialVentas.html">
+                <a href="/Frotend/HistorialVentas.html">
                     <img src="../Images/ventasEmple.png" alt="Ventas">
                 </a>
                 <span>Ventas</span>
@@ -39,7 +39,7 @@
                 <span>Pedidos</span>
             </div>
             <div class="menu-item">
-                <a href="../Frotend/Historialventaypedidos.html">
+                <a href="/Frotend/Historialventaypedidos.html">
                     <img src="../Images/historicoEmple.png" alt="Histórico">
                 </a>
                 <span>Histórico</span>
@@ -52,13 +52,13 @@
             </div>
             <div class="menu-item">
                 <a href="/Frotend/empleados.html">
-                    <img src="/Images/colabEmple.png" alt="Colaboradores">
+                    <img src="../Images/colabEmple.png" alt="Colaboradores">
                 </a>
                 <span>Colaboradores</span>
             </div>
             <div class="menu-item" id="cerrarSesion">
                 <a href="#">
-                    <img src="/Images/exitEmple.png" alt="Cerrar sesión">
+                    <img src="../Images/exitEmple.png" alt="Cerrar sesión">
                 </a>
                 <span>Cerrar sesión</span>
             </div>
@@ -76,29 +76,30 @@
                         id="filterQuantity">
                 </div>
                 <div class="d-flex">
-                    <button class="btn btn-warning ml-auto mr-2" id="addButton">Agregar</button>
+                    <button id="btnAgregar" class="btn btn-warning mr-2">Agregar</button>
                     <button class="btn btn-danger" id="deleteButton">Eliminar</button>
                 </div>
+
+
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered" id="inventoryTable">
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="selectAll"></th>
+                            <th>ID</th> <!-- Columna para el ID del producto -->
                             <th>No.</th>
-                            <th>Nombre</th>
+                            <th>Descripción</th> <!-- Usamos este campo para el nombre -->
                             <th>Código</th>
-                            <th>Descripción</th>
                             <th>Categoría</th>
                             <th>Cantidad</th>
-                            <th>Proveedor</th>
+                            <th>Marca</th>
                             <th>Costo adquirido</th>
                             <th>Costo venta</th>
                             <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Rows will be added dynamically -->
                     </tbody>
                 </table>
                 <nav>
@@ -111,61 +112,6 @@
                         <li class="page-item"><a class="page-link" href="#">Next</a></li>
                     </ul>
                 </nav>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal for Adding Product -->
-    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addModalLabel">Agregar Producto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="addForm">
-                        <div class="form-group">
-                            <label for="addName">Nombre</label>
-                            <input type="text" class="form-control" id="addName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="addCode">Código</label>
-                            <input type="text" class="form-control" id="addCode" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="addDescription">Descripción</label>
-                            <input type="text" class="form-control" id="addDescription" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="addCategory">Categoría</label>
-                            <input type="text" class="form-control" id="addCategory" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="addQuantity">Cantidad</label>
-                            <input type="number" class="form-control" id="addQuantity" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="addSupplier">Proveedor</label>
-                            <input type="text" class="form-control" id="addSupplier" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="addCost">Costo adquirido</label>
-                            <input type="number" class="form-control" id="addCost" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="addSaleCost">Costo venta</label>
-                            <input type="number" class="form-control" id="addSaleCost" required>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" id="saveAddButton">Guardar Producto</button>
-                </div>
             </div>
         </div>
     </div>
@@ -184,16 +130,16 @@
                 <div class="modal-body">
                     <form id="editForm">
                         <div class="form-group">
-                            <label for="editName">Nombre</label>
+                            <label for="editId">ID</label>
+                            <input type="text" class="form-control" id="editId" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="editName">Descripción</label>
                             <input type="text" class="form-control" id="editName">
                         </div>
                         <div class="form-group">
                             <label for="editCode">Código</label>
                             <input type="text" class="form-control" id="editCode">
-                        </div>
-                        <div class="form-group">
-                            <label for="editDescription">Descripción</label>
-                            <input type="text" class="form-control" id="editDescription">
                         </div>
                         <div class="form-group">
                             <label for="editCategory">Categoría</label>
@@ -209,11 +155,11 @@
                         </div>
                         <div class="form-group">
                             <label for="editCost">Costo adquirido</label>
-                            <input type="number" class="form-control" id="editCost">
+                            <input type="text" class="form-control" id="editCost">
                         </div>
                         <div class="form-group">
                             <label for="editSaleCost">Costo venta</label>
-                            <input type="number" class="form-control" id="editSaleCost">
+                            <input type="text" class="form-control" id="editSaleCost">
                         </div>
                     </form>
                 </div>
@@ -225,10 +171,65 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Modal for Creating -->
+    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createModalLabel">Agregar Producto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="createForm">
+                        <div class="form-group">
+                            <label for="nombre">Descripción</label>
+                            <input type="text" class="form-control" id="nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="codigo">Código</label>
+                            <input type="text" class="form-control" id="codigo">
+                        </div>
+                        <div class="form-group">
+                            <label for="precioCosto">Costo adquirido</label>
+                            <input type="text" class="form-control" id="precioCosto">
+                        </div>
+                        <div class="form-group">
+                            <label for="precioVenta">Costo venta</label>
+                            <input type="text" class="form-control" id="precioVenta">
+                        </div>
+                        <div class="form-group">
+                            <label for="categoriaId">Categoría</label>
+                            <input type="text" class="form-control" id="categoriaId">
+                        </div>
+                        <div class="form-group">
+                            <label for="marcaId">Marca</label>
+                            <input type="text" class="form-control" id="marcaId">
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" class="form-control" id="cantidad">
+                        </div>
+                        <div class="form-group">
+                            <label for="tipoId">Tipo</label>
+                            <input type="text" class="form-control" id="tipoId">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="createProductButton">Agregar Producto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="../js/Inventario.js"></script>
+    <script src="../js/ventaypedidos.js"></script>
 </body>
 
 </html>
