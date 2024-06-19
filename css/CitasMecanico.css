@@ -3,13 +3,16 @@ body {
     min-height: 100vh;
     flex-direction: column;
 }
+
 .container-fluid {
     flex: 1;
 }
+
 .table-bordered thead th {
     background-color: black;
     color: white;
 }
+
 .container {
     width: 100%;
     background-color: #FFFFFF;
@@ -37,6 +40,7 @@ body {
     bottom: 90px; /* Espacio desde la parte inferior de la página */
     height: auto; /* Permitir que la altura se ajuste automáticamente */
 }
+
 .sidebar .menu-item {
     width: 100%;
     display: flex;
@@ -46,6 +50,7 @@ body {
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
 .sidebar .menu-item img {
     margin-bottom: 5px; /* Espacio entre el ícono y el texto */
     width: 45px; /* Tamaño del icono aumentado */
@@ -83,17 +88,32 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    border: 1px solid #e0e0e0;
     margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
     border-radius: 5px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    /* Elimina el ancho máximo para que los slots se expandan horizontalmente */
 }
 
 .appointment-slot.gray {
     background-color: #f8f9fa;
-    
+}
+
+.slot-details {
+    flex-grow: 1; /* Permitir que los detalles ocupen el espacio disponible */
+    text-align: left;
+}
+
+.slot-details span {
+    display: block;
+}
+.slot-actions {
+    display: flex;
+    justify-content: center; /* Centrar los botones horizontalmente */
+    align-items: center; /* Centrar los botones verticalmente */
+}
+
+.slot-actions .btn {
+    margin: 0; /* Eliminar cualquier margen preexistente */
 }
 
 .btn-attend {
@@ -105,22 +125,8 @@ body {
     background-color: #6c757d;
     color: white;
 }
-
-.slot-details {
-    text-align: left;
-}
-
-.slot-details span {
-    display: block;
-}
-
-.slot-actions {
-    text-align: center;
-    width: 100%; /* Asegurarse de que ocupe todo el ancho del contenedor */
-}
-
 .slot-actions .btn {
-    display: inline-block;
+    white-space: nowrap; /* Evitar que el texto del botón se divida en varias líneas */
 }
 
 /* Media Queries para responsividad */
@@ -174,4 +180,19 @@ body {
         width: 30px; /* Reducir tamaño del icono en pantallas muy pequeñas */
         height: 30px;
     }
+}
+
+/* Estilos adicionales */
+.modal-footer {
+    justify-content: flex-start;
+}
+
+.btn-attend-modal {
+    background-color: orange;
+    color: white;
+}
+
+.btn-attend-modal:hover {
+    background-color: darkorange;
+    color: white;
 }
