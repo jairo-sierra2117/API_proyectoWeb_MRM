@@ -1,0 +1,127 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.container-fluid {
+    flex: 1;
+}
+.table-bordered thead th {
+    background-color: black;
+    color: white;
+}
+.container {
+    width: 100%;
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 1200px; /* Ancho máximo para centrar */
+    margin:auto;
+}
+
+.sidebar {
+    width: 225px; /* Ancho fijo de la barra lateral */
+    background-color: #FFFFFF;
+    border: 3px solid #000000; /* Cambiar el color del borde a negro */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Fijar la barra lateral */
+    left: 40px; /* Espacio desde el borde izquierdo de la página */
+    top: 40px; /* Espacio desde la parte superior de la página */
+    bottom: 90px; /* Espacio desde la parte inferior de la página */
+    height: auto; /* Permitir que la altura se ajuste automáticamente */
+}
+.sidebar .menu-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Cambiar la dirección a columna */
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.sidebar .menu-item img {
+    margin-bottom: 5px; /* Espacio entre el ícono y el texto */
+    width: 45px; /* Tamaño del icono aumentado */
+    height: 45px; /* Tamaño del icono aumentado */
+    object-fit: contain; /* Mantener la proporción de las imágenes */
+}
+
+.sidebar .menu-item span {
+    font-size: 17px;
+    color: #000000;
+    text-align: center; /* Centrar el texto */
+}
+
+.sidebar .menu-item:hover {
+    background-color: #F0F0F0;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 275px; /* Espacio a la izquierda para la barra lateral */
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 200px; /* Reducir ancho de la barra lateral en pantallas medianas */
+        left: 20px; /* Ajustar margen izquierdo */
+        top: 20px; /* Ajustar margen superior */
+        bottom: 100px; /* Ajustar margen inferior */
+    }
+
+    .content {
+        margin-left: 220px; /* Ajustar margen izquierdo para la barra lateral */
+    }
+
+    .sidebar .menu-item span {
+        font-size: 15px; /* Reducir tamaño de letra en pantallas medianas */
+    }
+
+    .sidebar .menu-item img {
+        width: 40px; /* Reducir tamaño del icono en pantallas medianas */
+        height: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .d-flex {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        left: 0; /* Restablecer la posición en pantallas pequeñas */
+        top: 0;
+        bottom: 0;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar .menu-item span {
+        font-size: 12px; /* Reducir tamaño de letra en pantallas muy pequeñas */
+    }
+
+    .sidebar .menu-item img {
+        width: 30px; /* Reducir tamaño del icono en pantallas muy pequeñas */
+        height: 30px;
+    }
+}
