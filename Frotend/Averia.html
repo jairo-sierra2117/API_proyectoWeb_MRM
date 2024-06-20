@@ -6,162 +6,6 @@
     <title>Servicios disponibles</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/Citas.css" rel="stylesheet">
-    <style>
-        /* Estilos para el calendario */
-        .appointment-section {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-start;
-            padding: 20px;
-            margin: 20px;
-        }
-
-        .calendar-container {
-            width: 30%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .text-container {
-            width: 40%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-
-        .text-container p {
-            font-size: 2rem; /* Tamaño del texto */
-            font-weight: bold; /* Peso del texto */
-            color: #333; /* Color del texto */
-        }
-
-        .hours-container {
-            width: 20%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .calendar-navigation {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .calendar-navigation button {
-            background-color: #007bff;
-            border: none;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .calendar-navigation button:hover {
-            background-color: #0056b3;
-        }
-
-        #current-month-year {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 20px;
-        }
-
-        .calendar {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 1.1rem;
-        }
-
-        .calendar th, .calendar td {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .calendar th {
-            background-color: #007bff;
-            color: white;
-            font-weight: bold;
-        }
-
-        .calendar td {
-            border: 1px solid #ddd;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .calendar td.available {
-            background-color: #f1f1f1;
-        }
-
-        .calendar td.unavailable {
-            background-color: #e9ecef;
-            color: #6c757d;
-            cursor: not-allowed;
-        }
-
-        .calendar td.selected {
-            background-color: #007bff;
-            color: white;
-        }
-
-        #time-slots {
-            display: flex;
-            flex-direction: column;
-            margin-top: 10px;
-            width: 100%;
-        }
-
-        #time-slots div {
-            padding: 10px;
-            margin-bottom: 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        #time-slots div.available {
-            background-color: #f1f1f1;
-        }
-
-        #time-slots div.selected {
-            background-color: #007bff;
-            color: white;
-        }
-
-        #time-slots div.unavailable {
-            background-color: #e9ecef;
-            color: #6c757d;
-            cursor: not-allowed;
-        }
-
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin: 10px 0;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        button.disabled {
-            background-color: #6c757d;
-            cursor: not-allowed;
-        }
-    </style>
 </head>
 <body>
     <header class="header">
@@ -212,8 +56,10 @@
             <div id="time-slots">
                 <!-- Los horarios se generarán dinámicamente con JavaScript -->
             </div>
+            <div class="buttons">
             <button id="reserve-btn" class="btn btn-primary" href="../Frotend/Agendarcita.html" disabled>Reservar Cita</button>
             <button id="clear-reservations-btn" class="btn btn-danger" style="margin-top: 15px;">Limpiar Todas las Reservas</button>
+        </div>    
         </div>
     </section>
     <footer class="footer">
