@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <td>${appointment.phone}</td>
             <td>
                 <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailsModal" 
-                onclick="showDetails('${appointment.date}', '${appointment.time}', 'N/A', '${appointment.phone}', 'N/A', '${appointment.comments}')">
+                onclick="showDetails('${appointment.date}', '${appointment.time}', 'N/A', '${appointment.phone}', '${appointment.serviceType}', '${appointment.comments}')">
                 Ver Detalles</button>
             </td>
         `;
