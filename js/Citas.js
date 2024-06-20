@@ -49,7 +49,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 } else {
                     cell.textContent = day;
                     const dateKey = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                    if (!reservedSlots[dateKey]) {
+
+                    // Deshabilitar días anteriores a hoy
+                    const currentDate = new Date(currentYear, currentMonth, day);
+                    if (currentDate < today) {
+                        cell.classList.add('unavailable');
+                    } else if (!reservedSlots[dateKey]) {
                         cell.classList.add('available');
                         cell.addEventListener('click', function() {
                             clearSelection();
@@ -175,4 +180,3 @@ document.getElementById('book-appointment-btn').addEventListener('click', functi
         alert('Por favor selecciona una fecha y hora.');
     }
 });
-
