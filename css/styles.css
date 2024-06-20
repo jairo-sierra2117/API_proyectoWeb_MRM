@@ -1,6 +1,9 @@
 body {
   margin: 0;
   font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden; /* Evita el desplazamiento horizontal cuando se hace zoom */
 }
 
 .sidebar {
@@ -17,8 +20,9 @@ body {
   position: fixed; /* Fijar la barra lateral */
   left: 40px; /* Espacio desde el borde izquierdo de la página */
   top: 40px; /* Espacio desde la parte superior de la página */
-  bottom: 90px; /* Espacio desde la parte inferior de la página */
+  bottom: 40px; /* Reducido para evitar problemas de espacio en pantallas pequeñas */
   height: auto; /* Permitir que la altura se ajuste automáticamente */
+  overflow-y: auto; /* Permitir el desplazamiento vertical si el contenido es mayor que la altura disponible */
 }
 
 .menu-item {
@@ -114,28 +118,24 @@ body {
     width: 200px; /* Reducir ancho de la barra lateral en pantallas medianas */
     left: 20px; /* Ajustar margen izquierdo */
     top: 20px; /* Ajustar margen superior */
-    bottom: 100px; /* Ajustar margen inferior */
+    bottom: 40px; /* Ajustar margen inferior */
   }
 
   .content {
     margin-left: 220px; /* Ajustar margen izquierdo para la barra lateral */
   }
 
-  .sidebar .menu-item span {
+  .menu-item span {
     font-size: 15px; /* Reducir tamaño de letra en pantallas medianas */
   }
 
-  .sidebar .menu-item img {
+  .menu-item img {
     width: 40px; /* Reducir tamaño del icono en pantallas medianas */
     height: 40px;
   }
 }
 
 @media (max-width: 768px) {
-  .d-flex {
-    flex-direction: column;
-  }
-
   .sidebar {
     width: 100%;
     height: auto;
@@ -151,11 +151,11 @@ body {
 }
 
 @media (max-width: 480px) {
-  .sidebar .menu-item span {
+  .menu-item span {
     font-size: 12px; /* Reducir tamaño de letra en pantallas muy pequeñas */
   }
 
-  .sidebar .menu-item img {
+  .menu-item img {
     width: 30px; /* Reducir tamaño del icono en pantallas muy pequeñas */
     height: 30px;
   }
