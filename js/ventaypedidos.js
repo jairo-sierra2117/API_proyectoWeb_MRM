@@ -1,5 +1,81 @@
-
 $(document).ready(function () {
+
+    // Función para mostrar alerta
+    function mostrarAlerta(productosConBajaCantidad) {
+        let alertaHtml = `
+            <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="alertModalLabel">Productos con baja cantidad</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                ${productosConBajaCantidad.map(producto => `<li>${producto.descripcion} (Cantidad: ${producto.stock})</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        $('body').append(alertaHtml);
+        $('#alertModal').modal('show');
+    }
+
+    // Función para cargar datos del inventario desde la API
+    function cargarDatosInventario() {
+        fetch('http://localhost:8080/api/productos')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al obtener datos del inventario');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const tbody = $('#inventoryTable tbody');
+                const productosConBajaCantidad = [];
+
+                // Limpiar cualquier contenido previo en el tbody
+                tbody.empty();
+
+                // Iterar sobre los datos y construir las filas de la tabla
+                data.forEach((producto, index) => {
+                    if (producto.stock < 5) {
+                        productosConBajaCantidad.push(producto);
+                    }
+                    const row = `
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>${producto.id}</td>
+                            <td>${index + 1}</td>
+                            <td>${producto.descripcion}</td>
+                            <td>${producto.codigo}</td>
+                            <td>${producto.categoriaId}</td>
+                            <td>${producto.stock}</td>
+                            <td>${producto.marcaId}</td>
+                            <td>${producto.precioCosto}</td>
+                            <td>${producto.precioVenta}</td>
+                            <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
+                        </tr>
+                    `;
+                    tbody.append(row);
+                });
+
+                // Mostrar alerta si hay productos con baja cantidad
+                if (productosConBajaCantidad.length > 0) {
+                    mostrarAlerta(productosConBajaCantidad);
+                }
+            })
+            .catch(error => {
+                console.error('Error al cargar datos del inventario:', error);
+            });
+    }
 
     // Eliminar elementos seleccionados
     $('#deleteButton').click(function () {
@@ -53,9 +129,6 @@ $(document).ready(function () {
         // Realizar la solicitud POST al backend para crear un nuevo producto
         crearProducto(formData);
     });
-
-    // Cargar datos del inventario desde la API al cargar la página
-    cargarDatosInventario();
 
     // Función para cargar datos de un producto para edición
     function cargarDatosEdicion(id) {
@@ -176,71 +249,6 @@ $(document).ready(function () {
             });
     }
 
-    // Función para cargar datos del inventario desde la API
-    function cargarDatosInventario() {
-        fetch('http://localhost:8080/api/productos')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al obtener datos del inventario');
-                }
-                return response.json();
-            })
-            .then(data => {
-                const tbody = $('#inventoryTable tbody');
-
-                // Limpiar cualquier contenido previo en el tbody
-                tbody.empty();
-
-                // Iterar sobre los datos y construir las filas de la tabla
-                data.forEach((producto, index) => {
-                    const row = `
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>${producto.id}</td>
-                            <td>${index + 1}</td>
-                            <td>${producto.descripcion}</td>
-                            <td>${producto.codigo}</td>
-                            <td>${producto.categoriaId}</td>
-                            <td>${producto.stock}</td>
-                            <td>${producto.marcaId}</td>
-                            <td>${producto.precioCosto}</td>
-                            <td>${producto.precioVenta}</td>
-                            <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
-                        </tr>
-                    `;
-                    tbody.append(row);
-                });
-            })
-            .catch(error => {
-                console.error('Error al cargar datos del inventario:', error);
-            });
-    }
-    function filterInventory() {
-        const supplierFilter = $('#filterSupplier').val().toLowerCase();
-        const categoryFilter = $('#filterCategory').val().toLowerCase();
-        const costFilter = parseFloat($('#filterCost').val());
-        const quantityFilter = parseInt($('#filterQuantity').val());
-
-        $('#inventoryTable tbody tr').each(function () {
-            const supplier = $(this).find('td:nth-child(8)').text().toLowerCase(); // Columna Proveedor
-            const category = $(this).find('td:nth-child(6)').text().toLowerCase(); // Columna Categoría
-            const cost = parseFloat($(this).find('td:nth-child(9)').text()); // Columna Costo adquirido
-            const quantity = parseInt($(this).find('td:nth-child(7)').text()); // Columna Cantidad
-
-            if (
-                (supplierFilter === '' || supplier.includes(supplierFilter)) &&
-                (categoryFilter === '' || category.includes(categoryFilter)) &&
-                (isNaN(costFilter) || cost <= costFilter) &&
-                (isNaN(quantityFilter) || quantity >= quantityFilter)
-            ) {
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
-        });
-    }
-
-    $('#filterSupplier, #filterCategory, #filterCost, #filterQuantity').on('input', filterInventory);
-
-    loadInventory();
+    // Cargar datos de inventario al cargar la página
+    cargarDatosInventario();
 });
