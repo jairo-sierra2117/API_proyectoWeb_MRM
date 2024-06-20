@@ -170,6 +170,7 @@ document.addEventListener("DOMContentLoaded", function() {
     loadReservations();
     updateCalendar();
 });
+
 document.getElementById('book-appointment-btn').addEventListener('click', function() {
     const selectedDate = document.getElementById('date-input').value;
     const selectedTime = document.getElementById('time-input').value;

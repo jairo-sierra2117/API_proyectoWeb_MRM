@@ -24,6 +24,6 @@ function showDetails(date, time, clientName, clientPhone, serviceType, comments)
     document.getElementById('modal-date-time').innerText = `${date} ${time}`;
     document.getElementById('modal-client-name').innerText = clientName;
     document.getElementById('modal-client-phone').innerText = clientPhone;
-    document.getElementById('modal-service-type').innerText = serviceType;
-    document.getElementById('modal-comments').innerText = comments;
+    document.getElementById('modal-service-type').innerText = serviceType || 'No especificado';
+    document.getElementById('modal-comments').innerText = comments || 'Sin comentarios';
 }

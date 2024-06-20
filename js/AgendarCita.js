@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
     const date = urlParams.get('date');
     const time = urlParams.get('time');
+    const selectedServiceType = localStorage.getItem('selectedServiceType'); // Obtener el tipo de servicio seleccionado
 
     if (date) {
         document.getElementById('date').value = date;
@@ -23,6 +24,9 @@ document.addEventListener("DOMContentLoaded", function() {
             date: document.getElementById('date').value,
             time: document.getElementById('time').value,
             phone: document.getElementById('phone').value,
+            serviceType: selectedServiceType, // Guardar el tipo de servicio seleccionado
+            model: document.getElementById('model').value,
+            brand: document.getElementById('brand').value,
             comments: document.getElementById('comments').value
         };
 
