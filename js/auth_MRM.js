@@ -121,7 +121,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
     } catch (error) {
         console.error('Error en el inicio de sesión:', error.message);
-        document.getElementById('loginMessage').innerText = 'Error en el inicio de sesión: ' + error.message;
+        document.getElementById('loginMessage').innerText = error.message + '/n DATOS INVALIDOS /n INTENTE NUEVAMENTE';
     } finally {
         // Ocultar el loader al finalizar el proceso
         ocultarLoader();
