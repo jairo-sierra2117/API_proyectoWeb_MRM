@@ -1,10 +1,11 @@
 # API_proyectoWeb_MRM
 
-cambios 2:15 am 21/06/2024
+cambios   13:06 pm               2:15 am 21/06/2024
 FAVOR COPIAR EL CODIGO DEL HEADER DE CLIENTE
 para que este sea el mismo en todas las vistas.
 
-SE AGREGO PERFIL.HTML
+SE AGREGO PERFIL.HTML y PerfilEmpl.html
+TIENE FUNCIONAL LA INFORMACION DEL USUARIO.
 TIENE FUNCIONAL EL CAMBIO DE CLAVE CON MODAL.
 
 Las vistas estan actualmente validadas por el archivo validacion.js
@@ -42,4 +43,12 @@ Solo en el loginMRM.html
 Este SOLO ACEPTA USUARIOS TIPO empleado, es decir personal de MRM y lo redirecciona a la pagina de inicio correspondiente.
 Si desea cambiar esta redireccion ir al archivo auth.js
 Se recomienda ser cuidadoso , en caso de hacer cambios importantes , validar su funcionamiento antes de hacer push al repositorio.
+
+
+
+atribuciones de imgs
+<div> Iconos diseñados por <a href="https://www.flaticon.es/autores/kornkun" title="kornkun"> kornkun </a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es'</a></div>
+
+
+
 by jairo-sierra2117
