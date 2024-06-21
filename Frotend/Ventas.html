@@ -1,173 +1,264 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ventas</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../css/Ventas.css">
-  <link href="../css/spinner.css" rel="stylesheet" />
-  <style>
-    /* Estilos adicionales que puedas necesitar */
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/Vistas.css">
+    <link href="../css/Vistas.css" rel="stylesheet" />
+    <style>
+        .content-container {
+            margin-left: 300px; /* Ajusta este valor según el ancho de tu sidebar */
+            margin-top: 40px;
+            display: flex;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        .btn-custom {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-cancelar {
+            background-color: red;
+            color: white;
+        }
+
+        .btn-completar {
+            background-color: green;
+            color: white;
+        }
+
+        .total-pagar {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .d-flex-stretch {
+            display: flex;
+            align-items: stretch;
+        }
+
+        .container {
+            flex: 1;
+            margin-right: 10px; /* Espacio entre los dos contenedores */
+        }
+
+        .table-responsive {
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-  <div class="container-fluid mt-4">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="container-left">
-          <div class="row mb-3">
-            <div class="col-12">
-              <input type="text" class="form-control" placeholder="Buscar por nombre o código...">
-            </div>
-          </div>
-          <div class="row mb-3">
-            <div class="col-12 d-flex justify-content-start">
-              <button class="btn btn-warning mr-2">Todo</button>
-              <button class="btn btn-warning mr-2">Accesorios</button>
-              <button class="btn btn-warning">Repuestos</button>
-            </div>
-          </div>
-          <table class="table table-bordered">
-            <thead class="thead-light">
-              <tr>
-                <th>No.</th>
-                <th>Nombre</th>
-                <th>Código</th>
-                <th>Descripción</th>
-                <th>Tipo</th>
-                <th>Cantidad</th>
-                <th>Proveedor</th>
-                <th>Costo Venta</th>
-                <th>Agregar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Llantas Pirelli</td>
-                <td>000001</td>
-                <td>Llantas rin 3/25</td>
-                <td>Repuestos</td>
-                <td>23</td>
-                <td>Pirelli</td>
-                <td>30.000</td>
-                <td><button class="btn btn-custom"><img src="/Images/image 40.png" alt="Agregar" style="width: 20px;"></button></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Tacómetro XTZ 125</td>
-                <td>000002</td>
-                <td>Tacómetro</td>
-                <td>Repuestos</td>
-                <td>20</td>
-                <td>Yamaha</td>
-                <td>30.000</td>
-                <td><button class="btn btn-custom"><img src="/Images/image 40.png" alt="Agregar" style="width: 20px;"></button></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Baúl 20L</td>
-                <td>000003</td>
-                <td>Baúl mediano</td>
-                <td>Accesorios</td>
-                <td>10</td>
-                <td>Ducatti</td>
-                <td>30.000</td>
-                <td><button class="btn btn-custom"><img src="/Images/image 40.png" alt="Agregar" style="width: 20px;"></button></td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="row mb-3">
-            <div class="col-12 btn-group-right">
-              <button class="btn btn-secondary mr-2">Anterior</button>
-              <button class="btn btn-secondary">Siguiente</button>
-            </div>
-          </div>
-          <div class="row historial-btn-container">
-            <div class="col-12">
-              <button class="btn btn-primary">Historial ventas</button>
-            </div>
-          </div>
+
+<div class="d-flex">
+    <div class="sidebar">
+        <div class="menu-item">
+            <a href="../Frotend/BienvenidoAdm.html">
+                <img src="../Images/inicioEmple.png" alt="Inicio">
+            </a>
+            <span>Inicio</span>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="container mt-5">
-          <div class="table-responsive">
-            <table class="table table-bordered">
-              <thead class="thead-light">
-                <tr>
+        <div class="menu-item">
+            <a href="../Frotend/Vistainventarioadmin.html">
+                <img src="../Images/invenEmple.png" alt="Inventario">
+            </a>
+            <span>Inventario</span>
+        </div>
+        <div class="menu-item">
+            <a href="../Frotend/HistorialVentas.html">
+                <img src="../Images/ventasEmple.png" alt="Ventas">
+            </a>
+            <span>Ventas</span>
+        </div>
+        <div class="menu-item">
+            <a href="../Frotend/HistorialPedidos.html">
+                <img src="../Images/pedidosEmple.png" alt="Pedidos">
+            </a>
+            <span>Pedidos</span>
+        </div>
+        <div class="menu-item">
+            <a href="../Frotend/Historialventaypedidos.html">
+                <img src="../Images/historicoEmple.png" alt="Histórico">
+            </a>
+            <span>Histórico</span>
+        </div>
+        <div class="menu-item">
+            <a href="../Frotend/Notificaciones.html">
+                <img src="../Images/notiEmple.png" alt="Notificaciones">
+            </a>
+            <span>Notificaciones</span>
+        </div>
+        <div class="menu-item">
+            <a href="../Frotend/empleados.html">
+                <img src="../Images/colabEmple.png" alt="Colaboradores">
+            </a>
+            <span>Colaboradores</span>
+        </div>
+        <div class="menu-item" id="cerrarSesion">
+            <a href="#">
+                <img src="../Images/exitEmple.png" alt="Cerrar sesión">
+            </a>
+            <span>Cerrar sesión</span>
+        </div>
+    </div>
+
+    <div class="content-container d-flex-stretch">
+        <!-- Primer contenedor -->
+        <div class="container">
+            <div class="search-bar mt-3">
+                <input type="text" class="form-control" placeholder="Buscar por nombre o código...">
+            </div>
+            <div class="btn-group mt-3">
+                <button class="btn btn-primary">Todo</button>
+                <button class="btn btn-secondary">Accesorios</button>
+                <button class="btn btn-secondary">Repuestos</button>
+            </div>
+
+            <div class="table-container">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nombre</th>
+                            <th>Código</th>
+                            <th>Descripción</th>
+                            <th>Tipo</th>
+                            <th>Cantidad</th>
+                            <th>Proveedor</th>
+                            <th>Costo Venta</th>
+                            <th>Agregar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Llantas Pirelli</td>
+                            <td>000001</td>
+                            <td>Llantas rin 3/25</td>
+                            <td>Repuestos</td>
+                            <td>23</td>
+                            <td>Pirelli</td>
+                            <td>30.000</td>
+                            <td><button class="btn btn-custom">+</button></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Tacometro XTZ 125</td>
+                            <td>000002</td>
+                            <td>Tacometro</td>
+                            <td>Repuestos</td>
+                            <td>20</td>
+                            <td>Yamaha</td>
+                            <td>30.000</td>
+                            <td><button class="btn btn-custom">+</button></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Bahul 20L</td>
+                            <td>000003</td>
+                            <td>Bahul mediano</td>
+                            <td>Accesorios</td>
+                            <td>10</td>
+                            <td>Ducatti</td>
+                            <td>30.000</td>
+                            <td><button class="btn btn-custom">+</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-secondary">Anterior</button>
+                <button class="btn btn-primary">Siguiente</button>
+            </div>
+            <button class="btn btn-dark mt-3">Historial ventas</button>
+        </div>
+
+       <!-- Segundo contenedor -->
+<div class="container d-flex flex-column">
+  <div class="table-responsive h-100">
+      <table class="table table-bordered">
+          <thead class="thead-light">
+              <tr>
                   <th>Código</th>
                   <th>Nombre</th>
                   <th>Precio</th>
                   <th>Cantidad</th>
                   <th>Cancelar</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
                   <td>#000001</td>
                   <td>llantas Pirelli</td>
                   <td>40.000</td>
                   <td>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="button">-</button>
+                      <div class="input-group">
+                          <div class="input-group-prepend">
+                              <button class="btn btn-outline-secondary" type="button">-</button>
+                          </div>
+                          <input type="text" class="form-control text-center" value="1" readonly>
+                          <div class="input-group-append">
+                              <button class="btn btn-outline-secondary" type="button">+</button>
+                          </div>
                       </div>
-                      <input type="text" class="form-control text-center" value="1" readonly>
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">+</button>
-                      </div>
-                    </div>
                   </td>
                   <td>
-                    <button class="btn btn-danger">X</button>
+                      <button class="btn btn-danger">X</button>
                   </td>
-                </tr>
-                <tr>
+              </tr>
+              <tr>
                   <td>#000002</td>
                   <td>bahul 25L</td>
                   <td>40.000</td>
                   <td>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="button">-</button>
+                      <div class="input-group">
+                          <div class="input-group-prepend">
+                              <button class="btn btn-outline-secondary" type="button">-</button>
+                          </div>
+                          <input type="text" class="form-control text-center" value="1" readonly>
+                          <div class="input-group-append">
+                              <button class="btn btn-outline-secondary" type="button">+</button>
+                          </div>
                       </div>
-                      <input type="text" class="form-control text-center" value="1" readonly>
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">+</button>
-                      </div>
-                    </div>
                   </td>
                   <td>
-                    <button class="btn btn-danger">X</button>
+                      <button class="btn btn-danger">X</button>
                   </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="row mt-3">
-            <div class="col-md-12">
-              <div class="total-pagar">
-                TOTAL A PAGAR: 80.000
-              </div>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-md-6">
-              <button class="btn btn-cancelar btn-block">Cancelar</button>
-            </div>
-            <div class="col-md-6">
-              <button class="btn btn-completar btn-block">Completar venta</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              </tr>
+          </tbody>
+      </table>
   </div>
-  
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <div class="row mt-3">
+      <div class="col-md-12">
+          <div class="total-pagar">
+              TOTAL A PAGAR: 80.000
+          </div>
+      </div>
+  </div>
+  <div class="row mt-3">
+      <div class="col-md-6">
+          <button class="btn btn-cancelar btn-block">Cancelar</button>
+      </div>
+      <div class="col-md-6">
+          <button class="btn btn-completar btn-block">Completar venta</button>
+      </div>
+  </div>
+</div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
