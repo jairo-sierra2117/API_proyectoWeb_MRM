@@ -31,7 +31,6 @@ document.getElementById('loginFormClient').addEventListener('submit', async (e) 
             spinnerContainer.style.display = 'none'; // ocultar el spinner
             console.error('Error en la respuesta de la API:', response.status, response.statusText);
             throw new Error('Error en el inicio de sesión');
-
         }
 
         // Extraer los datos JSON de la respuesta
@@ -48,6 +47,12 @@ document.getElementById('loginFormClient').addEventListener('submit', async (e) 
             const idRole = data.rol[0].idRole; // Suponiendo que siempre hay un único rol
             localStorage.setItem('idRole', idRole);
             console.log('ID de Rol almacenado en localStorage:', idRole);
+
+            // Guardar información adicional del usuario en localStorage
+            localStorage.setItem('nombre', data.nombre);
+            localStorage.setItem('correo', data.correo);
+            localStorage.setItem('cedula', data.cedula);
+            console.log('Información adicional del usuario almacenada en localStorage');
 
             // Redirigir según el tipo de usuario y rol obtenidos
             if (data.userType === 'CLIENTE') {
@@ -70,6 +75,6 @@ document.getElementById('loginFormClient').addEventListener('submit', async (e) 
     } catch (error) {
         spinnerContainer.style.display = 'none'; // ocultar el spinner
         console.error('Error en el inicio de sesión:', error.message);
-        document.getElementById('loginMessage').innerText = error.message + '/n DATOS INVALIDOS /n INTENTE NUEVAMENTE';
+        document.getElementById('loginMessage').innerText = error.message + '\nDATOS INVALIDOS\nINTENTE NUEVAMENTE';
     }
 });
