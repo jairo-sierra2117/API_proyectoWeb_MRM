@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+
+
+
 // Función autoejecutable asíncrona para validar el token y el rol antes de cargar la página
 (async function () {
     try {
@@ -88,7 +91,8 @@ document.addEventListener('DOMContentLoaded', function () {
             'ListaClientes.html': [1, 2],
             'Vistainventarioadmin.html': [1],
             'Vistainventarioauxiliar.html': [2],
-            'Vistainventariomecanico.html': [3]
+            'Vistainventariomecanico.html': [3],
+            'perfil.html': [4]
         };
 
         if (!vistasPermitidas[paginaActual] || !vistasPermitidas[paginaActual].includes(parseInt(idRole))) {

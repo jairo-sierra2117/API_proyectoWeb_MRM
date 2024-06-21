@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/spinner.css" rel="stylesheet" />
+    <link href="../css/perfilCliente.css" rel="stylesheet" />
+    <!--<script src="../js/validacion.js" type="module"></script>-->
+    <style>
+        .eye-icon {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            padding: 5px;
+            margin-left: -35px;
+            /* Ajuste para posicionar el ícono más cerca del borde */
+            background-color: transparent;
+            /* Para que el fondo no bloquee el ícono */
+            position: relative;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group img {
+            z-index: 2;
+            /* Asegura que el ícono esté por encima del campo de entrada */
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <img src="../Images/LOGO.png" alt="Logo" style="max-height: 120px;">
+                </div>
+            </div>
+            <div class="row mt-3 mb-3">
+                <div class="col-12">
+                    <h1 class="font-weight-bold">REPUESTOS MELO</h1>
+                    <p class="text-muted">Norte Santandereanos</p>
+                </div>
+            </div>
+            <!-- Navbar -->
+            <nav class="custom-navbar navbar navbar-expand-lg navbar-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Frotend/perfil.html">Ver Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Frotend/Reservarcita.html">Agendar Citas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Ver Citas Programadas</a>
+                        </li>
+                        <li class="nav-item" id="cerrarSesion">
+                            <a class="nav-link" href="#">Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <!-- Columna 1: Icono de usuario y correo -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <svg class="bi bi-person-fill text-primary mr-3" width="4em" height="4em"
+                                    viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M8 0a8 8 0 0 0-8 8c0 4.418 3.582 8 8 8s8-3.582 8-8a8 8 0 0 0-8-8zm0 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0 1a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+                                </svg>
+                                <div>
+                                    <h3 class="h4 font-weight-bold mb-0">John Doe</h3>
+                                    <p class="text-muted mb-0">john.doe@example.com</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-primary btn-block">Edit Profile</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Información personal -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="h5 font-weight-bold mb-4">Personal Information</h3>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Name</span>
+                                </div>
+                                <input type="text" class="form-control" readonly value="John Doe">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Email</span>
+                                </div>
+                                <input type="email" class="form-control" readonly value="john.doe@example.com">
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Phone</span>
+                                </div>
+                                <input type="text" class="form-control" readonly value="+1 (555) 555-5555">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna 3: Citas y vehículos -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="h5 font-weight-bold mb-4">Citas & Vehiculos</h3>
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Upcoming Appointments
+                                    <span class="badge badge-primary badge-pill">3</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Scheduled Workshops
+                                    <span class="badge badge-primary badge-pill">1</span>
+                                </li>
+                            </ul>
+                            <button class="btn btn-custom btn-block">Manage Vehicles</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="../Frotend/BienvenidoCliente.html" class="btn btn-outline-primary mr-2">Inicio</a>
+                    <button class="btn btn-outline-primary mr-2" data-toggle="modal"
+                        data-target="#changePasswordModal">Change Password</button>
+                    <!-- <button class="btn btn-outline-danger">Reset Password</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>©2023 Minegocio Colombiano. All Rights Reserved. | <a href="https://minegociocolombiano.co/"
+                    target="_blank" style="color: white;">https://minegociocolombiano.co/</a></p>
+            <p>Con manos Norte Santandereanas...</p>
+        </div>
+    </footer>
+
+    <!-- Modal Cambio de Contraseña -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog"
+        aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="changePasswordModalLabel">Cambiar Contraseña</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <!-- Campo de contraseña actual -->
+                        <div class="form-group">
+                            <label for="currentPassword">Contraseña actual</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="currentPassword" name="currentPassword"
+                                    placeholder="Ingrese su contraseña actual" required>
+                                <img src="../Images/ojo.png" alt="Mostrar/Ocultar contraseña" class="eye-icon"
+                                    onclick="togglePassword('currentPassword')">
+                            </div>
+                        </div>
+
+                        <!-- Campo de nueva contraseña -->
+                        <div class="form-group">
+                            <label for="newPassword">Nueva contraseña</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="newPassword" name="newPassword"
+                                    placeholder="Ingrese su nueva contraseña" required>
+                                <img src="../Images/ojo.png" alt="Mostrar/Ocultar contraseña" class="eye-icon"
+                                    onclick="togglePassword('newPassword')">
+                            </div>
+                        </div>
+
+                        <!-- Campo de confirmación de contraseña -->
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirmar contraseña</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                                    placeholder="Confirme su nueva contraseña" required>
+                                <img src="../Images/ojo.png" alt="Mostrar/Ocultar contraseña" class="eye-icon"
+                                    onclick="togglePassword('confirmPassword')">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/password.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

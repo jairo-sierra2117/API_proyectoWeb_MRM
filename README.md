@@ -1,5 +1,12 @@
 # API_proyectoWeb_MRM
 
+cambios 2:15 am 21/06/2024
+FAVOR COPIAR EL CODIGO DEL HEADER DE CLIENTE
+para que este sea el mismo en todas las vistas.
+
+SE AGREGO PERFIL.HTML
+TIENE FUNCIONAL EL CAMBIO DE CLAVE CON MODAL.
+
 Las vistas estan actualmente validadas por el archivo validacion.js
 este contiene los permisos a las distintas vistas .html
 por medio del id rol del usuario en cuestion.

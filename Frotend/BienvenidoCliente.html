@@ -7,22 +7,48 @@
     <title>Bienvenido</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/Cliente.css" rel="stylesheet">
+    <link href="../css/spinner.css" rel="stylesheet" />
+    <script src="../js/validacion.js" type="module"></script>
 </head>
 
 <body>
-
     <header class="header">
-        <div class="container ">
-            <div class="header-left">
-                <img src="../Images/LOGO.png" alt="Logo" style="max-height: 120px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <img src="../Images/LOGO.png" alt="Logo" style="max-height: 120px;">
+                </div>
             </div>
-            <div class="header-center">
-                <h1 class="font-weight-bold">REPUESTOS MELO</h1>
-                <p class="text-muted">Norte Santandereanos</p>
+            <div class="row mt-3 mb-3">
+                <div class="col-12">
+                    <h1 class="font-weight-bold">REPUESTOS MELO</h1>
+                    <p class="text-muted">Norte Santandereanos</p>
+                </div>
             </div>
-            <div class="header-right">
-                <a href="../Frotend/Login.html" class="btn btn-danger">Cerrar Sesión</a>
-            </div>
+            <!-- Navbar -->
+            <nav class="custom-navbar navbar navbar-expand-lg navbar-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Frotend/perfil.html">Ver Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Frotend/Reservarcita.html">Agendar Citas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Ver Citas Programadas</a>
+                        </li>
+                        <li class="nav-item" id="cerrarSesion">
+                            <a class="nav-link" href="#">Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
     </header>
 
