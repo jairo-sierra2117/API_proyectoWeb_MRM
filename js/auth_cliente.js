@@ -52,6 +52,7 @@ document.getElementById('loginFormClient').addEventListener('submit', async (e) 
             localStorage.setItem('nombre', data.nombre);
             localStorage.setItem('correo', data.correo);
             localStorage.setItem('cedula', data.cedula);
+            localStorage.setItem('telefono', data.telefono);
             console.log('Información adicional del usuario almacenada en localStorage');
 
             // Redirigir según el tipo de usuario y rol obtenidos

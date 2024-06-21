@@ -81,6 +81,12 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             localStorage.setItem('accessToken', data.tokenType + data.accessToken);
             console.log('Token almacenado en localStorage');
 
+            //Guardar informacion del usuario en localStorage
+            localStorage.setItem('nombre', data.nombre);
+            localStorage.setItem('correo', data.correo);
+            localStorage.setItem('cedula', data.cedula);
+            localStorage.setItem('telefono', data.telefono);
+
             // Guardar el idRole en localStorage
             const idRole = data.rol[0].idRole; // Suponiendo que siempre hay un único rol
             localStorage.setItem('idRole', idRole);
@@ -90,6 +96,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             if (data.userType === 'EMPLEADO') {
                 if (idRole === 1) {
                     console.log('Redirigiendo a BienvenidoAdm.html...');
+                    console.log('Datos recibidos:', data);
                     window.location.href = '../Frotend/BienvenidoAdm.html';  // Redirigir a la página de administrador
                 } else if (idRole === 2) {
                     console.log('Redirigiendo a BienvenidoEmpleado.html...');

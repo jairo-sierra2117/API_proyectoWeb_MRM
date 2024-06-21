@@ -5,6 +5,10 @@ function cerrarSesion() {
     // Remove tokens from localStorage
     localStorage.removeItem('accessToken');
     localStorage.removeItem('idRole');
+    localStorage.removeItem('nombre');
+    localStorage.removeItem('correo');
+    localStorage.removeItem('cedula');
+    localStorage.removeItem('telefono');
 
     // Redirect to login page after a delay
     setTimeout(() => {
@@ -16,6 +20,26 @@ function cerrarSesion() {
 // DOMContentLoaded event listener to attach logout functionality
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('cerrarSesion').addEventListener('click', cerrarSesion);
+
+    //document.addEventListener('DOMContentLoaded', () => {
+    // Obtener valores del localStorage
+    const nombre = localStorage.getItem('nombre') || 'NOMBRE de usuario no encontrado';
+    const email = localStorage.getItem('correo') || 'correo no encontrado';
+    const cedula = localStorage.getItem('cedula') || 'cedula no encontrada';
+    const telefono = localStorage.getItem('telefono') || 'telefono no encontrado';
+    console.log('Datos recibidos:');
+    console.log('Datos guardados:');
+    console.log(nombre);
+    console.log(email);
+    console.log(cedula);
+    console.log(telefono);
+    // Actualizar el contenido de los elementos en el DOM
+    document.getElementById('userName').textContent = 'Bienvenido, Sr ' + nombre;
+    document.getElementById('userEmail').textContent = email;
+    document.getElementById('userNameInput').value = nombre;
+    document.getElementById('userEmailInput').value = email;
+    document.getElementById('userPhoneInput').value = telefono;
+
 });
 
 
@@ -92,7 +116,8 @@ document.addEventListener('DOMContentLoaded', function () {
             'Vistainventarioadmin.html': [1],
             'Vistainventarioauxiliar.html': [2],
             'Vistainventariomecanico.html': [3],
-            'perfil.html': [4]
+            'perfil.html': [4],
+            'perfilEmpl.html': [1, 2, 3]
         };
 
         if (!vistasPermitidas[paginaActual] || !vistasPermitidas[paginaActual].includes(parseInt(idRole))) {

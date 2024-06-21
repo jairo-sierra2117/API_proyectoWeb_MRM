@@ -77,3 +77,17 @@ function togglePassword(fieldId) {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Obtener valores del localStorage
+    const nombre = localStorage.getItem('nombre') || 'NOMBRE de usuario no encontrado';
+    const email = localStorage.getItem('correo') || 'correo no encontrado';
+    const cedula = localStorage.getItem('cedula') || 'cedula no encontrada';
+    const telefono = localStorage.getItem('telefono') || 'telefono no encontrado';
+
+    // Actualizar el contenido de los elementos en el DOM
+    document.getElementById('userName').textContent = nombre;
+    document.getElementById('userEmail').textContent = email;
+    document.getElementById('userNameInput').value = nombre;
+    document.getElementById('userEmailInput').value = email;
+    document.getElementById('userPhoneInput').value = telefono;
+});

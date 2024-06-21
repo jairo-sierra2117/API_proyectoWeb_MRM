@@ -5,80 +5,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/spinner.css" rel="stylesheet" />
-    <link href="../css/perfilCliente.css" rel="stylesheet" />
-    <!--<script src="../js/validacion.js" type="module"></script>-->
-    <style>
-        .eye-icon {
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-            padding: 5px;
-            margin-left: -35px;
-            /* Ajuste para posicionar el ícono más cerca del borde */
-            background-color: transparent;
-            /* Para que el fondo no bloquee el ícono */
-            position: relative;
-        }
+    <link rel="stylesheet" href="/css/Bienvenido.css">
+    <link rel="stylesheet" href="/css/Vistas.css">
+    <link rel="stylesheet" href="/css/perfilEmpl.css">
+    <link rel="stylesheet" href="/css/spinner.css">
 
-        .input-group {
-            position: relative;
-        }
-
-        .input-group img {
-            z-index: 2;
-            /* Asegura que el ícono esté por encima del campo de entrada */
-        }
-    </style>
+    <script src="../js/validacion.js" type="module"></script>
 </head>
+<style>
 
-<body class="bg-light">
-    <header class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-6">
-                    <img src="../Images/LOGO.png" alt="Logo" style="max-height: 120px;">
-                </div>
-            </div>
-            <div class="row mt-3 mb-3">
-                <div class="col-12">
-                    <h1 class="font-weight-bold">REPUESTOS MELO</h1>
-                    <p class="text-muted">Norte Santandereanos</p>
-                </div>
-            </div>
-            <!-- Navbar -->
-            <nav class="custom-navbar navbar navbar-expand-lg navbar-dark">
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../Frotend/perfil.html">Ver Perfil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../Frotend/Reservarcita.html">Agendar Citas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Ver Citas Programadas</a>
-                        </li>
-                        <li class="nav-item" id="cerrarSesion">
-                            <a class="nav-link" href="#">Cerrar Sesión</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+</style>
+
+<body>
+    <div class="sidebar">
+        <div class="menu-item">
+            <a href="../Frotend/BienvenidoAdm.html">
+                <img src="/Images/inicioEmple.png" alt="Inicio">
+            </a>
+            <span>Inicio</span>
         </div>
-    </header>
-    <div class="content">
+        <div class="menu-item">
+            <a href="../Frotend/Vistainventarioadmin.html">
+                <img src="/Images/invenEmple.png" alt="Inventario">
+            </a>
+            <span>Inventario</span>
+        </div>
+        <div class="menu-item">
+            <a href="../Frotend/HistorialVentas.html">
+                <img src="/Images/ventasEmple.png" alt="Ventas">
+            </a>
+            <span>Ventas</span>
+        </div>
+        <div class="menu-item">
+            <a href="../Frotend/HistorialPedidos.html">
+                <img src="../Images/pedidosEmple.png" alt="Pedidos">
+            </a>
+            <span>Pedidos</span>
+        </div>
+        <div class="menu-item">
+            <a href="../Frotend/Historialventaypedidos.html">
+                <img src="../Images/historicoEmple.png" alt="Histórico">
+            </a>
+            <span>Histórico</span>
+        </div>
+        <div class="menu-item">
+            <a href="../Frotend/Notificaciones.html">
+                <img src="/Images/notiEmple.png" alt="Notificaciones">
+            </a>
+            <span>Notificaciones</span>
+        </div>
+        <div class="menu-item">
+            <a href="../Frotend/empleados.html">
+                <img src="/Images/colabEmple.png" alt="Colaboradores">
+            </a>
+            <span>Colaboradores</span>
+        </div>
+        <!--AGREGAR ESTE ITEM EN LOS DEMAS NAVBAR -->
+        <div class="menu-item">
+            <a href="../Frotend/pefilEmpl.html">
+                <img src="/Images/personas.png" alt="pefil">
+            </a>
+            <span>Perfil</span>
+        </div>
+        <!--FIN DEL NUEVO ITEM-->
+        <div class="menu-item" id="cerrarSesion">
+            <a href="#">
+                <img src="/Images/exitEmple.png" alt="Cerrar sesión">
+            </a>
+            <span>Cerrar sesión</span>
+        </div>
+    </div>
+    <!--AQUI EMPIEZAN LOS ELEMENTOS DEL BODY , LUEGO DEL NAVBAR-->
+    <div class="main-content">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 <!-- Columna 1: Icono de usuario y correo -->
-                <div class="col-md-4 mb-4">
+                <div class="col-md-6 mb-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-3">
@@ -98,7 +101,7 @@
                 </div>
 
                 <!-- Columna 2: Información personal -->
-                <div class="col-md-4 mb-4">
+                <div class="col-md-6 mb-4">
                     <div class="card">
                         <div class="card-body">
                             <h3 class="h5 font-weight-bold mb-4">Información Personal</h3>
@@ -125,48 +128,17 @@
                         </div>
                     </div>
                 </div>
-
-
-                <!-- Columna 3: Citas y vehículos -->
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="h5 font-weight-bold mb-4">Citas & Vehiculos</h3>
-                            <ul class="list-group mb-3">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Upcoming Appointments
-                                    <span class="badge badge-primary badge-pill">3</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Scheduled Workshops
-                                    <span class="badge badge-primary badge-pill">1</span>
-                                </li>
-                            </ul>
-                            <button class="btn btn-custom btn-block">Manage Vehicles</button>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Botones -->
-            <div class="row">
-                <div class="col-md-12">
-                    <a href="../Frotend/BienvenidoCliente.html" class="btn btn-outline-primary mr-2">Inicio</a>
+            <div class="row justify-content-left">
+                <div class="col-md-6 text-center">
                     <button class="btn btn-outline-primary mr-2" data-toggle="modal"
                         data-target="#changePasswordModal">Change Password</button>
-                    <!-- <button class="btn btn-outline-danger">Reset Password</button>-->
                 </div>
             </div>
         </div>
     </div>
-
-    <footer class="footer">
-        <div class="container">
-            <p>©2023 Minegocio Colombiano. All Rights Reserved. | <a href="https://minegociocolombiano.co/"
-                    target="_blank" style="color: white;">https://minegociocolombiano.co/</a></p>
-            <p>Con manos Norte Santandereanas...</p>
-        </div>
-    </footer>
 
     <!-- Modal Cambio de Contraseña -->
     <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog"
@@ -221,8 +193,7 @@
         </div>
     </div>
     <script src="../js/password.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
