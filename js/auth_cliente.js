@@ -6,6 +6,7 @@ document.getElementById('loginFormClient').addEventListener('submit', async (e) 
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
+    spinnerContainer.style.display = 'flex'; // Mostrar el spinner
     console.log('Iniciando sesión con:', email, password);
 
     // Configurar los datos de la solicitud POST
@@ -27,8 +28,10 @@ document.getElementById('loginFormClient').addEventListener('submit', async (e) 
 
         // Verificar si la respuesta es exitosa (código de estado HTTP 200-299)
         if (!response.ok) {
+            spinnerContainer.style.display = 'none'; // ocultar el spinner
             console.error('Error en la respuesta de la API:', response.status, response.statusText);
             throw new Error('Error en el inicio de sesión');
+
         }
 
         // Extraer los datos JSON de la respuesta
@@ -48,9 +51,11 @@ document.getElementById('loginFormClient').addEventListener('submit', async (e) 
 
             // Redirigir según el tipo de usuario y rol obtenidos
             if (data.userType === 'CLIENTE') {
+                spinnerContainer.style.display = 'none'; // ocultar el spinner
                 console.log('Redirigiendo a BienvenidoCliente.html...');
                 window.location.href = '../Frotend/BienvenidoCliente.html';  // Redirigir a la página de cliente
             } else {
+                spinnerContainer.style.display = 'none'; // ocultar el spinner
                 console.warn('Tipo de usuario desconocido:', data.userType);
                 document.getElementById('loginMessage').innerText = 'ESTE LOGIN ES VÁLIDO SOLO PARA CLIENTES';
                 // Manejar el tipo de usuario desconocido según tu lógica
@@ -63,7 +68,8 @@ document.getElementById('loginFormClient').addEventListener('submit', async (e) 
         }
 
     } catch (error) {
+        spinnerContainer.style.display = 'none'; // ocultar el spinner
         console.error('Error en el inicio de sesión:', error.message);
-        document.getElementById('loginMessage').innerText = 'Error en el inicio de sesión: ' + error.message;
+        document.getElementById('loginMessage').innerText = error.message + '/n DATOS INVALIDOS /n INTENTE NUEVAMENTE';
     }
 });

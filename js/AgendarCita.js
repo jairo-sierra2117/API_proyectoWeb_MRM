@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const date = urlParams.get('date');
     const time = urlParams.get('time');
@@ -12,14 +12,14 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     const cancelBtn = document.getElementById('cancel-btn');
-    cancelBtn.addEventListener('click', function() {
+    cancelBtn.addEventListener('click', function () {
         window.history.back();
     });
 
     const form = document.getElementById('appointment-form');
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function (event) {
         event.preventDefault();
-        
+
         const appointment = {
             date: document.getElementById('date').value,
             time: document.getElementById('time').value,
@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
             serviceType: selectedServiceType, // Guardar el tipo de servicio seleccionado
             model: document.getElementById('model').value,
             brand: document.getElementById('brand').value,
+            placa: document.getElementById('placa').value,
             comments: document.getElementById('comments').value
         };
 
