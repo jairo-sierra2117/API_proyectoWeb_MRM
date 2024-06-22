@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <td>${appointment.phone}</td>
             <td>
                 <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailsModal" 
-                onclick="showDetails('${appointment.date}', '${appointment.time}', 'N/A', '${appointment.phone}', '${appointment.serviceType}', '${appointment.comments}')">
+                onclick="showDetails('${appointment.date}', '${appointment.time}', 'N/A', '${appointment.phone}', '${appointment.serviceType}', '${appointment.comments}', this)">
                 Ver Detalles</button>
             </td>
         `;
@@ -20,10 +20,39 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-function showDetails(date, time, clientName, clientPhone, serviceType, comments) {
+function showDetails(date, time, clientName, clientPhone, serviceType, comments, button) {
     document.getElementById('modal-date-time').innerText = `${date} ${time}`;
     document.getElementById('modal-client-name').innerText = clientName;
     document.getElementById('modal-client-phone').innerText = clientPhone;
     document.getElementById('modal-service-type').innerText = serviceType || 'No especificado';
     document.getElementById('modal-comments').innerText = comments || 'Sin comentarios';
+
+    const cancelButton = document.getElementById('cancel-appointment');
+    const rescheduleButton = document.getElementById('reschedule-appointment');
+
+    cancelButton.onclick = function() {
+        handleAppointment(button, date, time, false);
+    };
+
+    rescheduleButton.onclick = function() {
+        handleAppointment(button, date, time, true);
+    };
+}
+
+function handleAppointment(button, date, time, reschedule) {
+    const row = button.closest('tr');
+    const index = Array.from(row.parentNode.children).indexOf(row);
+    row.remove();
+    
+    let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+    appointments.splice(index, 1);
+    localStorage.setItem('appointments', JSON.stringify(appointments));
+    
+    localStorage.setItem('cancelledAppointment', JSON.stringify({ date, time }));
+
+    $('#detailsModal').modal('hide');
+    
+    if (reschedule) {
+        window.location.href = "../Frotend/Reservarcita.html";
+    }
 }
