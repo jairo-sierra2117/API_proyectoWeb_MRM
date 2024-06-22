@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     // Función para mostrar alerta
     function mostrarAlerta(productosConBajaCantidad) {
         let alertaHtml = `
@@ -62,6 +61,7 @@ $(document).ready(function () {
                             <td>${producto.precioCosto}</td>
                             <td>${producto.precioVenta}</td>
                             <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
+                            <td><button class="btn btn-custom" onclick="addToSales('${producto.codigo}', '${producto.descripcion}', ${producto.precioVenta})">+</button></td>
                         </tr>
                     `;
                     tbody.append(row);
@@ -223,6 +223,7 @@ $(document).ready(function () {
                     <td>${data.precioCosto}</td>
                     <td>${data.precioVenta}</td>
                     <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
+                    <td><button class="btn btn-custom" onclick="addToSales('${data.codigo}', '${data.descripcion}', ${data.precioVenta})">+</button></td>
                 </tr>
             `;
                 $('#inventoryTable tbody').append(newRow);
@@ -251,4 +252,45 @@ $(document).ready(function () {
 
     // Cargar datos de inventario al cargar la página
     cargarDatosInventario();
+
+    // Función para agregar productos a la tabla de ventas
+    window.addToSales = function(codigo, descripcion, precioVenta) {
+        const salesTable = $('#salesTable tbody');
+        const row = `
+            <tr>
+                <td>${codigo}</td>
+                <td>${descripcion}</td>
+                <td>${precioVenta.toFixed(2)}</td>
+                <td><input type="number" class="form-control quantity" min="1" value="1"></td>
+                <td class="subtotal">${precioVenta.toFixed(2)}</td>
+                <td><button class="btn btn-danger btn-sm deleteSaleButton">X</button></td>
+            </tr>
+        `;
+        salesTable.append(row);
+        actualizarTotal();
+    }
+
+    // Evento para actualizar subtotal y total al cambiar la cantidad
+    $('#salesTable').on('input', '.quantity', function () {
+        const quantity = $(this).val();
+        const price = parseFloat($(this).closest('tr').find('td:eq(2)').text());
+        const subtotal = (price * quantity).toFixed(2);
+        $(this).closest('tr').find('.subtotal').text(subtotal);
+        actualizarTotal();
+    });
+
+    // Evento para eliminar una fila de la tabla de ventas
+    $('#salesTable').on('click', '.deleteSaleButton', function () {
+        $(this).closest('tr').remove();
+        actualizarTotal();
+    });
+
+    // Función para actualizar el total a pagar
+    function actualizarTotal() {
+        let total = 0;
+        $('#salesTable .subtotal').each(function () {
+            total += parseFloat($(this).text());
+        });
+        $('#totalPagar').text(total.toFixed(2));
+    }
 });

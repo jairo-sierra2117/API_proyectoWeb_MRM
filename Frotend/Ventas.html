@@ -146,7 +146,7 @@
                 </div>
 
                 <div class="table-container">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="inventoryTable">
                         <thead>
                             <tr>
                                 <th>No.</th>
@@ -161,39 +161,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Llantas Pirelli</td>
-                                <td>000001</td>
-                                <td>Llantas rin 3/25</td>
-                                <td>Repuestos</td>
-                                <td>23</td>
-                                <td>Pirelli</td>
-                                <td>30.000</td>
-                                <td><button class="btn btn-custom">+</button></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Tacometro XTZ 125</td>
-                                <td>000002</td>
-                                <td>Tacometro</td>
-                                <td>Repuestos</td>
-                                <td>20</td>
-                                <td>Yamaha</td>
-                                <td>30.000</td>
-                                <td><button class="btn btn-custom">+</button></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Bahul 20L</td>
-                                <td>000003</td>
-                                <td>Bahul mediano</td>
-                                <td>Accesorios</td>
-                                <td>10</td>
-                                <td>Ducatti</td>
-                                <td>30.000</td>
-                                <td><button class="btn btn-custom">+</button></td>
-                            </tr>
+                            <!-- Aquí se insertarán las filas de inventario desde el script -->
                         </tbody>
                     </table>
                 </div>
@@ -207,7 +175,7 @@
             <!-- Segundo contenedor -->
             <div class="container d-flex flex-column">
                 <div class="table-responsive h-100">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="salesTable">
                         <thead class="thead-light">
                             <tr>
                                 <th>Código</th>
@@ -218,51 +186,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>#000001</td>
-                                <td>llantas Pirelli</td>
-                                <td>40.000</td>
-                                <td>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-outline-secondary" type="button">-</button>
-                                        </div>
-                                        <input type="text" class="form-control text-center" value="1" readonly>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button">+</button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger">X</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#000002</td>
-                                <td>bahul 25L</td>
-                                <td>40.000</td>
-                                <td>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-outline-secondary" type="button">-</button>
-                                        </div>
-                                        <input type="text" class="form-control text-center" value="1" readonly>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button">+</button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger">X</button>
-                                </td>
-                            </tr>
+                            <!-- Aquí se insertarán las filas de ventas desde el script -->
                         </tbody>
                     </table>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <div class="total-pagar">
-                            TOTAL A PAGAR: 80.000
+                            TOTAL A PAGAR: <span id="totalPagar">0</span>
                         </div>
                     </div>
                 </div>
@@ -299,9 +230,10 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../js/ventaypedidos.js"></script>
 </body>
 
 </html>
