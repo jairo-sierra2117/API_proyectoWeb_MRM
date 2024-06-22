@@ -164,6 +164,7 @@ function redireccionarPaginaInicio(idRole) {
     const paginasInicio = {
         1: '../Frotend/BienvenidoAdm.html',
         2: '../Frotend/BienvenidoAUX.html',
+        3: '../Frotend/Vistainventariomecanico.html',
         4: '../Frotend/BienvenidoCliente.html',
         // Agregar más roles y sus páginas de inicio si es necesario
     };

@@ -78,34 +78,19 @@
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <div class="d-flex justify-content-start align-items-center mb-3">
-                        <input type="text" class="form-control w-25 mr-2"
-                            placeholder="Buscar por numero de identificacion...">
-                        <button class="btn btn-warning">Buscar</button>
+                        <input type="text" class="form-control w-25 mr-2" id="searchInput"
+                            placeholder="Buscar por numero de celular...">
+                        <button class="btn btn-warning" id="searchButton">Buscar</button>
                         <div>
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Email</th>
                                     <th>Celular</th>
-
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Nelson salazar</td>
-                                    <td>nelsonpatitoderaza@gmail.com</td>
-                                    <td>3105899456</td>
-                                </tr>
-                                <tr>
-                                    <td>Jennifer Rosas</td>
-                                    <td>mipatitofiufiu@gmail.com</td>
-                                    <td>3103114785</td>
-                                </tr>
-                                <tr>
-                                    <td>Juan toro</td>
-                                    <td>lomascachonufps@gmail.com</td>
-                                    <td>345879563</td>
-                                </tr>
+                            <tbody id="customersTableBody">
+                                <!-- Aquí se agregarán los clientes dinámicamente -->
                             </tbody>
                 </table>
                 <nav>
@@ -124,6 +109,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/js/listadoClientes.js"></script>
 </body>
 
 </html>
