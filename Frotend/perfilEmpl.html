@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/Vistas.css">
     <link rel="stylesheet" href="/css/perfilEmpl.css">
     <link rel="stylesheet" href="/css/spinner.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="../js/validacion.js" type="module"></script>
 </head>
 
@@ -72,6 +73,7 @@
         </div>
     </div>
 
+    <!--NAVBAR DE AUXILIAR-->
     <div id="sidebar-auxiliar" class="sidebar" style="display: none;">
         <div class="menu-item">
             <a href="/Frotend/BienvenidoAdm.html">
@@ -177,7 +179,8 @@
                                     <p class="text-muted mb-0" id="userEmail">john.doe@example.com</p>
                                 </div>
                             </div>
-                            <button class="btn btn-outline-primary btn-block">Editar Perfil</button>
+                            <button class="btn btn-outline-primary btn-block" data-toggle="modal"
+                                data-target="#editProfileModal">Editar Perfil</button>
                         </div>
                     </div>
                 </div>
@@ -215,8 +218,44 @@
             <!-- Botones -->
             <div class="row justify-content-left">
                 <div class="col-md-6 text-center">
-                    <button class="btn btn-outline-primary mr-2" data-toggle="modal"
-                        data-target="#changePasswordModal">Change Password</button>
+                    <button class="btn btn-outline-primary mr-2" id="changePasswordBtn" data-toggle="modal"
+                        data-target="#changePasswordModal">Cambiar Contraseña</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Editar Perfil -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfileModalLabel">Editar Perfil</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProfileForm">
+                        <div class="form-group">
+                            <label for="editUserName">Nombre</label>
+                            <input type="text" class="form-control" id="editUserName" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserEmail">Email</label>
+                            <input type="email" class="form-control" id="editUserEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserPhone">Teléfono</label>
+                            <input type="text" class="form-control" id="editUserPhone" name="telefono" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUserCedula">Cédula</label>
+                            <input type="text" class="form-control" id="editUserCedula" name="cedula" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -234,7 +273,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="changePasswordForm">
                         <!-- Campo de contraseña actual -->
                         <div class="form-group">
                             <label for="currentPassword">Contraseña actual</label>
@@ -268,7 +307,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Cambiar</button>
                     </form>
                 </div>
             </div>
@@ -348,12 +387,30 @@
             if (loaderPrevio) {
                 loaderPrevio.remove(); // Elimina cualquier loader previo
             }
+
+            // Función para cargar los datos del usuario en el modal de editar perfil
+            function cargarDatosUsuarioEnModal() {
+                const nombre = localStorage.getItem('nombre');
+                const correo = localStorage.getItem('correo');
+                const telefono = localStorage.getItem('telefono');
+
+                document.getElementById('userNameInput').value = nombre;
+                document.getElementById('userEmailInput').value = correo;
+                document.getElementById('userPhoneInput').value = telefono;
+            }
+
+            // Escuchar evento para cargar los datos del usuario al abrir el modal de editar perfil
+            $('#editarPerfilModal').on('show.bs.modal', function (event) {
+                cargarDatosUsuarioEnModal();
+            });
         }
     </script>
     <script src="../js/password.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="../js/editProfile.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

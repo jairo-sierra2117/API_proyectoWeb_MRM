@@ -82,6 +82,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             console.log('Token almacenado en localStorage');
 
             //Guardar informacion del usuario en localStorage
+            localStorage.setItem('idUser', data.idUser);
             localStorage.setItem('nombre', data.nombre);
             localStorage.setItem('correo', data.correo);
             localStorage.setItem('cedula', data.cedula);
@@ -97,6 +98,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
                 if (idRole === 1) {
                     console.log('Redirigiendo a BienvenidoAdm.html...');
                     console.log('Datos recibidos:', data);
+                    console.log('ID DE USUARIO RECIBIDO:', data.idUser);
                     window.location.href = '../Frotend/BienvenidoAdm.html';  // Redirigir a la página de administrador
                 } else if (idRole === 2) {
                     console.log('Redirigiendo a BienvenidoEmpleado.html...');
@@ -115,6 +117,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
                 document.getElementById('loginMessage').innerText = 'ESTE LOGIN ES VÁLIDO SOLO PARA PERSONAL DE MRM';
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('idRole');
+                localStorage.removeItem('idUser');
             } else {
                 console.warn('Tipo de usuario desconocido:', data.userType);
                 // Manejar el tipo de usuario desconocido según tu lógica
@@ -128,7 +131,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
     } catch (error) {
         console.error('Error en el inicio de sesión:', error.message);
-        document.getElementById('loginMessage').innerText = error.message + '/n DATOS INVALIDOS /n INTENTE NUEVAMENTE';
+        document.getElementById('loginMessage').innerText = error.message + ' DATOS INVALIDOS  INTENTE NUEVAMENTE';
     } finally {
         // Ocultar el loader al finalizar el proceso
         ocultarLoader();

@@ -5,6 +5,7 @@ function cerrarSesion() {
     // Remove tokens from localStorage
     localStorage.removeItem('accessToken');
     localStorage.removeItem('idRole');
+    localStorage.removeItem('idUser');
     localStorage.removeItem('nombre');
     localStorage.removeItem('correo');
     localStorage.removeItem('cedula');
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const telefono = localStorage.getItem('telefono') || 'telefono no encontrado';
     console.log('Datos recibidos:');
     console.log('Datos guardados:');
+    console.log(localStorage.getItem('idUser'));
     console.log(nombre);
     console.log(email);
     console.log(cedula);

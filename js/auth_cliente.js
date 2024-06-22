@@ -49,6 +49,7 @@ document.getElementById('loginFormClient').addEventListener('submit', async (e) 
             console.log('ID de Rol almacenado en localStorage:', idRole);
 
             // Guardar información adicional del usuario en localStorage
+            localStorage.setItem('idUser', data.idUser);
             localStorage.setItem('nombre', data.nombre);
             localStorage.setItem('correo', data.correo);
             localStorage.setItem('cedula', data.cedula);
