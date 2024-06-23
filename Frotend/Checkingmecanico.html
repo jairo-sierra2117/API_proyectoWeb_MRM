@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checking</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/Vistas.css">
+    <link href="../css/spinner.css" rel="stylesheet" />
+    <link href="../css/Checking.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="d-flex">
+        <div class="sidebar">
+            <div class="menu-item">
+                <a href="../Frotend/Vistainventariomecanico.html">
+                    <img src="../Images/invenEmple.png" alt="Inventario"></a>
+                <span>Inventario</span>
+            </div>
+            <div class="menu-item">
+                <img src="../Images/pedidosEmple.png" alt="Citas">
+                <span>Citas</span>
+            </div>
+            <div class="menu-item">
+                <img src="../Images/notiEmple.png" alt="Notificaciones">
+                <span>Notificaciones</span>
+            </div>
+            <!--AGREGAR ESTE ITEM EN LOS DEMAS NAVBAR -->
+            <div class="menu-item">
+                <a href="../Frotend/perfilEmpl.html">
+                    <img src="/Images/personas.png" alt="perfil">
+                </a>
+                <span>Perfil</span>
+            </div>
+            <!--FIN DEL NUEVO ITEM-->
+            <div class="menu-item" id="cerrarSesion">
+                <a href="#">
+                    <img src="/Images/exitEmple.png" alt="Cerrar sesión">
+                </a>
+                <span>Cerrar sesión</span>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="card-title-container">
+                <h2 class="card-title">Revisión en curso</h2>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Información del vehículo y cliente</h5>
+                    <form>
+                        <div class="form-group">
+                            <label for="modelo">Modelo</label>
+                            <input type="text" class="form-control" id="modelo" value="xtz 150 - 2022" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Nombre del cliente</label>
+                            <input type="text" class="form-control" id="nombre" value="Armando Puertas" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="text" class="form-control" id="telefono" value="322 420 5151" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripción del problema</label>
+                            <textarea class="form-control" id="descripcion" rows="3" readonly>la moto tiene un bote de aceite en la palanca de cambios</textarea>
+                        </div>
+                        <button type="button" class="btn btn-danger btn-finalizar">Finalizar cita</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
