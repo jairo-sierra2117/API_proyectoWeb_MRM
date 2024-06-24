@@ -121,7 +121,7 @@ $(document).ready(function () {
             codigo: $('#codigo').val(),
             categoriaId: parseInt($('#categoriaId').val()),
             marcaId: parseInt($('#marcaId').val()),
-            stock: parseInt($('#stock').val()),
+            stock: parseInt($('#cantidad').val()),
             precioCosto: parseFloat($('#precioCosto').val()),
             precioVenta: parseFloat($('#precioVenta').val())
         };
@@ -254,7 +254,7 @@ $(document).ready(function () {
     cargarDatosInventario();
 
     // Función para agregar productos a la tabla de ventas
-    window.addToSales = function(codigo, descripcion, precioVenta) {
+    window.addToSales = function (codigo, descripcion, precioVenta) {
         const salesTable = $('#salesTable tbody');
         const row = `
             <tr>
