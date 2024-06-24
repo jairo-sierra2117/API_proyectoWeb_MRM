@@ -1,0 +1,44 @@
+.card-title-container {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+}
+
+/* Estilos para el contenido principal */
+.main-content {
+    margin-left: 275px; /* Igualar al ancho de la barra lateral */
+    padding: 20px;
+}
+
+@media (max-width: 1024px) {
+    .main-content {
+        margin-left: 220px; /* Ajuste para pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0; /* Sin margen a pantalla completa en dispositivos móviles */
+    }
+}
+
+/* Estilos para el botón "Finalizar cita" */
+.btn-finalizar {
+    color: red;
+    background-color: #FFFFFF;
+    border-color: rgb(0, 0, 0); /* Opcional: si deseas un borde rojo */
+}
+
+.btn-finalizar:hover {
+    background-color: red;
+    color: #FFFFFF;
+}
