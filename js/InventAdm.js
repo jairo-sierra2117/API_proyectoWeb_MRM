@@ -1,81 +1,5 @@
+
 $(document).ready(function () {
-    // Función para mostrar alerta
-    function mostrarAlerta(productosConBajaCantidad) {
-        let alertaHtml = `
-            <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="alertModalLabel">Productos con baja cantidad</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <ul>
-                                ${productosConBajaCantidad.map(producto => `<li>${producto.descripcion} (Cantidad: ${producto.stock})</li>`).join('')}
-                            </ul>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-        $('body').append(alertaHtml);
-        $('#alertModal').modal('show');
-    }
-
-    // Función para cargar datos del inventario desde la API
-    function cargarDatosInventario() {
-        fetch('http://localhost:8080/api/productos')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al obtener datos del inventario');
-                }
-                return response.json();
-            })
-            .then(data => {
-                const tbody = $('#inventoryTable tbody');
-                const productosConBajaCantidad = [];
-
-                // Limpiar cualquier contenido previo en el tbody
-                tbody.empty();
-
-                // Iterar sobre los datos y construir las filas de la tabla
-                data.forEach((producto, index) => {
-                    if (producto.stock < 5) {
-                        productosConBajaCantidad.push(producto);
-                    }
-                    const row = `
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>${producto.id}</td>
-                            <td>${index + 1}</td>
-                            <td>${producto.descripcion}</td>
-                            <td>${producto.codigo}</td>
-                            <td>${producto.categoriaId}</td>
-                            <td>${producto.stock}</td>
-                            <td>${producto.marcaId}</td>
-                            <td>${producto.precioCosto}</td>
-                            <td>${producto.precioVenta}</td>
-                            <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
-                            <td><button class="btn btn-custom" onclick="addToSales('${producto.codigo}', '${producto.descripcion}', ${producto.precioVenta})">+</button></td>
-                        </tr>
-                    `;
-                    tbody.append(row);
-                });
-
-                // Mostrar alerta si hay productos con baja cantidad
-                if (productosConBajaCantidad.length > 0) {
-                    mostrarAlerta(productosConBajaCantidad);
-                }
-            })
-            .catch(error => {
-                console.error('Error al cargar datos del inventario:', error);
-            });
-    }
 
     // Eliminar elementos seleccionados
     $('#deleteButton').click(function () {
@@ -121,7 +45,7 @@ $(document).ready(function () {
             codigo: $('#codigo').val(),
             categoriaId: parseInt($('#categoriaId').val()),
             marcaId: parseInt($('#marcaId').val()),
-            stock: parseInt($('#cantidad').val()),
+            stock: parseInt($('#stock').val()),
             precioCosto: parseFloat($('#precioCosto').val()),
             precioVenta: parseFloat($('#precioVenta').val())
         };
@@ -129,6 +53,9 @@ $(document).ready(function () {
         // Realizar la solicitud POST al backend para crear un nuevo producto
         crearProducto(formData);
     });
+
+    // Cargar datos del inventario desde la API al cargar la página
+    cargarDatosInventario();
 
     // Función para cargar datos de un producto para edición
     function cargarDatosEdicion(id) {
@@ -223,7 +150,6 @@ $(document).ready(function () {
                     <td>${data.precioCosto}</td>
                     <td>${data.precioVenta}</td>
                     <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
-                    <td><button class="btn btn-custom" onclick="addToSales('${data.codigo}', '${data.descripcion}', ${data.precioVenta})">+</button></td>
                 </tr>
             `;
                 $('#inventoryTable tbody').append(newRow);
@@ -250,47 +176,71 @@ $(document).ready(function () {
             });
     }
 
-    // Cargar datos de inventario al cargar la página
-    cargarDatosInventario();
+    // Función para cargar datos del inventario desde la API
+    function cargarDatosInventario() {
+        fetch('http://localhost:8080/api/productos')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al obtener datos del inventario');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const tbody = $('#inventoryTable tbody');
 
-    // Función para agregar productos a la tabla de ventas
-    window.addToSales = function (codigo, descripcion, precioVenta) {
-        const salesTable = $('#salesTable tbody');
-        const row = `
-            <tr>
-                <td>${codigo}</td>
-                <td>${descripcion}</td>
-                <td>${precioVenta.toFixed(2)}</td>
-                <td><input type="number" class="form-control quantity" min="1" value="1"></td>
-                <td class="subtotal">${precioVenta.toFixed(2)}</td>
-                <td><button class="btn btn-danger btn-sm deleteSaleButton">X</button></td>
-            </tr>
-        `;
-        salesTable.append(row);
-        actualizarTotal();
+                // Limpiar cualquier contenido previo en el tbody
+                tbody.empty();
+
+                // Iterar sobre los datos y construir las filas de la tabla
+                data.forEach((producto, index) => {
+                    const row = `
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>${producto.id}</td>
+                            <td>${index + 1}</td>
+                            <td>${producto.descripcion}</td>
+                            <td>${producto.codigo}</td>
+                            <td>${producto.categoriaId}</td>
+                            <td>${producto.stock}</td>
+                            <td>${producto.marcaId}</td>
+                            <td>${producto.precioCosto}</td>
+                            <td>${producto.precioVenta}</td>
+                            <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
+                        </tr>
+                    `;
+                    tbody.append(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error al cargar datos del inventario:', error);
+            });
     }
+    function filterInventory() {
+        const supplierFilter = $('#filterSupplier').val().toLowerCase();
+        const categoryFilter = $('#filterCategory').val().toLowerCase();
+        const costFilter = parseFloat($('#filterCost').val());
+        const quantityFilter = parseInt($('#filterQuantity').val());
 
-    // Evento para actualizar subtotal y total al cambiar la cantidad
-    $('#salesTable').on('input', '.quantity', function () {
-        const quantity = $(this).val();
-        const price = parseFloat($(this).closest('tr').find('td:eq(2)').text());
-        const subtotal = (price * quantity).toFixed(2);
-        $(this).closest('tr').find('.subtotal').text(subtotal);
-        actualizarTotal();
-    });
+        $('#inventoryTable tbody tr').each(function () {
+            const supplier = $(this).find('td:nth-child(8)').text().toLowerCase(); // Columna Proveedor
+            const category = $(this).find('td:nth-child(6)').text().toLowerCase(); // Columna Categoría
+            const cost = parseFloat($(this).find('td:nth-child(9)').text()); // Columna Costo adquirido
+            const quantity = parseInt($(this).find('td:nth-child(7)').text()); // Columna Cantidad
 
-    // Evento para eliminar una fila de la tabla de ventas
-    $('#salesTable').on('click', '.deleteSaleButton', function () {
-        $(this).closest('tr').remove();
-        actualizarTotal();
-    });
-
-    // Función para actualizar el total a pagar
-    function actualizarTotal() {
-        let total = 0;
-        $('#salesTable .subtotal').each(function () {
-            total += parseFloat($(this).text());
+            if (
+                (supplierFilter === '' || supplier.includes(supplierFilter)) &&
+                (categoryFilter === '' || category.includes(categoryFilter)) &&
+                (isNaN(costFilter) || cost <= costFilter) &&
+                (isNaN(quantityFilter) || quantity >= quantityFilter)
+            ) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
         });
-        $('#totalPagar').text(total.toFixed(2));
     }
+
+    $('#filterSupplier, #filterCategory, #filterCost, #filterQuantity').on('input', filterInventory);
+
+    loadInventory();
 });
