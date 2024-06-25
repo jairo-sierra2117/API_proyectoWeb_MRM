@@ -68,12 +68,105 @@
                             <textarea class="form-control" id="descripcion" rows="3"
                                 readonly>la moto tiene un bote de aceite en la palanca de cambios</textarea>
                         </div>
-                        <button type="button" class="btn btn-danger btn-finalizar">Finalizar cita</button>
+                        <button type="button" class="btn btn-danger btn-finalizar" data-toggle="modal" data-target="#registroPedidoModal">Finalizar cita</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="registroPedidoModal" tabindex="-1" role="dialog" aria-labelledby="registroPedidoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registroPedidoModalLabel">Terminación de cita</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>Datos</h5>
+                                <div class="form-group">
+                                    <label for="nombreProveedor">Nombre cliente</label>
+                                    <input type="text" class="form-control" id="modelo" value="Camilo Gomez" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nuevoProveedor">Tipo de Servicio</label>
+                                    <input type="text" class="form-control" id="modelo" value="Mantenimiento General" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nuevoProveedor">Mecanico Asignado</label>
+                                    <input type="text" class="form-control" id="modelo" value="Carlos Ruiz" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nuevoProveedor">Costo de mano de obra</label>
+                                    <textarea class="form-control" id="descripcion" rows="3" readonly>Ingrese el costo de mano de obra</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nuevoProveedor">Costo total</label>
+                                    <input type="text" class="form-control" id="modelo" value="130000" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nuevoProveedor">ID de la cita: 0000001</label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <h5>Productos recibidos</h5>
+                                <div class="form-group">
+                                    <label for="seleccionarProducto">Productos</label>
+                                    <select class="form-control" id="seleccionarProducto">
+                                        <option>Seleccionar producto</option>
+                                        <!-- Agregar opciones dinámicamente -->
+                                    </select>
+                                    <button class="btn btn-warning mt-2" id="agregarProducto">+</button>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Código</th>
+                                                <th>Nombre</th>
+                                                <th>Precio</th>
+                                                <th>Cantidad</th>
+                                                <th>Cancelar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="productosTableBody">
+                                            <!-- Productos se insertarán aquí dinámicamente -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <h5>Total de Productos: <span id="totalPedido">0</span></h5>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <h5>Descripción del servicio</h5>
+                                        <textarea class="form-control" id="descripcionServicio" rows="6" readonly>Descripción del servicio</textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="w-100">Observaciones del servicio</h5>
+                                        <textarea class="form-control" id="observacionesServicio" rows="6" readonly>Observaciones del servicio</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-warning" id="registrarPedido">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
