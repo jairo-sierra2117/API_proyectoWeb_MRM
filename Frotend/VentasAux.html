@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/Vistas.css">
+    <style>
+        .content-container {
+            margin-left: 300px;
+            /* Ajusta este valor según el ancho de tu sidebar */
+            margin-top: 40px;
+            display: flex;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        .btn-custom {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-cancelar {
+            background-color: red;
+            color: white;
+        }
+
+        .btn-completar {
+            background-color: green;
+            color: white;
+        }
+
+        .total-pagar {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .d-flex-stretch {
+            display: flex;
+            align-items: stretch;
+        }
+
+        .container {
+            flex: 1;
+            margin-right: 10px;
+            /* Espacio entre los dos contenedores */
+        }
+
+        .table-responsive {
+            height: 100%;
+        }
+
+        .modal-header h5 {
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+        }
+
+        .modal-body p {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="d-flex">
+        <div class="sidebar">
+            <div class="menu-item">
+                <a href="">
+                    <img src="../Images/inicioEmple.png" alt="Inicio">
+                </a>
+                <span>Inicio</span>
+            </div>
+            <div class="menu-item">
+                <a href="../Frotend/Vistainventarioauxiliar.html">
+                    <img src="../Images/invenEmple.png" alt="Inventario">
+                </a>
+                <span>Inventario</span>
+            </div>
+            <div class="menu-item">
+                <a href="">
+                    <img src="../Images/ventasEmple.png" alt="Ventas">
+                </a>
+                <span>Ventas</span>
+            </div>
+            <div class="menu-item">
+                <a href="">
+                    <img src="../Images/notiEmple.png" alt="Notificaciones">
+                </a>
+                <span>Notificaciones</span>
+            </div>
+            <div class="menu-item">
+                <a href="">
+                    <img src="/Images/personas.png" alt="pefil">
+                </a>
+                <span>Perfil</span>
+            </div>
+            <div class="menu-item" id="cerrarSesion">
+                <a href="#">
+                    <img src="../Images/exitEmple.png" alt="Cerrar sesión">
+                </a>
+                <span>Cerrar sesión</span>
+            </div>
+        </div>
+
+        <div class="content-container d-flex-stretch">
+            <!-- Primer contenedor -->
+            <div class="container">
+                <div class="search-bar mt-3">
+                    <input type="text" class="form-control" placeholder="Buscar por nombre o código...">
+                </div>
+                <div class="btn-group mt-3">
+                    <button class="btn btn-primary">Todo</button>
+                    <button class="btn btn-secondary">Accesorios</button>
+                    <button class="btn btn-secondary">Repuestos</button>
+                </div>
+
+                <div class="table-container">
+                    <table class="table table-bordered" id="inventoryTable">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>ID</th> <!-- Columna para el ID del producto -->
+                                <th>No.</th>
+                                <th>Nombre</th> <!-- Usamos este campo para el nombre -->
+                                <th>Código</th>
+                                <th>Categoría</th>
+                                <th>Cantidad</th>
+                                <th>Marca</th>
+                                <th>Costo adquirido</th>
+                                <th>Costo Venta</th>
+                                <th>Agregar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Aquí se insertarán las filas de inventario desde el script -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-secondary">Anterior</button>
+                    <button class="btn btn-primary">Siguiente</button>
+                </div>
+                <a href="../Frotend/HistorialVentas.html" class="btn btn-dark mt-3">Historial ventas</a>
+            </div>
+
+            <!-- Segundo contenedor -->
+            <div class="container d-flex flex-column">
+                <div class="table-responsive h-100">
+                    <table class="table table-bordered" id="salesTable">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Cancelar</th>
+                                <th>accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Aquí se insertarán las filas de ventas desde el script -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <div class="total-pagar">
+                            TOTAL A PAGAR: <span id="totalPagar">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <button class="btn btn-cancelar btn-block">Cancelar</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-completar btn-block" data-toggle="modal"
+                            data-target="#ventaModal">Completar venta</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ventaModal" tabindex="-1" aria-labelledby="ventaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center" id="ventaModalLabel">CONFIRMACIÓN DE VENTA</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="font-weight-bold">SU VENTA SE HA COMPLETADO CON ÉXITO</p>
+                    <img src="/Images/image 43.png" alt="Confirmación" class="img-fluid mb-3">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../js/ventaypedidos.js"></script>
+</body>
+
+</html>
