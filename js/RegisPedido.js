@@ -98,4 +98,80 @@ document.addEventListener("DOMContentLoaded", function () {
             currency: "COP",
         }).slice(0, -3);
     }
+
+    // Función para listar pedidos
+    function listarPedidos() {
+        fetch('http://localhost:8080/api/pedidos')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al obtener los pedidos');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const pedidosList = document.getElementById("pedidosList");
+                pedidosList.innerHTML = ''; // Limpiar la lista de pedidos
+
+                data.forEach(pedido => {
+                    const pedidoHtml = `
+                        <div class="pedido">
+                            <p>Fecha de Ingreso: ${pedido.fechaIngreso}</p>
+                            <p>Proveedor: ${pedido.proveedor}</p>
+                            <p>Costo Pedido: ${pedido.costoPedido}</p>
+                            <p>Productos del Pedido:</p>
+                            <ul>
+                                ${pedido.pedidoProductos.map(producto => `<li>Producto ID: ${producto.productoId}, Cantidad: ${producto.cantidad}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                    pedidosList.innerHTML += pedidoHtml;
+                });
+            })
+            .catch(error => {
+                console.error('Error al listar los pedidos:', error);
+            });
+    }
+
+    // Función para crear un pedido
+    function crearPedido() {
+        const pedido = {
+            fechaIngreso: new Date().toISOString(),
+            proveedor: nombreProveedorSelect.value,
+            costoPedido: totalPedido,
+            pedidoProductos: Array.from(productosTableBody.querySelectorAll('tr')).map(row => ({
+                productoId: parseInt(row.querySelector('td:nth-child(1)').textContent.replace('#', '')),
+                cantidad: parseInt(row.querySelector('span').textContent)
+            }))
+        };
+
+        fetch('http://localhost:8080/api/pedidos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(pedido),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al crear el pedido');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Pedido creado exitosamente:', data);
+                listarPedidos(); // Actualizar la lista de pedidos
+            })
+            .catch(error => {
+                console.error('Error al crear el pedido:', error);
+            });
+    }
+
+    // Cargar los pedidos al cargar la página
+    listarPedidos();
+
+    // Crear un pedido al hacer clic en el botón de crear pedido
+    const crearPedidoBtn = document.getElementById("crearPedidoBtn");
+    crearPedidoBtn.addEventListener("click", function () {
+        crearPedido();
+    });
 });
