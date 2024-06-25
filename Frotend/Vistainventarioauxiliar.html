@@ -6,45 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Inventario</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!--<script src="../js/validacion.js" type="module"></script>-->
     <link rel="stylesheet" href="../css/Vistas.css">
     <link href="../css/spinner.css" rel="stylesheet" />
-    <!--<script src="../js/validacion.js" type="module"></script>-->
 </head>
 
 <body>
     <div class="d-flex">
         <div class="sidebar">
             <div class="menu-item">
-                <img src="../Images/inicioEmple.png" alt="Inicio">
+                <a href="">
+                    <img src="../Images/inicioEmple.png" alt="Inicio">
+                </a>
                 <span>Inicio</span>
             </div>
             <div class="menu-item">
-                <img src="../Images/invenEmple.png" alt="Inventario">
+                <a href="../Frotend/Vistainventarioauxiliar.html">
+                    <img src="../Images/invenEmple.png" alt="Inventario">
+                </a>
                 <span>Inventario</span>
             </div>
             <div class="menu-item">
-                <img src="../Images/ventasEmple.png" alt="Ventas">
+                <a href="../Frotend/VentasAux.html">
+                    <img src="../Images/ventasEmple.png" alt="Ventas">
+                </a>
                 <span>Ventas</span>
             </div>
             <div class="menu-item">
-                <img src="../Images/pedidosEmple.png" alt="Citas">
-                <span>Citas</span>
-            </div>
-            <div class="menu-item">
-                <img src="../Images/notiEmple.png" alt="Notificaciones">
+                <a href="">
+                    <img src="../Images/notiEmple.png" alt="Notificaciones">
+                </a>
                 <span>Notificaciones</span>
             </div>
-            <!--AGREGAR ESTE ITEM EN LOS DEMAS NAVBAR -->
             <div class="menu-item">
-                <a href="../Frotend/perfilEmpl.html">
+                <a href="">
                     <img src="/Images/personas.png" alt="pefil">
                 </a>
                 <span>Perfil</span>
             </div>
-            <!--FIN DEL NUEVO ITEM-->
             <div class="menu-item" id="cerrarSesion">
                 <a href="#">
-                    <img src="/Images/exitEmple.png" alt="Cerrar sesión">
+                    <img src="../Images/exitEmple.png" alt="Cerrar sesión">
                 </a>
                 <span>Cerrar sesión</span>
             </div>
@@ -52,77 +54,40 @@
         <div class="content container-fluid">
             <h1>Stock Inventario</h1>
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <div>
-                    <select class="custom-select">
-                        <option selected>All</option>
-                        <!-- Add other options here -->
-                    </select>
+                <div class="d-flex flex-grow-1">
+                    <input type="text" class="form-control w-25 mr-2" placeholder="Filtrar por proveedor"
+                        id="filterSupplier">
+                    <input type="text" class="form-control w-25 mr-2" placeholder="Filtrar por categoría"
+                        id="filterCategory">
+                    <input type="number" class="form-control w-25 mr-2" placeholder="Filtrar por costo" id="filterCost">
+                    <input type="number" class="form-control w-25" placeholder="Filtrar por cantidad"
+                        id="filterQuantity">
                 </div>
-                <input type="text" class="form-control w-50" placeholder="Search the item by name or item code">
                 <div class="d-flex">
-                    <button class="btn btn-warning mr-2">Agregar</button>
-                    <input type="date" class="form-control mr-2">
-                    <input type="date" class="form-control mr-2">
+                    <button id="btnAgregar" class="btn btn-warning mr-2">Agregar</button>
                     <button class="btn btn-danger" id="deleteButton">Eliminar</button>
                 </div>
+
+
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered" id="inventoryTable">
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="selectAll"></th>
+                            <th>ID</th> <!-- Columna para el ID del producto -->
                             <th>No.</th>
-                            <th>Nombre</th>
+                            <th>Nombre</th> <!-- Usamos este campo para el nombre -->
                             <th>Código</th>
-                            <th>Descripción</th>
                             <th>Categoría</th>
                             <th>Cantidad</th>
-                            <th>Proveedor</th>
+                            <th>Marca</th>
                             <th>Costo adquirido</th>
                             <th>Costo venta</th>
                             <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>1</td>
-                            <td>Llantas pirelli</td>
-                            <td>000001</td>
-                            <td>Llantas para rin 27 con sello matico</td>
-                            <td>Repuestos</td>
-                            <td>23</td>
-                            <td>Pirelli</td>
-                            <td>30.000</td>
-                            <td>40.000</td>
-                            <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>2</td>
-                            <td>tacometro XTZ</td>
-                            <td>000002</td>
-                            <td>Tacometro original de XTZ 125</td>
-                            <td>Repuestos</td>
-                            <td>20</td>
-                            <td>Yamaha</td>
-                            <td>30.000</td>
-                            <td>40.000</td>
-                            <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>3</td>
-                            <td>bahul 25L</td>
-                            <td>000003</td>
-                            <td>Bahul de alta carga con plancha</td>
-                            <td>Accesorios</td>
-                            <td>10</td>
-                            <td>Ducati</td>
-                            <td>30.000</td>
-                            <td>40.000</td>
-                            <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
-                        </tr>
                     </tbody>
                 </table>
                 <nav>
@@ -138,6 +103,7 @@
             </div>
         </div>
     </div>
+
     <!-- Modal for Editing -->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
         aria-hidden="true">
@@ -152,16 +118,16 @@
                 <div class="modal-body">
                     <form id="editForm">
                         <div class="form-group">
+                            <label for="editId">ID</label>
+                            <input type="text" class="form-control" id="editId" readonly>
+                        </div>
+                        <div class="form-group">
                             <label for="editName">Nombre</label>
                             <input type="text" class="form-control" id="editName">
                         </div>
                         <div class="form-group">
                             <label for="editCode">Código</label>
                             <input type="text" class="form-control" id="editCode">
-                        </div>
-                        <div class="form-group">
-                            <label for="editDescription">Descripción</label>
-                            <input type="text" class="form-control" id="editDescription">
                         </div>
                         <div class="form-group">
                             <label for="editCategory">Categoría</label>
@@ -192,10 +158,66 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal for Creating -->
+    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createModalLabel">Agregar Producto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="createForm">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="codigo">Código</label>
+                            <input type="text" class="form-control" id="codigo">
+                        </div>
+                        <div class="form-group">
+                            <label for="precioCosto">Costo adquirido</label>
+                            <input type="text" class="form-control" id="precioCosto">
+                        </div>
+                        <div class="form-group">
+                            <label for="precioVenta">Costo venta</label>
+                            <input type="text" class="form-control" id="precioVenta">
+                        </div>
+                        <div class="form-group">
+                            <label for="categoriaId">Categoría</label>
+                            <input type="text" class="form-control" id="categoriaId">
+                        </div>
+                        <div class="form-group">
+                            <label for="marcaId">Marca</label>
+                            <input type="text" class="form-control" id="marcaId">
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" class="form-control" id="cantidad">
+                        </div>
+                        <div class="form-group">
+                            <label for="tipoId">Tipo</label>
+                            <input type="text" class="form-control" id="tipoId">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="createProductButton">Agregar Producto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="../js/InventarioAUX.js"></script>
+    <script src="../js/InventAdm.js"></script>
 </body>
 
 </html>
