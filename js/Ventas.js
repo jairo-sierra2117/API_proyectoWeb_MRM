@@ -227,7 +227,7 @@ $(document).ready(function () {
                 </tr>
             `;
                 $('#inventoryTable tbody').append(newRow);
-                $('#createModal').modal('hide'); // Ocultar modal después del envío
+                $('#createModal').modal('hide');
             })
             .catch(error => {
                 console.error('Error al crear el producto:', error);
@@ -238,6 +238,9 @@ $(document).ready(function () {
     function eliminarProducto(id) {
         fetch(`http://localhost:8080/api/productos/${id}`, {
             method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         })
             .then(response => {
                 if (!response.ok) {
@@ -250,124 +253,86 @@ $(document).ready(function () {
             });
     }
 
-    // Cargar datos de inventario al cargar la página
+    // Llamar a la función para cargar los datos del inventario al cargar la página
     cargarDatosInventario();
 
-    // Función para agregar productos a la tabla de ventas
-    window.addToSales = function (codigo, descripcion, precioVenta) {
-        const salesTable = $('#salesTable tbody');
-        const row = `
+    // Función para añadir productos a la tabla de ventas
+    window.addToSales = function (codigo, descripcion, precio) {
+        const tbodySales = $('#salesTable tbody');
+        const newRow = `
             <tr>
                 <td>${codigo}</td>
                 <td>${descripcion}</td>
-                <td>${precioVenta.toFixed(2)}</td>
-                <td><input type="number" class="form-control quantity" min="1" value="1"></td>
-                <td class="subtotal">${precioVenta.toFixed(2)}</td>
-                <td><button class="btn btn-danger btn-sm deleteSaleButton">X</button></td>
+                <td>${precio}</td>
+                <td><input type="number" min="1" value="1" class="cantidad-input"></td>
+                <td><button class="btn btn-danger btn-sm cancelButton">Cancelar</button></td>
+                <td><button class="btn btn-custom removeButton">X</button></td>
             </tr>
         `;
-        salesTable.append(row);
-        actualizarTotal();
-    }
-
-    // Evento para actualizar subtotal y total al cambiar la cantidad
-    $('#salesTable').on('input', '.quantity', function () {
-        const quantity = $(this).val();
-        const price = parseFloat($(this).closest('tr').find('td:eq(2)').text());
-        const subtotal = (price * quantity).toFixed(2);
-        $(this).closest('tr').find('.subtotal').text(subtotal);
-        actualizarTotal();
-    });
-
-    // Evento para eliminar una fila de la tabla de ventas
-    $('#salesTable').on('click', '.deleteSaleButton', function () {
-        $(this).closest('tr').remove();
-        actualizarTotal();
-    });
+        tbodySales.append(newRow);
+        actualizarTotalAPagar();
+    };
 
     // Función para actualizar el total a pagar
-    function actualizarTotal() {
+    function actualizarTotalAPagar() {
         let total = 0;
-        $('#salesTable .subtotal').each(function () {
-            total += parseFloat($(this).text());
+        $('#salesTable tbody tr').each(function () {
+            const precio = parseFloat($(this).find('td:eq(2)').text());
+            const cantidad = parseInt($(this).find('.cantidad-input').val());
+            total += precio * cantidad;
         });
         $('#totalPagar').text(total.toFixed(2));
     }
 
-    // Función para listar ventas
-    function listarVentas() {
-        fetch('http://localhost:8080/api/ventas')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al obtener las ventas');
-                }
-                return response.json();
-            })
-            .then(data => {
-                const salesList = $('#salesList');
-                salesList.empty();
+    // Evento para actualizar el total a pagar cuando cambia la cantidad
+    $('#salesTable').on('input', '.cantidad-input', function () {
+        actualizarTotalAPagar();
+    });
 
-                data.forEach(venta => {
-                    const ventaHtml = `
-                        <div class="venta">
-                            <p>Fecha: ${venta.fecha}</p>
-                            <p>Tipo: ${venta.tipoVenta}</p>
-                            <p>Cliente ID: ${venta.clienteId}</p>
-                            <p>Total: ${venta.totalVenta}</p>
-                            <p>Productos:</p>
-                            <ul>
-                                ${venta.productosVenta.map(producto => `<li>Producto ID: ${producto.productoId}, Cantidad: ${producto.cantidad}</li>`).join('')}
-                            </ul>
-                        </div>
-                    `;
-                    salesList.append(ventaHtml);
-                });
-            })
-            .catch(error => {
-                console.error('Error al listar las ventas:', error);
-            });
-    }
+    // Evento para eliminar una fila de la tabla de ventas
+    $('#salesTable').on('click', '.removeButton', function () {
+        $(this).closest('tr').remove();
+        actualizarTotalAPagar();
+    });
 
-    // Función para crear una venta
-    function crearVenta() {
-        const venta = {
-            fecha: "2024-06-20",
-            tipoVenta: "venta directa",
-            clienteId: 1,
-            totalVenta: 20000,
-            productosVenta: [
-                { productoId: 11, cantidad: 2 },
-                { productoId: 5, cantidad: 2 }
-            ]
-        };
+    // Evento para limpiar la tabla de ventas al hacer clic en el botón de cancelar
+    $('#cancelButton').click(function () {
+        $('#salesTable tbody').empty();
+        actualizarTotalAPagar();
+    });
 
-        fetch('http://localhost:8080/api/ventas', {
+    // Evento para completar la venta y actualizar el inventario
+    $('#completeSaleButton').click(function () {
+        const salesData = [];
+        $('#salesTable tbody tr').each(function () {
+            const codigo = $(this).find('td:eq(0)').text();
+            const cantidad = parseInt($(this).find('.cantidad-input').val());
+            salesData.push({ codigo, cantidad });
+        });
+
+        fetch('http://localhost:8080/api/productos/actualizar-inventario', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(venta),
+            body: JSON.stringify(salesData),
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Error al crear la venta');
+                    throw new Error('Error al actualizar el inventario');
                 }
                 return response.json();
             })
             .then(data => {
-                console.log('Venta creada exitosamente:', data);
-                listarVentas(); // Actualizar la lista de ventas
+                console.log('Inventario actualizado exitosamente:', data);
+                // Recargar los datos del inventario para reflejar los cambios
+                cargarDatosInventario();
+                // Limpiar la tabla de ventas
+                $('#salesTable tbody').empty();
+                actualizarTotalAPagar();
             })
             .catch(error => {
-                console.error('Error al crear la venta:', error);
+                console.error('Error al actualizar el inventario:', error);
             });
-    }
-
-    // Cargar las ventas al cargar la página
-    listarVentas();
-
-    // Crear una venta al hacer clic en el botón de crear venta
-    $('#createSaleButton').click(function () {
-        crearVenta();
     });
 });
