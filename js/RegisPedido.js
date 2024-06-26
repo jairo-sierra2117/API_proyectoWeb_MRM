@@ -199,7 +199,8 @@ $(document).ready(function () {
 
 });
 
-/* FUNCIONA 100% PERO FALTA ACOMODAR EL DTO PARA QUE EL JSON QUE DA TAMBIEN TRAIGA LOS DATOS 
+/* NO ELIMINAR ESTO  
+    FUNCIONA 100% PERO FALTA ACOMODAR EL DTO PARA QUE EL JSON QUE DA TAMBIEN TRAIGA LOS DATOS 
             DE LOS PRUDUCTOS REGISTRADOS EN EL PEDIDO (fabian culero ._. ).
 document.addEventListener("DOMContentLoaded", () => {
     const requestOptions = {
@@ -237,67 +238,99 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch((error) => console.error('Error:', error));
 });*/
 
-
 document.addEventListener("DOMContentLoaded", () => {
     const requestOptions = {
         method: "GET",
         redirect: "follow"
     };
 
+    let pedidosData = [];
+
     fetch("http://localhost:8080/api/pedidos", requestOptions)
-        .then((response) => response.json())
-        .then((data) => {
-            const tableBody = document.getElementById("pedidoTableBody");
-
-            data.forEach((pedido) => {
-                const row = document.createElement("tr");
-
-                const fechaIngresoCell = document.createElement("td");
-                fechaIngresoCell.textContent = pedido.fechaIngreso;
-                row.appendChild(fechaIngresoCell);
-
-                const proveedorCell = document.createElement("td");
-                proveedorCell.textContent = pedido.proveedor;
-                row.appendChild(proveedorCell);
-
-                const costoPedidoCell = document.createElement("td");
-                costoPedidoCell.textContent = pedido.costoPedido.toFixed(2);
-                row.appendChild(costoPedidoCell);
-
-                const productosCell = document.createElement("td");
-                const verDetallesButton = document.createElement("button");
-                verDetallesButton.className = "btn btn-info";
-                verDetallesButton.textContent = "Ver detalles";
-                verDetallesButton.onclick = () => mostrarDetalles(pedido.pedidoProductos);
-                productosCell.appendChild(verDetallesButton);
-                row.appendChild(productosCell);
-
-                tableBody.appendChild(row);
-            });
+        .then(response => response.json())
+        .then(data => {
+            pedidosData = data;
+            renderTable(pedidosData);
         })
-        .catch((error) => console.error('Error:', error));
+        .catch(error => console.error('Error:', error));
+
+    const filterDate = document.getElementById("filterDate");
+    const filterSupplier = document.getElementById("filterSupplier");
+    const filterCost = document.getElementById("filterCost");
+
+    filterDate.addEventListener("input", filterTable);
+    filterSupplier.addEventListener("input", filterTable);
+    filterCost.addEventListener("input", filterTable);
+
+    function filterTable() {
+        const dateValue = filterDate.value;
+        const supplierValue = filterSupplier.value.toLowerCase();
+        const costValue = filterCost.value;
+
+        const filteredData = pedidosData.filter(pedido => {
+            const dateMatch = dateValue ? pedido.fechaIngreso === dateValue : true;
+            const supplierMatch = supplierValue ? pedido.proveedor.toLowerCase().includes(supplierValue) : true;
+            const costMatch = costValue ? pedido.costoPedido <= parseFloat(costValue) : true;
+            return dateMatch && supplierMatch && costMatch;
+        });
+
+        renderTable(filteredData);
+    }
+
+    function renderTable(data) {
+        const tableBody = document.getElementById("pedidoTableBody");
+        tableBody.innerHTML = "";
+
+        data.forEach(pedido => {
+            const row = document.createElement("tr");
+
+            const fechaIngresoCell = document.createElement("td");
+            fechaIngresoCell.textContent = pedido.fechaIngreso;
+            row.appendChild(fechaIngresoCell);
+
+            const proveedorCell = document.createElement("td");
+            proveedorCell.textContent = pedido.proveedor;
+            row.appendChild(proveedorCell);
+
+            const costoPedidoCell = document.createElement("td");
+            costoPedidoCell.textContent = pedido.costoPedido.toFixed(2);
+            row.appendChild(costoPedidoCell);
+
+            const productosCell = document.createElement("td");
+            const productosInfo = `${pedido.pedidoProductos.length} productos`;
+            const verDetallesButton = document.createElement("button");
+            verDetallesButton.className = "btn btn-info";
+            verDetallesButton.innerHTML = `${productosInfo} <i class="fa fa-eye"></i>`;
+            verDetallesButton.onclick = () => mostrarDetalles(pedido.pedidoProductos);
+            productosCell.appendChild(verDetallesButton);
+            row.appendChild(productosCell);
+
+            tableBody.appendChild(row);
+        });
+    }
 
     function mostrarDetalles(productos) {
         const detalleTableBody = document.getElementById("detalleProductoTableBody");
         detalleTableBody.innerHTML = "";
 
-        productos.forEach((producto) => {
+        productos.forEach(producto => {
             const row = document.createElement("tr");
 
             const idCell = document.createElement("td");
             idCell.textContent = producto.productoId;
             row.appendChild(idCell);
 
+            // Asumiendo que tienes los detalles del producto en el objeto
             const codigoCell = document.createElement("td");
-            codigoCell.textContent = producto.codigo || "N/A"; // Asumiendo que el código no está disponible en el JSON
+            codigoCell.textContent = producto.codigo || "N/A"; // Placeholder si falta el dato
             row.appendChild(codigoCell);
 
             const nombreCell = document.createElement("td");
-            nombreCell.textContent = producto.nombre || "N/A"; // Asumiendo que el nombre no está disponible en el JSON
+            nombreCell.textContent = producto.nombre || "N/A"; // Placeholder si falta el dato
             row.appendChild(nombreCell);
 
             const costoCell = document.createElement("td");
-            costoCell.textContent = producto.costo || "N/A"; // Asumiendo que el costo no está disponible en el JSON
+            costoCell.textContent = producto.costo?.toFixed(2) || "N/A"; // Placeholder si falta el dato
             row.appendChild(costoCell);
 
             const cantidadCell = document.createElement("td");
