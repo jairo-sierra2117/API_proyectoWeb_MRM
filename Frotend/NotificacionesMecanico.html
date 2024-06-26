@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Citas</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/CitasMecanico.css">
+    <link href="../css/spinner.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="d-flex">
+        <div class="sidebar">
+            <div class="menu-item">
+                <img src="../Images/invenEmple.png" alt="Inventario">
+                <span>Inventario</span>
+            </div>
+            <div class="menu-item">
+                <a href="../Frotend/CitasMecanico.html">
+                    <img src="../Images/pedidosEmple.png" alt="Citas">
+                </a>
+                <span>Citas</span>
+            </div>
+            <div class="menu-item">
+                <img src="../Images/notiEmple.png" alt="Notificaciones">
+                <span>Notificaciones</span>
+            </div>
+            <div class="menu-item">
+                <a href="../Frotend/perfilEmpl.html">
+                    <img src="/Images/personas.png" alt="pefil">
+                </a>
+                <span>Perfil</span>
+            </div>
+            <div class="menu-item" id="cerrarSesion">
+                <a href="#">
+                    <img src="/Images/exitEmple.png" alt="Cerrar sesión">
+                </a>
+                <span>Cerrar sesión</span>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Notificaciones</h2>
+            <div class="table-container">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>MENSAJE</th>
+                            <th>FECHA</th>
+                        </tr>
+                    </thead>
+                    <tbody id="notification-table-body">
+                        <!-- Aquí se insertarán las notificaciones dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-secondary">Anterior</button>
+                <button class="btn btn-secondary">Siguiente</button>
+            </div>
+        </div>
+    </div>   
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../js/CitasMecanico.js"></script>
+</body>
+
+</html>

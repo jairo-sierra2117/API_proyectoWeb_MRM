@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Citas</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/CitasMecanico.css">
+    <link href="../css/spinner.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="d-flex">
+        <div class="sidebar">
+            <div class="menu-item">
+                <a href="">
+                    <img src="../Images/inicioEmple.png" alt="Inicio">
+                </a>
+                <span>Inicio</span>
+            </div>
+            <div class="menu-item">
+                <a href="../Frotend/Vistainventarioauxiliar.html">
+                    <img src="../Images/invenEmple.png" alt="Inventario">
+                </a>
+                <span>Inventario</span>
+            </div>
+            <div class="menu-item">
+                <a href="../Frotend/VentasAux.html">
+                    <img src="../Images/ventasEmple.png" alt="Ventas">
+                </a>
+                <span>Ventas</span>
+            </div>
+            <div class="menu-item">
+                <a href="../Frotend/CitasAux.html">
+                    <img src="../Images/pedidosEmple.png" alt="Citas">
+                </a>
+                <span>Citas</span>
+            </div>
+            <div class="menu-item">
+                <a href="">
+                    <img src="../Images/notiEmple.png" alt="Notificaciones">
+                </a>
+                <span>Notificaciones</span>
+            </div>
+            <div class="menu-item">
+                <a href="">
+                    <img src="/Images/personas.png" alt="pefil">
+                </a>
+                <span>Perfil</span>
+            </div>
+            <div class="menu-item" id="cerrarSesion">
+                <a href="#">
+                    <img src="../Images/exitEmple.png" alt="Cerrar sesión">
+                </a>
+                <span>Cerrar sesión</span>
+            </div>
+        </div>
+        <div class="content">
+            <h1>Gestión de Citas</h1>
+            <div class="form-group">
+                <label for="date">Hoy</label>
+            </div>
+            <h3 id="appointment-date"></h3>
+            <div class="appointment-container">
+                
+                <!-- Las citas se insertarán aquí mediante JavaScript -->
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h5>Datos</h5>
+                                <div class="form-group">
+                                    <label for="nombreProveedor">Nombre cliente</label>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="clientName" placeholder="Nombre" readonly>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="clientLastName" placeholder="Apellido" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form>
+                                <div class="form-group">
+                                    <label for="serviceType" class="h6">Tipo de servicio</label>
+                                    <input type="text" class="form-control" id="serviceType" placeholder="Tipo de servicio" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nuevoProveedor">Mecanico Asignado</label>
+                                    <input type="text" class="form-control" id="assignedMechanic" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nuevoProveedor">Costo de mano de obra</label>
+                                    <input type="text" class="form-control" id="laborCost" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nuevoProveedor">Costo total</label>
+                                    <input type="text" class="form-control" id="totalCost" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nuevoProveedor">ID de la cita:</label>
+                                    <input type="text" class="form-control" id="appointmentID" readonly>
+                                </div>
+                            </form>
+                            </div>
+                            <div class="col-md-8">
+                                <h5>Productos recibidos</h5>
+                                <div class="form-group">
+                                    <label for="seleccionarProducto">Productos</label>
+                                    <select class="form-control" id="seleccionarProducto">
+                                        <option>Seleccionar producto</option>
+                                        <!-- Agregar opciones dinámicamente -->
+                                    </select>
+                                    <button class="btn btn-warning mt-2" id="agregarProducto">+</button>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Código</th>
+                                                <th>Nombre</th>
+                                                <th>Precio</th>
+                                                <th>Cantidad</th>
+                                                <th>Cancelar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="productosTableBody">
+                                            <!-- Productos se insertarán aquí dinámicamente -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <h5>Total de Productos: <span id="totalPedido">0</span></h5>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <h5>Descripción del servicio</h5>
+                                        <textarea class="form-control" id="descripcionServicio" rows="6"
+                                            readonly></textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="w-100">Observaciones del servicio</h5>
+                                        <textarea class="form-control" id="observacionesServicio" rows="6"
+                                            readonly></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    
+                </div>
+                
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-warning" id="registrarPedido">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../js/CitasMecanico.js"></script>
+</body>
+
+</html>
