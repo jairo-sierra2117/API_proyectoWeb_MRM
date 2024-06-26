@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     // Cargar datos de marcas, categorías y tipos
     function cargarDatosSelectores() {
         fetch('http://localhost:8080/api/marcas')
@@ -114,7 +113,7 @@ $(document).ready(function () {
                 $('#editCategory').val(data.categoriaId);
                 $('#editQuantity').val(data.stock);
                 $('#editSupplier').val(data.marcaId);
-                $('#tipoId').val(data.tipoId); // Aquí debe ser tipoId en lugar de edittipo
+                $('#edittipo').val(data.tipoId); // Aquí debe ser edittipo en lugar de tipoId
                 $('#editCost').val(data.precioCosto);
                 $('#editSaleCost').val(data.precioVenta);
                 $('#editModal').modal('show');
@@ -125,49 +124,42 @@ $(document).ready(function () {
     }
 
     // Función para editar un producto por ID en el backend
-// Función para editar un producto por ID en el backend
-// Función para editar un producto por ID en el backend
-function editarProducto(id, formData) {
-    // Mostrar el JSON que se enviará antes de la solicitud
-    console.log('JSON a enviar:', JSON.stringify(formData));
-
-    fetch(`http://localhost:8080/api/productos/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al editar el producto');
-            }
-            return response.json();
+    function editarProducto(id, formData) {
+        fetch(`http://localhost:8080/api/productos/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
         })
-        .then(data => {
-            console.log('Producto editado exitosamente:', data);
-            // Actualizar la fila en la tabla con los nuevos datos
-            $('#inventoryTable tbody tr').each(function () {
-                if ($(this).find('td:eq(1)').text() === id) {
-                    $(this).find('td:eq(3)').text(formData.descripcion);
-                    $(this).find('td:eq(4)').text(formData.codigo);
-                    $(this).find('td:eq(5)').text(formData.categoriaId);
-                    $(this).find('td:eq(6)').text(formData.stock);
-                    $(this).find('td:eq(7)').text(formData.marcaId);
-                    $(this).find('td:eq(8)').text(formData.tipoId);
-                    $(this).find('td:eq(9)').text(formData.precioCosto);
-                    $(this).find('td:eq(10)').text(formData.precioVenta);
-                    return false; // Salir del bucle each
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al editar el producto');
                 }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Producto editado exitosamente:', data);
+                // Actualizar la fila en la tabla con los nuevos datos
+                $('#inventoryTable tbody tr').each(function () {
+                    if ($(this).find('td:eq(1)').text() === id) {
+                        $(this).find('td:eq(3)').text(formData.descripcion);
+                        $(this).find('td:eq(4)').text(formData.codigo);
+                        $(this).find('td:eq(5)').text(formData.categoriaId);
+                        $(this).find('td:eq(6)').text(formData.stock);
+                        $(this).find('td:eq(7)').text(formData.marcaId);
+                        $(this).find('td:eq(8)').text(formData.tipoId);
+                        $(this).find('td:eq(9)').text(formData.precioCosto);
+                        $(this).find('td:eq(10)').text(formData.precioVenta);
+                        return false; // Salir del bucle each
+                    }
+                });
+                $('#editModal').modal('hide');
+            })
+            .catch(error => {
+                console.error('Error al editar el producto:', error);
             });
-            $('#editModal').modal('hide');
-        })
-        .catch(error => {
-            console.error('Error al editar el producto:', error);
-        });
-}
-
-
+    }
 
     // Función para crear un nuevo producto en el backend
     function crearProducto(formData) {
@@ -194,12 +186,12 @@ function editarProducto(id, formData) {
                     <td>${data.index}</td>
                     <td>${data.descripcion}</td>
                     <td>${data.codigo}</td>
-                    <td>${data.categoriaId}</td>
+                    <td>${data.categoria}</td>
+                    <td>${data.tipo}</td>
+                    <td>${data.marca}</td>
                     <td>${data.stock}</td>
-                    <td>${data.marcaId}</td>
                     <td>${data.precioCosto}</td>
                     <td>${data.precioVenta}</td>
-                    <td>${data.tipoId}</td>
                     <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
                 </tr>
             `;
@@ -261,6 +253,25 @@ function editarProducto(id, formData) {
                         </tr>
                     `;
                     tbody.append(row);
+                    // Verificar si el stock es menor a 5 unidades
+                    if (producto.stock < 5) {
+                        const stockBajoRow = `
+                        <tr>
+                            <td>${producto.descripcion}</td>
+                            <td>${producto.stock}</td>
+                        </tr>
+                    `;
+                        $('#stockBajoBody').append(stockBajoRow);
+                    }
+                });
+
+                // Mostrar modal si hay productos con stock bajo
+                if ($('#stockBajoBody tr').length > 0) {
+                    $('#stockBajoModal').modal('show');
+                }
+                // Aplicar el filtro cuando cambien los valores de los inputs de filtro
+                $('#filterSupplier, #filterCategory, #filterCost, #filterQuantity').on('input', function () {
+                    aplicarFiltros();
                 });
 
             })
@@ -269,4 +280,25 @@ function editarProducto(id, formData) {
             });
     }
 
+    // Función para aplicar los filtros al inventario
+    function aplicarFiltros() {
+        const filtroMarca = $('#filterSupplier').val().toLowerCase();
+        const filtroCategoria = $('#filterCategory').val().toLowerCase();
+        const filtroCosto = parseFloat($('#filterCost').val());
+        const filtroCantidad = parseInt($('#filterQuantity').val());
+
+        $('#inventoryTable tbody tr').each(function () {
+            const marca = $(this).find('td:eq(7)').text().toLowerCase();
+            const categoria = $(this).find('td:eq(5)').text().toLowerCase();
+            const costo = parseFloat($(this).find('td:eq(10)').text());
+            const cantidad = parseInt($(this).find('td:eq(8)').text());
+
+            const mostrar = (!filtroMarca || marca.includes(filtroMarca)) &&
+                (!filtroCategoria || categoria.includes(filtroCategoria)) &&
+                (!filtroCosto || costo <= filtroCosto) &&
+                (!filtroCantidad || cantidad >= filtroCantidad);
+
+            $(this).toggle(mostrar);
+        });
+    }
 });
