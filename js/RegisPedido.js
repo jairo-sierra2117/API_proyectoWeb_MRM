@@ -31,15 +31,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const row = document.createElement("tr");
 
         const codigoCell = document.createElement("td");
-        codigoCell.textContent = "#000001"; // Aquí puedes agregar la lógica para el código del producto
+        codigoCell.textContent = producto.codigo; // Usar el código real del producto
         row.appendChild(codigoCell);
 
         const nombreCell = document.createElement("td");
-        nombreCell.textContent = producto;
+        nombreCell.textContent = producto.nombre; // Usar el nombre real del producto
         row.appendChild(nombreCell);
 
         const precioCell = document.createElement("td");
-        precioCell.textContent = "40.000"; // Aquí puedes agregar la lógica para el precio del producto
+        precioCell.textContent = producto.costoVenta.toLocaleString("es-CO", { style: "currency", currency: "COP" }).slice(0, -3); // Usar el precio real del producto
         row.appendChild(precioCell);
 
         const cantidadCell = document.createElement("td");
@@ -170,8 +170,28 @@ document.addEventListener("DOMContentLoaded", function () {
     listarPedidos();
 
     // Crear un pedido al hacer clic en el botón de crear pedido
-    const crearPedidoBtn = document.getElementById("crearPedidoBtn");
+    const crearPedidoBtn = document.getElementById("registrarPedido");
     crearPedidoBtn.addEventListener("click", function () {
         crearPedido();
     });
+
+    // Cargar productos en el select al abrir el modal
+    $('#registroPedidoModal').on('show.bs.modal', function () {
+        cargarProductos();
+    });
+
+    function cargarProductos() {
+        fetch('http://localhost:8080/api/productos')
+            .then(response => response.json())
+            .then(data => {
+                seleccionarProductoSelect.innerHTML = '<option>Seleccionar producto</option>';
+                data.forEach(producto => {
+                    const option = document.createElement("option");
+                    option.value = JSON.stringify(producto); // Convertir el producto a cadena JSON
+                    option.textContent = `${producto.nombre} (${producto.codigo})`;
+                    seleccionarProductoSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error al listar los productos:', error));
+    }
 });

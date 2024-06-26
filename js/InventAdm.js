@@ -243,4 +243,34 @@ $(document).ready(function () {
     $('#filterSupplier, #filterCategory, #filterCost, #filterQuantity').on('input', filterInventory);
 
     loadInventory();
+
+    document.addEventListener("DOMContentLoaded", function () {
+        listarProductos();
+    
+        function listarProductos() {
+            fetch('http://localhost:8080/api/productos')
+                .then(response => response.json())
+                .then(data => {
+                    const inventarioTableBody = document.getElementById("inventarioTableBody");
+                    data.forEach(producto => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${producto.nombre}</td>
+                            <td>${producto.codigo}</td>
+                            <td>${producto.tipo}</td>
+                            <td>${producto.categoria}</td>
+                            <td>${producto.cantidad}</td>
+                            <td>${producto.marca}</td>
+                            <td>${producto.costoAdquirido}</td>
+                            <td>${producto.costoVenta}</td>
+                            <td>${producto.fecha}</td>
+                        `;
+                        inventarioTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error al listar los productos:', error));
+        }
+    });
+    
+    
 });
