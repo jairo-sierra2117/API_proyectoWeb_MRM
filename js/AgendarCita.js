@@ -31,9 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
             comments: document.getElementById('comments').value
         };
 
+        // Guardar la cita en el localStorage
         let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
         appointments.push(appointment);
         localStorage.setItem('appointments', JSON.stringify(appointments));
+
+        // Guardar el modelo de la moto en sessionStorage
+        sessionStorage.setItem('clientData', JSON.stringify(appointment));
 
         window.location.href = '../Frotend/Citareservada.html';
     });

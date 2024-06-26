@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Servicios</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/Vistas.css">
+    <link href="../css/spinner.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="d-flex">
+        <div class="sidebar">
+            <div class="menu-item">
+                <a href="">
+                    <img src="../Images/inicioEmple.png" alt="Inicio">
+                </a>
+                <span>Inicio</span>
+            </div>
+            <div class="menu-item">
+                <a href="../Frotend/Vistainventarioauxiliar.html">
+                    <img src="../Images/invenEmple.png" alt="Inventario">
+                </a>
+                <span>Inventario</span>
+            </div>
+            <div class="menu-item">
+                <a href="../Frotend/VentasAux.html">
+                    <img src="../Images/ventasEmple.png" alt="Ventas">
+                </a>
+                <span>Ventas</span>
+            </div>
+            <div class="menu-item">
+                <a href="">
+                    <img src="../Images/notiEmple.png" alt="Notificaciones">
+                </a>
+                <span>Notificaciones</span>
+            </div>
+            <div class="menu-item">
+                <a href="">
+                    <img src="/Images/personas.png" alt="Perfil">
+                </a>
+                <span>Perfil</span>
+            </div>
+            <div class="menu-item" id="cerrarSesion">
+                <a href="#">
+                    <img src="../Images/exitEmple.png" alt="Cerrar sesión">
+                </a>
+                <span>Cerrar sesión</span>
+            </div>
+        </div>
+        <div class="content container-fluid">
+            <h1>Historial de Servicios</h1>
+            <div class="appointment-details">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Datos</h5>
+                            <div class="form-group">
+                                <label for="clientName">Nombre cliente</label>
+                                <input type="text" class="form-control" id="clientName" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="clientLastName">Apellido cliente</label>
+                                <input type="text" class="form-control" id="clientLastName" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="serviceType">Tipo de servicio</label>
+                                <input type="text" class="form-control" id="serviceType" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="assignedMechanic">Mecánico Asignado</label>
+                                <input type="text" class="form-control" id="assignedMechanic" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="laborCost">Costo de mano de obra</label>
+                                <input type="text" class="form-control" id="laborCost" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="totalCost">Costo total</label>
+                                <input type="text" class="form-control" id="totalCost" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../js/Historial.js"></script>
+</body>
+
+</html>

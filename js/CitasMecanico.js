@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     appointmentDate.textContent = `Citas disponibles el ${today.toLocaleDateString('es-ES', options)}`;
 
+
     // Obtener las citas almacenadas y mostrarlas
     const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
     const appointmentContainer = document.querySelector('.appointment-container');
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const slotDetails = document.createElement('div');
         slotDetails.className = 'slot-details';
         slotDetails.innerHTML = `<span>${appointment.time}</span><span>1 ESPACIO DISPONIBLE</span>`;
+
         
         const slotActions = document.createElement('div');
         slotActions.className = 'slot-actions';
@@ -27,11 +29,11 @@ document.addEventListener("DOMContentLoaded", function () {
         attendButton.addEventListener('click', function () {
             document.getElementById('clientName').value = appointment.clientName;
             document.getElementById('clientLastName').value = appointment.clientLastName;
-            document.getElementById('clientEmail').value = appointment.clientEmail;
-            document.getElementById('clientPhone').value = appointment.phone;
             document.getElementById('serviceType').value = appointment.serviceType;
-            document.getElementById('observations').value = appointment.comments;
-            document.getElementById('appointmentDateTime').value = `${appointment.date} ${appointment.time}`;
+            document.getElementById('assignedMechanic').value = appointment.assignedMechanic;
+            document.getElementById('laborCost').value = appointment.laborCost;
+            document.getElementById('totalCost').value = appointment.totalCost;
+            document.getElementById('appointmentID').value = appointment.appointmentID;
         });
 
         slotActions.appendChild(attendButton);
@@ -40,29 +42,33 @@ document.addEventListener("DOMContentLoaded", function () {
         appointmentContainer.appendChild(appointmentSlot);
     });
 
-    // Evento para el botón "Atender" en el modal
-    const attendButtonModal = document.querySelector('.btn-attend-modal');
-    attendButtonModal.addEventListener('click', function () {
-        // Capturar los datos del cliente
+    // Evento para el botón "Guardar" en el modal
+    const registrarPedidoButton = document.getElementById('registrarPedido');
+    registrarPedidoButton.addEventListener('click', function () {
+        // Capturar los datos ingresados por el usuario
         const clientName = document.getElementById('clientName').value;
         const clientLastName = document.getElementById('clientLastName').value;
-        const clientEmail = document.getElementById('clientEmail').value;
-        const clientPhone = document.getElementById('clientPhone').value;
         const serviceType = document.getElementById('serviceType').value;
-        const observations = document.getElementById('observations').value;
+        const assignedMechanic = document.getElementById('assignedMechanic').value;
+        const laborCost = document.getElementById('laborCost').value;
+        const totalCost = document.getElementById('totalCost').value;
+        const appointmentID = document.getElementById('appointmentID').value;
 
-        // Almacenar en sessionStorage para pasar a la siguiente página
-        const clientData = {
+        // Crear objeto con los datos de la cita
+        const appointmentData = {
             clientName,
             clientLastName,
-            clientEmail,
-            clientPhone,
             serviceType,
-            observations
+            assignedMechanic,
+            laborCost,
+            totalCost,
+            appointmentID
         };
-        sessionStorage.setItem('clientData', JSON.stringify(clientData));
 
-        // Redirigir a la página de Checkingmecanico.html
-        window.location.href = '../Frotend/Checkingmecanico.html';
+        // Guardar los datos en localStorage
+        localStorage.setItem('appointmentData', JSON.stringify(appointmentData));
+
+        // Redirigir a HistorialServicio.html después de guardar los datos
+        window.location.href = '../Frotend/HistorialServicio.html';
     });
 });
