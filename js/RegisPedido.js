@@ -322,15 +322,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Asumiendo que tienes los detalles del producto en el objeto
             const codigoCell = document.createElement("td");
-            codigoCell.textContent = producto.codigo || "N/A"; // Placeholder si falta el dato
+            codigoCell.textContent = producto.codigoProducto || "N/A"; // Placeholder si falta el dato
             row.appendChild(codigoCell);
 
             const nombreCell = document.createElement("td");
-            nombreCell.textContent = producto.nombre || "N/A"; // Placeholder si falta el dato
+            nombreCell.textContent = producto.nombreProducto || "N/A"; // Placeholder si falta el dato
             row.appendChild(nombreCell);
 
             const costoCell = document.createElement("td");
-            costoCell.textContent = producto.costo?.toFixed(2) || "N/A"; // Placeholder si falta el dato
+            costoCell.textContent = producto.costoCompra?.toFixed(2) || "N/A"; // Placeholder si falta el dato
             row.appendChild(costoCell);
 
             const cantidadCell = document.createElement("td");

@@ -1,5 +1,43 @@
-
 $(document).ready(function () {
+
+    // Cargar datos de marcas, categorías y tipos
+    function cargarDatosSelectores() {
+        fetch('http://localhost:8080/api/marcas')
+            .then(response => response.json())
+            .then(data => {
+                const marcaSelect = $('#editSupplier, #marcaId');
+                marcaSelect.empty();
+                data.forEach(marca => {
+                    const option = `<option value="${marca.id}">${marca.nombre}</option>`;
+                    marcaSelect.append(option);
+                });
+            })
+            .catch(error => console.error('Error al cargar marcas:', error));
+
+        fetch('http://localhost:8080/api/categorias')
+            .then(response => response.json())
+            .then(data => {
+                const categoriaSelect = $('#editCategory, #categoriaId');
+                categoriaSelect.empty();
+                data.forEach(categoria => {
+                    const option = `<option value="${categoria.id}">${categoria.name}</option>`;
+                    categoriaSelect.append(option);
+                });
+            })
+            .catch(error => console.error('Error al cargar categorías:', error));
+
+        fetch('http://localhost:8080/api/tipos')
+            .then(response => response.json())
+            .then(data => {
+                const tipoSelect = $('#edittipo, #tipoId');
+                tipoSelect.empty();
+                data.forEach(tipo => {
+                    const option = `<option value="${tipo.id}">${tipo.nombre}</option>`;
+                    tipoSelect.append(option);
+                });
+            })
+            .catch(error => console.error('Error al cargar tipos:', error));
+    }
 
     // Eliminar elementos seleccionados
     $('#deleteButton').click(function () {
@@ -22,11 +60,12 @@ $(document).ready(function () {
         let formData = {
             descripcion: $('#editName').val(),
             codigo: $('#editCode').val(),
-            categoriaId: $('#editCategory').val(),
-            stock: $('#editQuantity').val(),
-            marcaId: $('#editSupplier').val(),
-            precioCosto: $('#editCost').val(),
-            precioVenta: $('#editSaleCost').val()
+            categoriaId: parseInt($('#editCategory').val()), // Convertir a número
+            stock: parseInt($('#editQuantity').val()), // Convertir a número
+            marcaId: parseInt($('#editSupplier').val()), // Convertir a número
+            tipoId: parseInt($('#edittipo').val()), // Convertir a número
+            precioCosto: parseFloat($('#editCost').val()), // Convertir a número
+            precioVenta: parseFloat($('#editSaleCost').val()) // Convertir a número
         };
 
         // Realizar solicitud PUT al backend para actualizar el producto
@@ -43,11 +82,12 @@ $(document).ready(function () {
         let formData = {
             descripcion: $('#nombre').val(),
             codigo: $('#codigo').val(),
-            categoriaId: parseInt($('#categoriaId').val()),
-            marcaId: parseInt($('#marcaId').val()),
-            stock: parseInt($('#stock').val()),
-            precioCosto: parseFloat($('#precioCosto').val()),
-            precioVenta: parseFloat($('#precioVenta').val())
+            categoriaId: parseInt($('#categoriaId').val()), // Convertir a número
+            marcaId: parseInt($('#marcaId').val()), // Convertir a número
+            stock: parseInt($('#stock').val()), // Convertir a número
+            precioCosto: parseFloat($('#precioCosto').val()), // Convertir a número
+            precioVenta: parseFloat($('#precioVenta').val()), // Convertir a número
+            tipoId: parseInt($('#tipoId').val()) // Convertir a número
         };
 
         // Realizar la solicitud POST al backend para crear un nuevo producto
@@ -56,6 +96,7 @@ $(document).ready(function () {
 
     // Cargar datos del inventario desde la API al cargar la página
     cargarDatosInventario();
+    cargarDatosSelectores();
 
     // Función para cargar datos de un producto para edición
     function cargarDatosEdicion(id) {
@@ -73,6 +114,7 @@ $(document).ready(function () {
                 $('#editCategory').val(data.categoriaId);
                 $('#editQuantity').val(data.stock);
                 $('#editSupplier').val(data.marcaId);
+                $('#tipoId').val(data.tipoId); // Aquí debe ser tipoId en lugar de edittipo
                 $('#editCost').val(data.precioCosto);
                 $('#editSaleCost').val(data.precioVenta);
                 $('#editModal').modal('show');
@@ -83,41 +125,49 @@ $(document).ready(function () {
     }
 
     // Función para editar un producto por ID en el backend
-    function editarProducto(id, formData) {
-        fetch(`http://localhost:8080/api/productos/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
+// Función para editar un producto por ID en el backend
+// Función para editar un producto por ID en el backend
+function editarProducto(id, formData) {
+    // Mostrar el JSON que se enviará antes de la solicitud
+    console.log('JSON a enviar:', JSON.stringify(formData));
+
+    fetch(`http://localhost:8080/api/productos/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al editar el producto');
+            }
+            return response.json();
         })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al editar el producto');
+        .then(data => {
+            console.log('Producto editado exitosamente:', data);
+            // Actualizar la fila en la tabla con los nuevos datos
+            $('#inventoryTable tbody tr').each(function () {
+                if ($(this).find('td:eq(1)').text() === id) {
+                    $(this).find('td:eq(3)').text(formData.descripcion);
+                    $(this).find('td:eq(4)').text(formData.codigo);
+                    $(this).find('td:eq(5)').text(formData.categoriaId);
+                    $(this).find('td:eq(6)').text(formData.stock);
+                    $(this).find('td:eq(7)').text(formData.marcaId);
+                    $(this).find('td:eq(8)').text(formData.tipoId);
+                    $(this).find('td:eq(9)').text(formData.precioCosto);
+                    $(this).find('td:eq(10)').text(formData.precioVenta);
+                    return false; // Salir del bucle each
                 }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Producto editado exitosamente:', data);
-                // Actualizar la fila en la tabla con los nuevos datos
-                $('#inventoryTable tbody tr').each(function () {
-                    if ($(this).find('td:eq(1)').text() === id) {
-                        $(this).find('td:eq(3)').text(formData.descripcion);
-                        $(this).find('td:eq(4)').text(formData.codigo);
-                        $(this).find('td:eq(5)').text(formData.categoriaId);
-                        $(this).find('td:eq(6)').text(formData.stock);
-                        $(this).find('td:eq(7)').text(formData.marcaId);
-                        $(this).find('td:eq(8)').text(formData.precioCosto);
-                        $(this).find('td:eq(9)').text(formData.precioVenta);
-                        return false; // Salir del bucle each
-                    }
-                });
-                $('#editModal').modal('hide');
-            })
-            .catch(error => {
-                console.error('Error al editar el producto:', error);
             });
-    }
+            $('#editModal').modal('hide');
+        })
+        .catch(error => {
+            console.error('Error al editar el producto:', error);
+        });
+}
+
+
 
     // Función para crear un nuevo producto en el backend
     function crearProducto(formData) {
@@ -149,6 +199,7 @@ $(document).ready(function () {
                     <td>${data.marcaId}</td>
                     <td>${data.precioCosto}</td>
                     <td>${data.precioVenta}</td>
+                    <td>${data.tipoId}</td>
                     <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
                 </tr>
             `;
@@ -200,93 +251,22 @@ $(document).ready(function () {
                             <td>${index + 1}</td>
                             <td>${producto.descripcion}</td>
                             <td>${producto.codigo}</td>
-                            <td>${producto.categoriaId}</td>
+                            <td>${producto.categoria}</td>
+                            <td>${producto.tipo}</td>
+                            <td>${producto.marca}</td>
                             <td>${producto.stock}</td>
-                            <td>${producto.marcaId}</td>
                             <td>${producto.precioCosto}</td>
                             <td>${producto.precioVenta}</td>
                             <td><button class="btn btn-warning btn-sm editButton">Edit</button></td>
                         </tr>
                     `;
                     tbody.append(row);
-                    // Verificar si el stock es menor a 5 unidades
-                    if (producto.stock < 5) {
-                        const stockBajoRow = `
-                        <tr>
-                            <td>${producto.descripcion}</td>
-                            <td>${producto.stock}</td>
-                        </tr>
-                    `;
-                        $('#stockBajoBody').append(stockBajoRow);
-                    }
                 });
-
-                // Mostrar modal si hay productos con stock bajo
-                if ($('#stockBajoBody tr').length > 0) {
-                    $('#stockBajoModal').modal('show');
-                }
 
             })
             .catch(error => {
                 console.error('Error al cargar datos del inventario:', error);
             });
     }
-    function filterInventory() {
-        const supplierFilter = $('#filterSupplier').val().toLowerCase();
-        const categoryFilter = $('#filterCategory').val().toLowerCase();
-        const costFilter = parseFloat($('#filterCost').val());
-        const quantityFilter = parseInt($('#filterQuantity').val());
-
-        $('#inventoryTable tbody tr').each(function () {
-            const supplier = $(this).find('td:nth-child(8)').text().toLowerCase(); // Columna marca
-            const category = $(this).find('td:nth-child(6)').text().toLowerCase(); // Columna Categoría
-            const cost = parseFloat($(this).find('td:nth-child(10)').text()); // Columna Costo adquirido
-            const quantity = parseInt($(this).find('td:nth-child(7)').text()); // Columna Cantidad
-
-            if (
-                (supplierFilter === '' || supplier.includes(supplierFilter)) &&
-                (categoryFilter === '' || category.includes(categoryFilter)) &&
-                (isNaN(costFilter) || cost <= costFilter) &&
-                (isNaN(quantityFilter) || quantity >= quantityFilter)
-            ) {
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
-        });
-    }
-
-    $('#filterSupplier, #filterCategory, #filterCost, #filterQuantity').on('input', filterInventory);
-
-    loadInventory();
-
-    // Listar productos al cargar el DOM
-    document.addEventListener("DOMContentLoaded", function () {
-        listarProductos();
-
-        function listarProductos() {
-            fetch('http://localhost:8080/api/productos')
-                .then(response => response.json())
-                .then(data => {
-                    const inventarioTableBody = document.getElementById("inventarioTableBody");
-                    data.forEach(producto => {
-                        const row = document.createElement("tr");
-                        row.innerHTML = `
-                        <td>${producto.nombre}</td>
-                        <td>${producto.codigo}</td>
-                        <td>${producto.tipo}</td>
-                        <td>${producto.categoria}</td>
-                        <td>${producto.cantidad}</td>
-                        <td>${producto.marca}</td>
-                        <td>${producto.costoAdquirido}</td>
-                        <td>${producto.costoVenta}</td>
-                        <td>${producto.fecha}</td>
-                    `;
-                        inventarioTableBody.appendChild(row);
-                    });
-                })
-                .catch(error => console.error('Error al listar los productos:', error));
-        }
-    });
 
 });

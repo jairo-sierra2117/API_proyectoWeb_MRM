@@ -22,14 +22,14 @@ $(document).ready(function () {
                     }
                     const row = `
                         <tr>
-                            <td><input type="checkbox"></td>
-                            <td>${producto.id}</td>
+                            <td style="display: none;">${producto.id}</td>
                             <td>${index + 1}</td>
                             <td>${producto.descripcion}</td>
                             <td>${producto.codigo}</td>
-                            <td>${producto.categoriaId}</td>
+                            <td>${producto.categoria}</td>
+                            <td>${producto.tipo}</td>
+                            <td>${producto.marca}</td>
                             <td>${producto.stock}</td>
-                            <td>${producto.marcaId}</td>
                             <td>${producto.precioCosto}</td>
                             <td>${producto.precioVenta}</td>
                             <td><button class="btn btn-custom" onclick="addToSales('${producto.id}','${producto.codigo}', '${producto.descripcion}', ${producto.precioVenta})">+</button></td>

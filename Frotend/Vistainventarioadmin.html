@@ -101,8 +101,9 @@
                             <th>Nombre</th> <!-- Usamos este campo para el nombre -->
                             <th>Código</th>
                             <th>Categoría</th>
-                            <th>Cantidad</th>
+                            <th>Tipo</th>
                             <th>Marca</th>
+                            <th>Cantidad</th>
                             <th>Costo adquirido</th>
                             <th>Costo venta</th>
                             <th>Edit</th>
@@ -144,25 +145,34 @@
                             <input type="text" class="form-control" id="editId" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="editName">Nombre</label>
-                            <input type="text" class="form-control" id="editName">
+                            <label for="editName" >Nombre</label>
+                            <input type="text" class="form-control" id="editName" >
                         </div>
                         <div class="form-group">
                             <label for="editCode">Código</label>
-                            <input type="text" class="form-control" id="editCode">
+                            <input type="text" class="form-control" id="editCode" >
                         </div>
-                        <div class="form-group">
-                            <label for="editCategory">Categoría</label>
-                            <input type="text" class="form-control" id="editCategory">
-                        </div>
+
                         <div class="form-group">
                             <label for="editQuantity">Cantidad</label>
-                            <input type="number" class="form-control" id="editQuantity">
+                            <input type="number" class="form-control" id="editQuantity" >
                         </div>
+
                         <div class="form-group">
-                            <label for="editSupplier">Marca</label>
-                            <input type="text" class="form-control" id="editSupplier">
+                            <label for="marcaId">Marca</label>
+                            <select class="form-control" id="marcaId"></select>
                         </div>
+                        
+                        <div class="form-group">
+                            <label for="categoriaId">Categoría</label>
+                            <select class="form-control" id="categoriaId"></select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tipoId">Tipo</label>
+                            <select class="form-control" id="tipoId"></select>
+                        </div>
+
                         <div class="form-group">
                             <label for="editCost">Costo adquirido</label>
                             <input type="text" class="form-control" id="editCost">
@@ -211,20 +221,23 @@
                             <input type="text" class="form-control" id="precioVenta">
                         </div>
                         <div class="form-group">
-                            <label for="categoriaId">Categoría</label>
-                            <input type="text" class="form-control" id="categoriaId">
-                        </div>
-                        <div class="form-group">
                             <label for="marcaId">Marca</label>
-                            <input type="text" class="form-control" id="marcaId">
+                            <select class="form-control" id="marcaId"></select>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="cantidad">Cantidad</label>
-                            <input type="number" class="form-control" id="cantidad">
+                            <label for="categoriaId">Categoría</label>
+                            <select class="form-control" id="categoriaId"></select>
                         </div>
+                        
                         <div class="form-group">
                             <label for="tipoId">Tipo</label>
-                            <input type="text" class="form-control" id="tipoId">
+                            <select class="form-control" id="tipoId"></select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" class="form-control" id="stock">
                         </div>
                     </form>
                 </div>
