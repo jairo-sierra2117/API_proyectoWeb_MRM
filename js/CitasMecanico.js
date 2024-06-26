@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById('clientEmail').value = appointment.clientEmail;
             document.getElementById('clientPhone').value = appointment.phone;
             document.getElementById('serviceType').value = appointment.serviceType;
+            document.getElementById('motoModel').value = appointment.model; // Agregar el modelo de la moto
             document.getElementById('observations').value = appointment.comments;
             document.getElementById('appointmentDateTime').value = `${appointment.date} ${appointment.time}`;
         });
@@ -49,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const clientEmail = document.getElementById('clientEmail').value;
         const clientPhone = document.getElementById('clientPhone').value;
         const serviceType = document.getElementById('serviceType').value;
+        const motoModel = document.getElementById('motoModel').value;
         const observations = document.getElementById('observations').value;
 
         // Almacenar en sessionStorage para pasar a la siguiente página
@@ -58,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
             clientEmail,
             clientPhone,
             serviceType,
+            motoModel, // Agregar el modelo de la moto
             observations
         };
         sessionStorage.setItem('clientData', JSON.stringify(clientData));
