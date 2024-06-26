@@ -63,20 +63,31 @@ $(document).ready(function () {
     // Función para añadir productos a la tabla de ventas
     window.addToSales = function (id, codigo, descripcion, precio) {
         const tbodySales = $('#salesTable tbody');
-        const newRow = `
+        // Buscar si el producto ya está en la tabla de ventas
+        const existingRow = tbodySales.find(`tr:has(td:first-child:contains(${id}))`);
+
+        if (existingRow.length > 0) {
+            // Si el producto ya está en la tabla, aumentar la cantidad
+            const cantidadInput = existingRow.find('.cantidad-input');
+            const cantidadActual = parseInt(cantidadInput.val());
+            cantidadInput.val(cantidadActual + 1);
+        } else {
+            // Si no está en la tabla, agregar una nueva fila
+            const newRow = `
             <tr>
                 <td>${id}</td>
                 <td>${codigo}</td>
                 <td>${descripcion}</td>
                 <td>${precio}</td>
                 <td><input type="number" min="1" value="1" class="cantidad-input"></td>
-                
                 <td><button class="btn btn-custom removeButton">X</button></td>
             </tr>
         `;
-        tbodySales.append(newRow);
+            tbodySales.append(newRow);
+        }
         actualizarTotalAPagar();
     };
+
 
     // Función para actualizar el total a pagar
     function actualizarTotalAPagar() {
@@ -107,6 +118,7 @@ $(document).ready(function () {
     });
     // Función para procesar la venta y enviar los datos al endpoint
     $('#completeSaleButton').click(function () {
+        showSpinner();
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -135,10 +147,30 @@ $(document).ready(function () {
         };
 
         fetch("http://localhost:8080/api/ventas", requestOptions)
-            .then((response) => response.text())
-            .then((result) => console.log(result))
-            .catch((error) => console.error('Error:', error));
-    }); cargarDatosInventario();
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('No se pudo completar la venta.');
+                }
+                hideSpinner();
+                // Vaciar la tabla de ventas
+                $('#salesTable tbody').empty();
+                // Mostrar modal de venta exitosa
+                $('#ventaModal').modal('show');
+                cargarDatosInventario();
+                return response.text();
+            })
+            .then((result) => {
+                console.log(result);
+                // Aquí puedes agregar lógica adicional si es necesario
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                // Mostrar mensaje de error en caso de no completarse la venta
+                alert('No se pudo completar la venta. Por favor, inténtelo de nuevo.');
+                hideSpinner();
+            });
+    });
+
 
 
 });
