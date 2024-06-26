@@ -7,8 +7,13 @@
     <title>Historial Pedidos</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/Vistas.css">
+    <link rel="stylesheet" href="../css/modalPedido.css">
     <link href="../css/spinner.css" rel="stylesheet" />
 </head>
+<style>
+
+</style>
+
 
 <body>
     <div class="d-flex">
@@ -102,7 +107,7 @@
     <!-- Modal registro pedido-->
     <div class="modal fade" id="registroPedidoModal" tabindex="-1" role="dialog"
         aria-labelledby="registroPedidoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="registroPedidoModalLabel">Registro nuevo pedido</h5>
@@ -139,7 +144,7 @@
                                     </select>
                                     <button class="btn btn-warning mt-2" id="agregarProducto">+</button>
                                 </div>
-                                <div class="table-responsive">
+                                <div class="table-responsive" style="max-height: 200px; overflow-y: auto;">
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
@@ -169,6 +174,7 @@
             </div>
         </div>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

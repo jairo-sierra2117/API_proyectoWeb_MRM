@@ -209,7 +209,23 @@ $(document).ready(function () {
                         </tr>
                     `;
                     tbody.append(row);
+                    // Verificar si el stock es menor a 5 unidades
+                    if (producto.stock < 5) {
+                        const stockBajoRow = `
+                        <tr>
+                            <td>${producto.descripcion}</td>
+                            <td>${producto.stock}</td>
+                        </tr>
+                    `;
+                        $('#stockBajoBody').append(stockBajoRow);
+                    }
                 });
+
+                // Mostrar modal si hay productos con stock bajo
+                if ($('#stockBajoBody tr').length > 0) {
+                    $('#stockBajoModal').modal('show');
+                }
+
             })
             .catch(error => {
                 console.error('Error al cargar datos del inventario:', error);
@@ -222,9 +238,9 @@ $(document).ready(function () {
         const quantityFilter = parseInt($('#filterQuantity').val());
 
         $('#inventoryTable tbody tr').each(function () {
-            const supplier = $(this).find('td:nth-child(8)').text().toLowerCase(); // Columna Proveedor
+            const supplier = $(this).find('td:nth-child(8)').text().toLowerCase(); // Columna marca
             const category = $(this).find('td:nth-child(6)').text().toLowerCase(); // Columna Categoría
-            const cost = parseFloat($(this).find('td:nth-child(9)').text()); // Columna Costo adquirido
+            const cost = parseFloat($(this).find('td:nth-child(10)').text()); // Columna Costo adquirido
             const quantity = parseInt($(this).find('td:nth-child(7)').text()); // Columna Cantidad
 
             if (
@@ -244,18 +260,18 @@ $(document).ready(function () {
 
     loadInventory();
 
-// Listar productos al cargar el DOM
-document.addEventListener("DOMContentLoaded", function () {
-    listarProductos();
+    // Listar productos al cargar el DOM
+    document.addEventListener("DOMContentLoaded", function () {
+        listarProductos();
 
-    function listarProductos() {
-        fetch('http://localhost:8080/api/productos')
-            .then(response => response.json())
-            .then(data => {
-                const inventarioTableBody = document.getElementById("inventarioTableBody");
-                data.forEach(producto => {
-                    const row = document.createElement("tr");
-                    row.innerHTML = `
+        function listarProductos() {
+            fetch('http://localhost:8080/api/productos')
+                .then(response => response.json())
+                .then(data => {
+                    const inventarioTableBody = document.getElementById("inventarioTableBody");
+                    data.forEach(producto => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
                         <td>${producto.nombre}</td>
                         <td>${producto.codigo}</td>
                         <td>${producto.tipo}</td>
@@ -266,11 +282,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${producto.costoVenta}</td>
                         <td>${producto.fecha}</td>
                     `;
-                    inventarioTableBody.appendChild(row);
-                });
-            })
-            .catch(error => console.error('Error al listar los productos:', error));
-    }
-});
+                        inventarioTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error al listar los productos:', error));
+        }
+    });
 
 });

@@ -1,0 +1,26 @@
+.modal-dialog {
+  max-width: 80%;
+  margin: 20px auto;
+}
+
+.modal-body {
+  max-height: auto;
+  overflow-y: auto;
+}
+
+.table-responsive {
+  max-height: 300px; /* Adjust this height as needed */
+  overflow-y: auto;
+  position: relative;
+}
+
+.table {
+  border-collapse: separate;
+}
+
+.thead-fixed th {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 2;
+}
