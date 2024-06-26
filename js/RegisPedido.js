@@ -7,9 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const totalPedidoElement = document.getElementById("totalPedido");
 
     agregarProductoBtn.addEventListener("click", function () {
-        const productoSeleccionado = JSON.parse(seleccionarProductoSelect.value);
-        if (productoSeleccionado.codigo) {
-            agregarProductoATabla(productoSeleccionado);
+        const productoSeleccionado = seleccionarProductoSelect.value;
+        if (productoSeleccionado !== "Seleccionar producto") {
+            const producto = JSON.parse(productoSeleccionado);
+            agregarProductoATabla(producto);
         }
     });
 
@@ -17,15 +18,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const row = document.createElement("tr");
 
         const codigoCell = document.createElement("td");
-        codigoCell.textContent = producto.codigo;
+        codigoCell.textContent = producto.codigo; // Usar el código real del producto
         row.appendChild(codigoCell);
 
         const nombreCell = document.createElement("td");
-        nombreCell.textContent = producto.nombre;
+        nombreCell.textContent = producto.nombre || "Sin nombre"; // Usar el nombre real del producto o "Sin nombre" si está indefinido
         row.appendChild(nombreCell);
 
         const precioCell = document.createElement("td");
-        precioCell.textContent = producto.precio.toLocaleString("es-CO", { style: "currency", currency: "COP" }).slice(0, -3);
+        precioCell.textContent = producto.precio.toLocaleString("es-CO", { style: "currency", currency: "COP" }).slice(0, -3); // Usar el precio real del producto
         row.appendChild(precioCell);
 
         const cantidadCell = document.createElement("td");
@@ -93,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 data.forEach(producto => {
                     const option = document.createElement("option");
                     option.value = JSON.stringify(producto); // Convertir el producto a cadena JSON
-                    option.textContent = `${producto.nombre} (${producto.codigo})`;
+                    option.textContent = `${producto.nombre || "Sin nombre"} (${producto.codigo})`;
                     seleccionarProductoSelect.appendChild(option);
                 });
             })
