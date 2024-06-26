@@ -198,3 +198,115 @@ $(document).ready(function () {
     });
 
 });
+
+/* FUNCIONA 100% PERO FALTA ACOMODAR EL DTO PARA QUE EL JSON QUE DA TAMBIEN TRAIGA LOS DATOS 
+            DE LOS PRUDUCTOS REGISTRADOS EN EL PEDIDO (fabian culero ._. ).
+document.addEventListener("DOMContentLoaded", () => {
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+
+    fetch("http://localhost:8080/api/pedidos", requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+            const tableBody = document.getElementById("pedidoTableBody");
+
+            data.forEach((pedido) => {
+                const row = document.createElement("tr");
+
+                const fechaIngresoCell = document.createElement("td");
+                fechaIngresoCell.textContent = pedido.fechaIngreso;
+                row.appendChild(fechaIngresoCell);
+
+                const proveedorCell = document.createElement("td");
+                proveedorCell.textContent = pedido.proveedor;
+                row.appendChild(proveedorCell);
+
+                const costoPedidoCell = document.createElement("td");
+                costoPedidoCell.textContent = pedido.costoPedido.toFixed(2);
+                row.appendChild(costoPedidoCell);
+
+                const productosCell = document.createElement("td");
+                productosCell.innerHTML = pedido.pedidoProductos.map(producto => `ID: ${producto.productoId}, Cantidad: ${producto.cantidad}`).join('<br>');
+                row.appendChild(productosCell);
+
+                tableBody.appendChild(row);
+            });
+        })
+        .catch((error) => console.error('Error:', error));
+});*/
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+
+    fetch("http://localhost:8080/api/pedidos", requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+            const tableBody = document.getElementById("pedidoTableBody");
+
+            data.forEach((pedido) => {
+                const row = document.createElement("tr");
+
+                const fechaIngresoCell = document.createElement("td");
+                fechaIngresoCell.textContent = pedido.fechaIngreso;
+                row.appendChild(fechaIngresoCell);
+
+                const proveedorCell = document.createElement("td");
+                proveedorCell.textContent = pedido.proveedor;
+                row.appendChild(proveedorCell);
+
+                const costoPedidoCell = document.createElement("td");
+                costoPedidoCell.textContent = pedido.costoPedido.toFixed(2);
+                row.appendChild(costoPedidoCell);
+
+                const productosCell = document.createElement("td");
+                const verDetallesButton = document.createElement("button");
+                verDetallesButton.className = "btn btn-info";
+                verDetallesButton.textContent = "Ver detalles";
+                verDetallesButton.onclick = () => mostrarDetalles(pedido.pedidoProductos);
+                productosCell.appendChild(verDetallesButton);
+                row.appendChild(productosCell);
+
+                tableBody.appendChild(row);
+            });
+        })
+        .catch((error) => console.error('Error:', error));
+
+    function mostrarDetalles(productos) {
+        const detalleTableBody = document.getElementById("detalleProductoTableBody");
+        detalleTableBody.innerHTML = "";
+
+        productos.forEach((producto) => {
+            const row = document.createElement("tr");
+
+            const idCell = document.createElement("td");
+            idCell.textContent = producto.productoId;
+            row.appendChild(idCell);
+
+            const codigoCell = document.createElement("td");
+            codigoCell.textContent = producto.codigo || "N/A"; // Asumiendo que el código no está disponible en el JSON
+            row.appendChild(codigoCell);
+
+            const nombreCell = document.createElement("td");
+            nombreCell.textContent = producto.nombre || "N/A"; // Asumiendo que el nombre no está disponible en el JSON
+            row.appendChild(nombreCell);
+
+            const costoCell = document.createElement("td");
+            costoCell.textContent = producto.costo || "N/A"; // Asumiendo que el costo no está disponible en el JSON
+            row.appendChild(costoCell);
+
+            const cantidadCell = document.createElement("td");
+            cantidadCell.textContent = producto.cantidad;
+            row.appendChild(cantidadCell);
+
+            detalleTableBody.appendChild(row);
+        });
+
+        $('#detalleProductoModal').modal('show');
+    }
+});
