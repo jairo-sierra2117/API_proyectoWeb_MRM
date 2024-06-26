@@ -170,7 +170,38 @@ $(document).ready(function () {
                 hideSpinner();
             });
     });
-
-
+//Esto lo agregue yo pa probar
+    document.getElementById('completarVenta').addEventListener('click', function () {
+        const salesData = JSON.parse(localStorage.getItem('salesData')) || [];
+      
+        const newSale = {
+          id: generateUniqueId(), // Implementa tu lógica para generar IDs únicos
+          date: new Date().toLocaleString(),
+          products: getProductsFromCurrentSale(), // Implementa tu lógica para obtener los productos de la venta actual
+          totalPrice: calculateTotalPrice(), // Implementa tu lógica para calcular el precio total de la venta
+        };
+      
+        salesData.push(newSale);
+        localStorage.setItem('salesData', JSON.stringify(salesData));
+      
+        alert('Venta completada y registrada en el historial');
+      });
+      
+      function generateUniqueId() {
+        // Implementa tu lógica para generar IDs únicos
+      }
+      
+      function getProductsFromCurrentSale() {
+        // Implementa tu lógica para obtener los productos de la venta actual
+        return [
+          { id: '001', quantity: 2 },
+          { id: '002', quantity: 1 },
+        ];
+      }
+      
+      function calculateTotalPrice() {
+        // Implementa tu lógica para calcular el precio total de la venta
+        return 100.0; // Ejemplo de precio total
+      }
 
 });
