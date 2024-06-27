@@ -56,39 +56,40 @@ function handleAppointment(button, date, time, reschedule) {
         window.location.href = "../Frotend/Reservarcita.html";
     }
 }
-// Función para cancelar una cita
-function cancelAppointment() {
-    // Lógica para cancelar la cita
+// VerCitas.js
 
-    // Guardar la notificación de cancelación
-    const notification = {
-        message: "cita cancelada",
-        date: new Date().toLocaleDateString()
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('cancel-appointment').addEventListener('click', () => {
+        saveNotification('cita cancelada');
+        alert('Cita cancelada');
+    });
+
+    document.getElementById('reschedule-appointment').addEventListener('click', () => {
+        saveNotification('cita reprogramada');
+        alert('Cita reprogramada');
+    });
+
+    document.getElementById('add-appointment').addEventListener('click', () => {
+        saveNotification('Se ha agregado una nueva cita');
+        alert('Nueva cita agregada');
+    });
+});
+
+function saveNotification(message) {
+    const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+    const newNotification = {
+        message: message,
+        date: new Date().toLocaleString()
     };
-
-    // Guardar la notificación en localStorage
-    let notifications = JSON.parse(localStorage.getItem('notifications')) || [];
-    notifications.push(notification);
+    notifications.push(newNotification);
     localStorage.setItem('notifications', JSON.stringify(notifications));
+
+    const mecNotifications = JSON.parse(localStorage.getItem('mecNotifications')) || [];
+    const auxNotifications = JSON.parse(localStorage.getItem('auxNotifications')) || [];
+
+    mecNotifications.push(newNotification);
+    auxNotifications.push(newNotification);
+
+    localStorage.setItem('mecNotifications', JSON.stringify(mecNotifications));
+    localStorage.setItem('auxNotifications', JSON.stringify(auxNotifications));
 }
-
-// Evento click para el botón de Cancelar Cita
-document.getElementById('cancel-appointment').addEventListener('click', cancelAppointment);
-// Función para reprogramar una cita
-function rescheduleAppointment() {
-    // Lógica para reprogramar la cita
-
-    // Guardar la notificación de reprogramación
-    const notification = {
-        message: "cita reprogramada",
-        date: new Date().toLocaleDateString()
-    };
-
-    // Guardar la notificación en localStorage
-    let notifications = JSON.parse(localStorage.getItem('notifications')) || [];
-    notifications.push(notification);
-    localStorage.setItem('notifications', JSON.stringify(notifications));
-}
-
-// Evento click para el botón de Reprogramar Cita
-document.getElementById('reschedule-appointment').addEventListener('click', rescheduleAppointment);
