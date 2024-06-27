@@ -16,7 +16,8 @@
         <div class="sidebar">
             <div class="menu-item">
                 <a href="../Frotend/Vistainventariomecanico.html">
-                    <img src="../Images/invenEmple.png" alt="Inventario"></a>
+                    <img src="../Images/invenEmple.png" alt="Inventario">
+                </a>
                 <span>Inventario</span>
             </div>
             <div class="menu-item">
@@ -27,14 +28,12 @@
                 <img src="../Images/notiEmple.png" alt="Notificaciones">
                 <span>Notificaciones</span>
             </div>
-            <!--AGREGAR ESTE ITEM EN LOS DEMAS NAVBAR -->
             <div class="menu-item">
                 <a href="../Frotend/perfilEmpl.html">
                     <img src="/Images/personas.png" alt="perfil">
                 </a>
                 <span>Perfil</span>
             </div>
-            <!--FIN DEL NUEVO ITEM-->
             <div class="menu-item" id="cerrarSesion">
                 <a href="#">
                     <img src="/Images/exitEmple.png" alt="Cerrar sesión">
@@ -68,14 +67,12 @@
                             <textarea class="form-control" id="descripcion" rows="3" readonly></textarea>
                         </div>
                         <button type="button" class="btn btn-danger btn-finalizar" data-toggle="modal"
-                            data-target="#registroPedidoModal">Finalizar cita</button>
+                            data-target="#registroPedidoModal" onclick="window.location.href = 'CitasMecanico.html';">Finalizar cita</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
-   
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
