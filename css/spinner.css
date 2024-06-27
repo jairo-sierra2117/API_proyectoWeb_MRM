@@ -88,3 +88,16 @@
 .modal-body p {
   margin-bottom: 10px;
 }
+
+.btn-delete {
+  background-color: red;
+  color: white;
+  margin-left: 10px;
+}
+
+.realizado-text {
+  margin-left: 10px; /* Espacio a la izquierda del texto "Realizado" */
+  margin-right: 10px; /* Ajusta el margen derecho según sea necesario */
+  color: green; /* Color del texto "Realizado" */
+  font-weight: bold; /* Negrita para resaltar el texto */
+}

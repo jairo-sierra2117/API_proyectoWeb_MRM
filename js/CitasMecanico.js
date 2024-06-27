@@ -1,74 +1,85 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const appointmentDate = document.getElementById('appointment-date');
-    const today = new Date();
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    appointmentDate.textContent = `Citas disponibles el ${today.toLocaleDateString('es-ES', options)}`;
-
-
-    // Obtener las citas almacenadas y mostrarlas
     const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
     const appointmentContainer = document.querySelector('.appointment-container');
     appointmentContainer.innerHTML = ''; // Limpiar contenido previo
 
-    appointments.forEach(appointment => {
+    appointments.forEach((appointment, index) => {
         const appointmentSlot = document.createElement('div');
         appointmentSlot.className = 'appointment-slot';
-        
+
         const slotDetails = document.createElement('div');
         slotDetails.className = 'slot-details';
         slotDetails.innerHTML = `<span>${appointment.time}</span><span>1 ESPACIO DISPONIBLE</span>`;
 
-        
         const slotActions = document.createElement('div');
         slotActions.className = 'slot-actions';
-        const attendButton = document.createElement('button');
-        attendButton.className = 'btn btn-attend';
-        attendButton.dataset.toggle = 'modal';
-        attendButton.dataset.target = '#appointmentModal';
-        attendButton.textContent = 'Atender';
-        attendButton.addEventListener('click', function () {
+
+        function marcarComoRealizado() {
+            if (!appointment.isCompleted) {
+                appointment.isCompleted = true;
+                localStorage.setItem('appointments', JSON.stringify(appointments));
+
+                const realizadoSpan = document.createElement('span');
+                realizadoSpan.textContent = 'Realizado';
+                realizadoSpan.className = 'realizado-text';
+                realizadoSpan.style.marginLeft = '10px'; // Ajusta el margen izquierdo según necesites
+                realizadoSpan.style.marginRight = '10px'; // Ajusta el margen derecho según necesites
+
+                const existingRealizado = slotActions.querySelector('.realizado-text');
+                if (!existingRealizado) {
+                    slotActions.appendChild(verCitaButton);
+                    slotActions.appendChild(realizadoSpan);
+                }
+            }
+        }
+
+        const verCitaButton = document.createElement('button');
+        verCitaButton.className = 'btn btn-attend';
+        verCitaButton.textContent = 'Ver Cita';
+        verCitaButton.dataset.toggle = 'modal';
+        verCitaButton.dataset.target = '#appointmentModal';
+        verCitaButton.addEventListener('click', function () {
             document.getElementById('clientName').value = appointment.clientName;
             document.getElementById('clientLastName').value = appointment.clientLastName;
+            document.getElementById('clientEmail').value = appointment.clientEmail;
+            document.getElementById('clientPhone').value = appointment.phone;
             document.getElementById('serviceType').value = appointment.serviceType;
-            document.getElementById('assignedMechanic').value = appointment.assignedMechanic;
-            document.getElementById('laborCost').value = appointment.laborCost;
-            document.getElementById('totalCost').value = appointment.totalCost;
-            document.getElementById('appointmentID').value = appointment.appointmentID;
+            document.getElementById('motoModel').value = appointment.model;
+            document.getElementById('observations').value = appointment.comments;
+            document.getElementById('appointmentDateTime').value = `${appointment.date} ${appointment.time}`;
+
+            const attendButtonModal = document.querySelector('.btn-attend-modal');
+            attendButtonModal.removeEventListener('click', attendButtonModal._markAsCompleted);
+            attendButtonModal._markAsCompleted = function () {
+                marcarComoRealizado();
+
+                // Almacenar información en sessionStorage
+                sessionStorage.setItem('currentAppointment', JSON.stringify({
+                    model: appointment.model,
+                    phone: appointment.phone,
+                    description: appointment.comments
+                }));
+
+                window.location.href = '../Frotend/Checkingmecanico.html';
+            };
+            attendButtonModal.addEventListener('click', attendButtonModal._markAsCompleted);
         });
 
-        slotActions.appendChild(attendButton);
+        if (appointment.isCompleted) {
+            const realizadoSpan = document.createElement('span');
+            realizadoSpan.textContent = 'Realizado';
+            realizadoSpan.className = 'realizado-text';
+            realizadoSpan.style.marginLeft = '10px'; // Ajusta el margen izquierdo según necesites
+            realizadoSpan.style.marginRight = '10px'; // Ajusta el margen derecho según necesites
+            
+            slotActions.appendChild(verCitaButton);
+            slotActions.appendChild(realizadoSpan);
+        } else {
+            slotActions.appendChild(verCitaButton);
+        }
+
         appointmentSlot.appendChild(slotDetails);
         appointmentSlot.appendChild(slotActions);
         appointmentContainer.appendChild(appointmentSlot);
-    });
-
-    // Evento para el botón "Guardar" en el modal
-    const registrarPedidoButton = document.getElementById('registrarPedido');
-    registrarPedidoButton.addEventListener('click', function () {
-        // Capturar los datos ingresados por el usuario
-        const clientName = document.getElementById('clientName').value;
-        const clientLastName = document.getElementById('clientLastName').value;
-        const serviceType = document.getElementById('serviceType').value;
-        const assignedMechanic = document.getElementById('assignedMechanic').value;
-        const laborCost = document.getElementById('laborCost').value;
-        const totalCost = document.getElementById('totalCost').value;
-        const appointmentID = document.getElementById('appointmentID').value;
-
-        // Crear objeto con los datos de la cita
-        const appointmentData = {
-            clientName,
-            clientLastName,
-            serviceType,
-            assignedMechanic,
-            laborCost,
-            totalCost,
-            appointmentID
-        };
-
-        // Guardar los datos en localStorage
-        localStorage.setItem('appointmentData', JSON.stringify(appointmentData));
-
-        // Redirigir a HistorialServicio.html después de guardar los datos
-        window.location.href = '../Frotend/HistorialServicio.html';
     });
 });
