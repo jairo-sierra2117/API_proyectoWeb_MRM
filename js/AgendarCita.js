@@ -31,14 +31,66 @@ document.addEventListener("DOMContentLoaded", function () {
             comments: document.getElementById('comments').value
         };
 
-        // Guardar la cita en el localStorage
         let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
         appointments.push(appointment);
         localStorage.setItem('appointments', JSON.stringify(appointments));
 
-        // Guardar el modelo de la moto en sessionStorage
-        sessionStorage.setItem('clientData', JSON.stringify(appointment));
-
         window.location.href = '../Frotend/Citareservada.html';
     });
+});
+// AgendarCita.js
+document.getElementById('appointment-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const phone = document.getElementById('phone').value;
+
+    // Simular envío de notificación
+    const notifications = [
+        'La cita se ha agendado correctamente.',
+        `Se ha enviado la información al WhatsApp del número ${phone}.`
+    ];
+
+    notifications.forEach(notification => {
+        showNotification(notification);
+        saveNotification(notification);
+    });
+});
+
+function showNotification(message) {
+    const notificationsContainer = document.getElementById('notifications');
+    const notification = document.createElement('div');
+    notification.className = 'alert alert-success';
+    notification.textContent = message;
+    notificationsContainer.appendChild(notification);
+
+    // Ocultar notificación después de 5 segundos
+    setTimeout(() => {
+        notification.remove();
+    }, 5000);
+}
+
+function saveNotification(message) {
+    const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+    const date = new Date().toLocaleString();
+    notifications.push({ message, date });
+    localStorage.setItem('notifications', JSON.stringify(notifications));
+}
+document.getElementById('appointment-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const notificationMessage = "Se ha agregado una nueva cita";
+
+    const notification = {
+        message: notificationMessage,
+        date: new Date().toLocaleString()
+    };
+
+    let notifications = JSON.parse(localStorage.getItem('notifications')) || [];
+    notifications.push(notification);
+    localStorage.setItem('notifications', JSON.stringify(notifications));
+
+    alert('Cita agendada correctamente y notificación guardada.');
+
+    // Opcionalmente, puedes redirigir a la página de notificaciones después de agendar la cita
+    // window.location.href = '../Frotend/Notifimecanico.html';
 });

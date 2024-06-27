@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notificaciones</title>
+    <title>Notificaciones Auxiliar</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/Notificaciones.css">
     <link rel="stylesheet" href="/css/Vistas.css">
@@ -15,62 +15,45 @@
     <div class="d-flex">
         <div class="sidebar">
             <div class="menu-item">
-                <a href="../Frotend/BienvenidoAdm.html">
+                <a href="">
                     <img src="../Images/inicioEmple.png" alt="Inicio">
                 </a>
                 <span>Inicio</span>
             </div>
             <div class="menu-item">
-                <a href="../Frotend/Vistainventarioadmin.html">
+                <a href="../Frotend/Vistainventarioauxiliar.html">
                     <img src="../Images/invenEmple.png" alt="Inventario">
                 </a>
                 <span>Inventario</span>
             </div>
             <div class="menu-item">
-                <a href="../Frotend/Ventas.html">
+                <a href="../Frotend/VentasAux.html">
                     <img src="../Images/ventasEmple.png" alt="Ventas">
                 </a>
                 <span>Ventas</span>
             </div>
             <div class="menu-item">
-                <a href="../Frotend/HistorialPedidos.html">
-                    <img src="../Images/pedidosEmple.png" alt="Pedidos">
-                </a>
-                <span>Pedidos</span>
-            </div>
-            <div class="menu-item">
-                <a href="../Frotend/Historialventaypedidos.html">
-                    <img src="../Images/historicoEmple.png" alt="Histórico">
-                </a>
-                <span>Histórico</span>
-            </div>
-            <div class="menu-item">
-                <a href="../Frotend/Notificaciones.html">
+                <a href="../Frotend/NotifiAux.html">
                     <img src="../Images/notiEmple.png" alt="Notificaciones">
                 </a>
-                <span>Notificaciones</span>
+                <span>Notificaciones Auxiliar</span>
             </div>
             <div class="menu-item">
-                <a href="../Frotend/empleados.html">
-                    <img src="../Images/colabEmple.png" alt="Colaboradores">
-                </a>
-                <span>Colaboradores</span>
-            </div>
-            <div class="menu-item">
-                <a href="../Frotend/perfilEmpl.html">
-                    <img src="/Images/personas.png" alt="pefil">
+                <a href="">
+                    <img src="/Images/personas.png" alt="perfil">
                 </a>
                 <span>Perfil</span>
             </div>
             <div class="menu-item" id="cerrarSesion">
                 <a href="#">
-                    <img src="../Images/exitEmple.png" alt="Cerrar sesión">
+                    <img src="/Images/exitEmple.png" alt="Cerrar sesión">
                 </a>
                 <span>Cerrar sesión</span>
             </div>
         </div>
+
         <div class="content">
-            <h2>Notificaciones</h2>
+            <h2>Notificaciones Auxiliar</h2>
             <div class="table-container">
                 <table class="table table-bordered">
                     <thead>
@@ -91,25 +74,7 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
-            const tableBody = document.getElementById('notificationsTableBody');
-
-            notifications.forEach(notification => {
-                const row = document.createElement('tr');
-                const messageCell = document.createElement('td');
-                const dateCell = document.createElement('td');
-
-                messageCell.textContent = notification.message;
-                dateCell.textContent = notification.date;
-
-                row.appendChild(messageCell);
-                row.appendChild(dateCell);
-                tableBody.appendChild(row);
-            });
-        });
-    </script>
+    <script src="../js/Notifiaux.js"></script>
 </body>
 
 </html>

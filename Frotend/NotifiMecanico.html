@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion de Citas</title>
+    <title>Notificaciones</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/CitasMecanico.css">
+    <link rel="stylesheet" href="/css/Notificaciones.css">
+    <link rel="stylesheet" href="/css/Vistas.css">
     <link href="../css/spinner.css" rel="stylesheet" />
 </head>
 
@@ -14,23 +15,26 @@
     <div class="d-flex">
         <div class="sidebar">
             <div class="menu-item">
-                <a href="../Frotend/Vistainventariomecanico.html">
-                    <img src="../Images/invenEmple.png" alt="Inventario"></a>
+                <a>
+                    <img src="../Images/invenEmple.png" alt="Inventario">
+                </a>
                 <span>Inventario</span>
             </div>
             <div class="menu-item">
                 <a href="../Frotend/CitasMecanico.html">
-                    <img src="../Images/pedidosEmple.png" alt="Citas"></a>
+                    <img src="../Images/pedidosEmple.png" alt="Citas">
+                </a>
                 <span>Citas</span>
             </div>
             <div class="menu-item">
-                <a href="../Frotend/NotificacionesMecanico.html">
-                    <img src="../Images/notiEmple.png" alt="Notificaciones"></a>
+                <a href="../Frotend/Notifimecanico.html">
+                    <img src="../Images/notiEmple.png" alt="Notificaciones">
+                </a>
                 <span>Notificaciones</span>
             </div>
             <div class="menu-item">
                 <a href="../Frotend/perfilEmpl.html">
-                    <img src="/Images/personas.png" alt="pefil">
+                    <img src="/Images/personas.png" alt="perfil">
                 </a>
                 <span>Perfil</span>
             </div>
@@ -41,6 +45,7 @@
                 <span>Cerrar sesión</span>
             </div>
         </div>
+
         <div class="content">
             <h2>Notificaciones</h2>
             <div class="table-container">
@@ -51,8 +56,8 @@
                             <th>FECHA</th>
                         </tr>
                     </thead>
-                    <tbody id="notification-table-body">
-                        <!-- Aquí se insertarán las notificaciones dinámicamente -->
+                    <tbody id="notificationsTableBody">
+                        <!-- Aquí se insertarán las notificaciones -->
                     </tbody>
                 </table>
             </div>
@@ -62,10 +67,8 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="../js/CitasMecanico.js"></script>
+
+    <script src="../js/NotifiMecanico.js"></script>
 </body>
 
 </html>
