@@ -89,7 +89,7 @@ document.getElementById('appointment-form').addEventListener('submit', function(
     notifications.push(notification);
     localStorage.setItem('notifications', JSON.stringify(notifications));
 
-    alert('Cita agendada correctamente y notificación guardada.');
+    alert('Cita agendada correctamente.');
 
     // Opcionalmente, puedes redirigir a la página de notificaciones después de agendar la cita
     // window.location.href = '../Frotend/Notifimecanico.html';
