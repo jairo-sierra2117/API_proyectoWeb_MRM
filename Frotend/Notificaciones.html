@@ -90,26 +90,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const notifications = JSON.parse(localStorage.getItem('notifications')) || [];
-            const tableBody = document.getElementById('notificationsTableBody');
-
-            notifications.forEach(notification => {
-                const row = document.createElement('tr');
-                const messageCell = document.createElement('td');
-                const dateCell = document.createElement('td');
-
-                messageCell.textContent = notification.message;
-                dateCell.textContent = notification.date;
-
-                row.appendChild(messageCell);
-                row.appendChild(dateCell);
-                tableBody.appendChild(row);
-            });
-        });
-    </script>
 </body>
 
 </html>
