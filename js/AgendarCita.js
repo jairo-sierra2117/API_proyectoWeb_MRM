@@ -21,27 +21,42 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
 
         const appointment = {
-            date: document.getElementById('date').value,
-            time: document.getElementById('time').value,
-            phone: document.getElementById('phone').value,
-            serviceType: selectedServiceType, // Guardar el tipo de servicio seleccionado
-            model: document.getElementById('model').value,
-            brand: document.getElementById('brand').value,
-            placa: document.getElementById('placa').value,
-            comments: document.getElementById('comments').value
+            fecha: document.getElementById('date').value,
+            hora: document.getElementById('time').value,
+            clienteId: localStorage.getItem('idUser'),// Debes obtener el ID del cliente desde el contexto de tu aplicación
+            placaVehiculo: document.getElementById('placa').value,
+            observacion: document.getElementById('comments').value,
+            tipoServicio: selectedServiceType,
+            modelo: document.getElementById('model').value,
+            marca: document.getElementById('brand').value
         };
 
-        let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-        appointments.push(appointment);
-        localStorage.setItem('appointments', JSON.stringify(appointments));
 
-        window.location.href = '../Frotend/Citareservada.html';
+
+
+        fetch('http://localhost:8080/api/citas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(appointment)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                alert('Cita reservada con éxito');
+                window.location.href = '../Frotend/Citareservada.html';
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error al reservar la cita');
+            });
     });
 });
 // AgendarCita.js
-document.getElementById('appointment-form').addEventListener('submit', function(event) {
+document.getElementById('appointment-form').addEventListener('submit', function (event) {
     event.preventDefault();
-    
+
     const phone = document.getElementById('phone').value;
 
     // Simular envío de notificación
@@ -75,7 +90,7 @@ function saveNotification(message) {
     notifications.push({ message, date });
     localStorage.setItem('notifications', JSON.stringify(notifications));
 }
-document.getElementById('appointment-form').addEventListener('submit', function(event) {
+document.getElementById('appointment-form').addEventListener('submit', function (event) {
     event.preventDefault();
 
     const notificationMessage = "Se ha agregado una nueva cita";

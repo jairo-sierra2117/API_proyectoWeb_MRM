@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/VerCitas.css" rel="stylesheet">
 </head>
+
 <body>
     <header class="header">
         <div class="container">
@@ -32,7 +34,6 @@
                     <tr>
                         <th>Fecha</th>
                         <th>Hora</th>
-                        <th>Número Celular</th>
                         <th>Ver Detalles</th>
                     </tr>
                 </thead>
@@ -44,13 +45,15 @@
     </section>
     <footer class="footer mt-auto">
         <div class="container">
-            <p>©2023 Minegocio Colombiano. All Rights Reserved. | <a href="https://minegociocolombiano.co/" target="_blank" style="color: white;">https://minegociocolombiano.co/</a></p>
+            <p>©2023 Minegocio Colombiano. All Rights Reserved. | <a href="https://minegociocolombiano.co/"
+                    target="_blank" style="color: white;">https://minegociocolombiano.co/</a></p>
             <p>Con manos Norte Santandereanas...</p>
         </div>
     </footer>
 
     <!-- Modal -->
-    <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -63,7 +66,6 @@
                     <p><strong>Fecha y Hora:</strong> <span id="modal-date-time"></span></p>
                     <p><strong>Información del Cliente:</strong></p>
                     <ul>
-                        <li><strong>Nombre y Apellido:</strong> <span id="modal-client-name">N/A</span></li>
                         <li><strong>Número Celular:</strong> <span id="modal-client-phone"></span></li>
                     </ul>
                     <p><strong>Tipo de Servicio:</strong> <span id="modal-service-type">N/A</span></p>
@@ -71,8 +73,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-danger" id="cancel-appointment">Cancelar Cita</button>
-                    <button type="button" class="btn btn-warning" id="reschedule-appointment">Reprogramar</button>
                 </div>
             </div>
         </div>
@@ -83,4 +83,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="../js/VerCitas.js"></script>
 </body>
+
 </html>

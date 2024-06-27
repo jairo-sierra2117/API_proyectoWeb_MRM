@@ -1,62 +1,60 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+document.addEventListener("DOMContentLoaded", function () {
+    const userId = localStorage.getItem('idUser');
     const tableBody = document.querySelector('table tbody');
 
-    appointments.forEach(appointment => {
-        const row = document.createElement('tr');
-        
-        row.innerHTML = `
-            <td>${appointment.date}</td>
-            <td>${appointment.time}</td>
-            <td>${appointment.phone}</td>
-            <td>
-                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailsModal" 
-                onclick="showDetails('${appointment.date}', '${appointment.time}', 'N/A', '${appointment.phone}', '${appointment.serviceType}', '${appointment.comments}', this)">
-                Ver Detalles</button>
-            </td>
-        `;
+    if (userId) {
+        fetch(`http://localhost:8080/api/citas`)
+            .then(response => response.json())
+            .then(data => {
+                // Filtrar las citas por clienteId
+                const userAppointments = data.filter(appointment => appointment.clienteId == userId);
 
+                if (userAppointments.length > 0) {
+                    userAppointments.forEach(appointment => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${appointment.fecha}</td>
+                            <td>${appointment.hora}</td>
+                            <td style="display: none;">${appointment.ncelular}</td>
+                            <td>
+                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailsModal"
+                                onclick="showDetails('${appointment.fecha}', '${appointment.hora}', '${appointment.ncelular}', '${appointment.tipoServicio}', '${appointment.observacion}')">
+                                Ver Detalles</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                } else {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td colspan="4" class="text-center">No hay citas programadas.</td>
+                    `;
+                    tableBody.appendChild(row);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td colspan="4" class="text-center">Error al cargar las citas.</td>
+                `;
+                tableBody.appendChild(row);
+            });
+    } else {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td colspan="4" class="text-center">Usuario no encontrado.</td>
+        `;
         tableBody.appendChild(row);
-    });
+    }
 });
 
-function showDetails(date, time, clientName, clientPhone, serviceType, comments, button) {
+function showDetails(date, time, phone, serviceType, comments) {
     document.getElementById('modal-date-time').innerText = `${date} ${time}`;
-    document.getElementById('modal-client-name').innerText = clientName;
-    document.getElementById('modal-client-phone').innerText = clientPhone;
+    document.getElementById('modal-client-phone').innerText = phone;
     document.getElementById('modal-service-type').innerText = serviceType || 'No especificado';
     document.getElementById('modal-comments').innerText = comments || 'Sin comentarios';
-
-    const cancelButton = document.getElementById('cancel-appointment');
-    const rescheduleButton = document.getElementById('reschedule-appointment');
-
-    cancelButton.onclick = function() {
-        handleAppointment(button, date, time, false);
-    };
-
-    rescheduleButton.onclick = function() {
-        handleAppointment(button, date, time, true);
-    };
 }
-
-function handleAppointment(button, date, time, reschedule) {
-    const row = button.closest('tr');
-    const index = Array.from(row.parentNode.children).indexOf(row);
-    row.remove();
-    
-    let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-    appointments.splice(index, 1);
-    localStorage.setItem('appointments', JSON.stringify(appointments));
-    
-    localStorage.setItem('cancelledAppointment', JSON.stringify({ date, time }));
-
-    $('#detailsModal').modal('hide');
-    
-    if (reschedule) {
-        window.location.href = "../Frotend/Reservarcita.html";
-    }
-}
-// VerCitas.js
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('cancel-appointment').addEventListener('click', () => {
