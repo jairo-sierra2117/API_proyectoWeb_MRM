@@ -82,4 +82,21 @@ document.addEventListener("DOMContentLoaded", function () {
         appointmentSlot.appendChild(slotActions);
         appointmentContainer.appendChild(appointmentSlot);
     });
+
+    // Función para actualizar el tipo de servicio en el modal
+    function updateServiceType(appointment) {
+        const serviceTypeInput = document.getElementById('serviceType');
+        serviceTypeInput.value = appointment.serviceType;
+    }
+
+    // Agrega un evento de clic a los botones "Ver Cita" para actualizar el tipo de servicio
+    const verCitaButtons = document.querySelectorAll('.btn-attend');
+    verCitaButtons.forEach((button, index) => {
+        button.addEventListener('click', function () {
+            const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+            const appointment = appointments[index];
+            updateServiceType(appointment);
+        });
+    });
+    
 });
