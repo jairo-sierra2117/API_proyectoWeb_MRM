@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historial Ventas</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/HistorialVentas.css">
+  <link rel="stylesheet" href="/css/Vistas.css">
+  <link href="../css/spinner.css" rel="stylesheet" />
+  <!--<script src="../js/validacion.js" type="module"></script>-->
+</head>
+
+<body>
+  <div class="d-flex">
+    <div class="sidebar">
+      <div class="menu-item">
+        <a href="../Frotend/BienvenidoAUX.html">
+          <img src="../Images/inicioEmple.png" alt="Inicio">
+        </a>
+        <span>Inicio</span>
+      </div>
+      <div class="menu-item">
+        <a href="../Frotend/Vistainventarioauxiliar.html">
+          <img src="../Images/invenEmple.png" alt="Inventario">
+        </a>
+        <span>Inventario</span>
+      </div>
+      <div class="menu-item">
+        <a href="../Frotend/VentasAux.html">
+          <img src="../Images/ventasEmple.png" alt="Ventas">
+        </a>
+        <span>Ventas</span>
+      </div>
+      <div class="menu-item">
+        <a href="../Frotend/CitasAux.html">
+          <img src="../Images/pedidosEmple.png" alt="Citas">
+        </a>
+        <span>Citas</span>
+      </div>
+      <div class="menu-item">
+        <a href="#">
+          <img src="../Images/notiEmple.png" alt="Notificaciones">
+        </a>
+        <span>Notificaciones</span>
+      </div>
+      <div class="menu-item">
+        <a href="../Frotend/perfilEmpl.html">
+          <img src="/Images/personas.png" alt="pefil">
+        </a>
+        <span>Perfil</span>
+      </div>
+      <div class="menu-item" id="cerrarSesion">
+        <a href="#">
+          <img src="../Images/exitEmple.png" alt="Cerrar sesión">
+        </a>
+        <span>Cerrar sesión</span>
+      </div>
+    </div>
+    <div class="content container-fluid">
+      <h1>Historial Ventas</h1>
+
+
+      <div class="table-container">
+        <div class="table-responsive">
+          <table class="table table-bordered text-center">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Número venta</th>
+                <th>Precio total venta</th>
+                <th>Ver Detalles</th>
+              </tr>
+            </thead>
+            <tbody id="historial-ventas-body">
+              <!-- Data will be populated dynamically here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals will be populated dynamically -->
+  <div id="modals-container"></div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="../js/HistorialVentas.js"></script>
+</body>
+
+</html>

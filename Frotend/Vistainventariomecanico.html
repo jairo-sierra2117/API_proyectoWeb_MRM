@@ -8,7 +8,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/Vistas.css">
     <link href="../css/spinner.css" rel="stylesheet" />
-    <script src="../js/validacion.js" type="module"></script>
+    <!--<script src="../js/validacion.js" type="module"></script>-->
 </head>
 
 <body>
@@ -20,21 +20,21 @@
                 <span>Inventario</span>
             </div>
             <div class="menu-item">
-                <img src="../Images/pedidosEmple.png" alt="Citas">
+                <a href="../Frotend/CitasMecanico.html">
+                    <img src="../Images/pedidosEmple.png" alt="Citas"></a>
                 <span>Citas</span>
             </div>
             <div class="menu-item">
-                <img src="../Images/notiEmple.png" alt="Notificaciones">
+                <a href="../Frotend/NotificacionesMecanico.html">
+                    <img src="../Images/notiEmple.png" alt="Notificaciones"></a>
                 <span>Notificaciones</span>
             </div>
-            <!--AGREGAR ESTE ITEM EN LOS DEMAS NAVBAR -->
             <div class="menu-item">
                 <a href="../Frotend/perfilEmpl.html">
                     <img src="/Images/personas.png" alt="pefil">
                 </a>
                 <span>Perfil</span>
             </div>
-            <!--FIN DEL NUEVO ITEM-->
             <div class="menu-item" id="cerrarSesion">
                 <a href="#">
                     <img src="/Images/exitEmple.png" alt="Cerrar sesión">
@@ -45,61 +45,33 @@
         <div class="content container-fluid">
             <h1>Stock Inventario</h1>
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <input type="text" class="form-control w-50" placeholder="Search the item by name or item code">
+                <div class="d-flex flex-grow-1">
+                    <input type="text" class="form-control w-25 mr-2" placeholder="Filtrar por marca"
+                        id="filterSupplier">
+                    <input type="text" class="form-control w-25 mr-2" placeholder="Filtrar por categoría"
+                        id="filterCategory">
+                    <input type="number" class="form-control w-25" placeholder="Filtrar por cantidad"
+                        id="filterQuantity">
+                    <input type="number" class="form-control w-25 mr-2" placeholder="Filtrar por costo de venta"
+                        id="filterCost">
+                </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="inventoryTable">
                     <thead>
                         <tr>
-                            <th><input type="checkbox"></th>
                             <th>No.</th>
-                            <th>Nombre</th>
+                            <th>Nombre</th> <!-- Usamos este campo para el nombre -->
                             <th>Código</th>
-                            <th>Descripción</th>
                             <th>Categoría</th>
+                            <th>Tipo</th>
+                            <th>Marca</th>
                             <th>Cantidad</th>
-                            <th>Proveedor</th>
                             <th>Costo adquirido</th>
                             <th>Costo venta</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>1</td>
-                            <td>Llantas pirelli</td>
-                            <td>000001</td>
-                            <td>Llantas para rin 27 con sello matico</td>
-                            <td>Repuestos</td>
-                            <td>23</td>
-                            <td>Pirelli</td>
-                            <td>30.000</td>
-                            <td>40.000</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>2</td>
-                            <td>tacometro XTZ</td>
-                            <td>000002</td>
-                            <td>Tacometro original de XTZ 125</td>
-                            <td>Repuestos</td>
-                            <td>20</td>
-                            <td>Yamaha</td>
-                            <td>30.000</td>
-                            <td>40.000</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>3</td>
-                            <td>bahul 25L</td>
-                            <td>000003</td>
-                            <td>Bahul de alta carga con plancha</td>
-                            <td>Accesorios</td>
-                            <td>10</td>
-                            <td>Ducati</td>
-                            <td>30.000</td>
-                            <td>40.000</td>
-                        </tr>
                     </tbody>
                 </table>
                 <nav>
@@ -115,9 +87,42 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Stock Bajo -->
+    <div class="modal fade" id="stockBajoModal" tabindex="-1" role="dialog" aria-labelledby="stockBajoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="stockBajoModalLabel">Productos con Stock Bajo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stockBajoBody">
+                            <!-- Filas de productos con stock bajo se insertarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../js/InventarioEmpl.js"></script>
 </body>
 
 </html>

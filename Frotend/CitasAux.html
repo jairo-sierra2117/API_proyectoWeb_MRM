@@ -14,7 +14,7 @@
     <div class="d-flex">
         <div class="sidebar">
             <div class="menu-item">
-                <a href="">
+                <a href="../Frotend/BienvenidoAUX.html">
                     <img src="../Images/inicioEmple.png" alt="Inicio">
                 </a>
                 <span>Inicio</span>
@@ -38,13 +38,13 @@
                 <span>Citas</span>
             </div>
             <div class="menu-item">
-                <a href="">
+                <a href="#">
                     <img src="../Images/notiEmple.png" alt="Notificaciones">
                 </a>
                 <span>Notificaciones</span>
             </div>
             <div class="menu-item">
-                <a href="">
+                <a href="../Frotend/perfilEmpl.html">
                     <img src="/Images/personas.png" alt="pefil">
                 </a>
                 <span>Perfil</span>
@@ -63,14 +63,14 @@
             </div>
             <h3 id="appointment-date"></h3>
             <div class="appointment-container">
-                
+
                 <!-- Las citas se insertarán aquí mediante JavaScript -->
             </div>
         </div>
     </div>
     <div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg" >
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -78,7 +78,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    
+
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-4">
@@ -87,35 +87,38 @@
                                     <label for="nombreProveedor">Nombre cliente</label>
                                     <div class="form-row">
                                         <div class="col">
-                                            <input type="text" class="form-control" id="clientName" placeholder="Nombre" readonly>
+                                            <input type="text" class="form-control" id="clientName" placeholder="Nombre"
+                                                readonly>
                                         </div>
                                         <div class="col">
-                                            <input type="text" class="form-control" id="clientLastName" placeholder="Apellido" readonly>
+                                            <input type="text" class="form-control" id="clientLastName"
+                                                placeholder="Apellido" readonly>
                                         </div>
                                     </div>
                                 </div>
                                 <form>
-                                <div class="form-group">
-                                    <label for="serviceType" class="h6">Tipo de servicio</label>
-                                    <input type="text" class="form-control" id="serviceType" placeholder="Tipo de servicio" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nuevoProveedor">Mecanico Asignado</label>
-                                    <input type="text" class="form-control" id="assignedMechanic">
-                                </div>
-                                <div class="form-group">
-                                    <label for="nuevoProveedor">Costo de mano de obra</label>
-                                    <input type="text" class="form-control" id="laborCost">
-                                </div>
-                                <div class="form-group">
-                                    <label for="nuevoProveedor">Costo total</label>
-                                    <input type="text" class="form-control" id="totalCost">
-                                </div>
-                                <div class="form-group">
-                                    <label for="nuevoProveedor">ID de la cita:</label>
-                                    <input type="text" class="form-control" id="appointmentID" readonly>
-                                </div>
-                            </form>
+                                    <div class="form-group">
+                                        <label for="serviceType" class="h6">Tipo de servicio</label>
+                                        <input type="text" class="form-control" id="serviceType"
+                                            placeholder="Tipo de servicio" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nuevoProveedor">Mecanico Asignado</label>
+                                        <input type="text" class="form-control" id="assignedMechanic">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nuevoProveedor">Costo de mano de obra</label>
+                                        <input type="text" class="form-control" id="laborCost">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nuevoProveedor">Costo total</label>
+                                        <input type="text" class="form-control" id="totalCost">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nuevoProveedor">ID de la cita:</label>
+                                        <input type="text" class="form-control" id="appointmentID" readonly>
+                                    </div>
+                                </form>
                             </div>
                             <div class="col-md-8">
                                 <h5>Productos recibidos</h5>
@@ -159,20 +162,20 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
-                    
+
+                    </div>
+
+
                 </div>
-                
-                
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-warning" id="registrarPedido">Guardar</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-warning" id="registrarPedido">Guardar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
